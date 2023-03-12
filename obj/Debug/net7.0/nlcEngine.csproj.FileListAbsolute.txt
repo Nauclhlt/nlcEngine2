@@ -1,0 +1,13 @@
+C:\workspace\CSharp\GitProjects\nlcEngine\bin\Debug\net7.0\nlcEngine.deps.json
+C:\workspace\CSharp\GitProjects\nlcEngine\bin\Debug\net7.0\nlcEngine.dll
+C:\workspace\CSharp\GitProjects\nlcEngine\bin\Debug\net7.0\nlcEngine.pdb
+C:\workspace\CSharp\GitProjects\nlcEngine\obj\Debug\net7.0\nlcEngine.csproj.AssemblyReference.cache
+C:\workspace\CSharp\GitProjects\nlcEngine\obj\Debug\net7.0\nlcEngine.GeneratedMSBuildEditorConfig.editorconfig
+C:\workspace\CSharp\GitProjects\nlcEngine\obj\Debug\net7.0\nlcEngine.AssemblyInfoInputs.cache
+C:\workspace\CSharp\GitProjects\nlcEngine\obj\Debug\net7.0\nlcEngine.AssemblyInfo.cs
+C:\workspace\CSharp\GitProjects\nlcEngine\obj\Debug\net7.0\nlcEngine.csproj.CoreCompileInputs.cache
+C:\workspace\CSharp\GitProjects\nlcEngine\obj\Debug\net7.0\nlcEngine.dll
+C:\workspace\CSharp\GitProjects\nlcEngine\obj\Debug\net7.0\refint\nlcEngine.dll
+C:\workspace\CSharp\GitProjects\nlcEngine\obj\Debug\net7.0\nlcEngine.pdb
+C:\workspace\CSharp\GitProjects\nlcEngine\obj\Debug\net7.0\ref\nlcEngine.dll
+C:\workspace\CSharp\GitProjects\nlcEngine\bin\Debug\net7.0\nlcEngine.xml
