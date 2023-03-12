@@ -1,0 +1,965 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>nlcEngine</name>
+    </assembly>
+    <members>
+        <member name="T:nlcEngine.Color">
+            <summary>
+            A color represented by RGBA components.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Color.R">
+            <summary>
+            Gets the R component.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Color.G">
+            <summary>
+            Gets the G component.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Color.B">
+            <summary>
+            Gets the B component.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Color.A">
+            <summary>
+            Gets the A component.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Color.Rf">
+            <summary>
+            Gets the R component in float.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Color.Gf">
+            <summary>
+            Gets the G component in float.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Color.Bf">
+            <summary>
+            Gets the B component in float.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Color.Af">
+            <summary>
+            Gets the A component in float.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Color.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Initializes a new structure with the R, G, B, and A component.
+            </summary>
+            <param name="r">R component</param>
+            <param name="g">G component</param>
+            <param name="b">B component</param>
+            <param name="a">A component</param>
+        </member>
+        <member name="M:nlcEngine.Color.#ctor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Initializes a new structure with the R, G, and B component. The A component will be set to 255.
+            </summary>
+            <param name="r">R component</param>
+            <param name="g">G component</param>
+            <param name="b">B component</param>
+        </member>
+        <member name="M:nlcEngine.Color.FromFloats(System.Single,System.Single,System.Single)">
+            <summary>
+            Returns a new structure with the R, G, and B component, specified with the float values.
+            </summary>
+            <param name="r">R component</param>
+            <param name="g">G component</param>
+            <param name="b">B component</param>
+            <returns>a structure with the specified components</returns>
+        </member>
+        <member name="M:nlcEngine.Color.FromFloats(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Returns a new structure with the R, G, B, and A component, specified with the float values.
+            </summary>
+            <param name="r">R component</param>
+            <param name="g">G component</param>
+            <param name="b">B component</param>
+            <param name="a">A component</param>
+            <returns>a structure with the specified components</returns>
+        </member>
+        <member name="M:nlcEngine.Color.Invert">
+            <summary>
+            Gets the inverted color from this structure.
+            </summary>
+            <returns>inverted color</returns>
+        </member>
+        <member name="F:nlcEngine.Color.Transparent">
+            <summary>
+             Gets the TRANSPARENT color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.AliceBlue">
+            <summary>
+             Gets the ALICEBLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.AntiqueWhite">
+            <summary>
+             Gets the ANTIQUEWHITE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Aqua">
+            <summary>
+             Gets the AQUA color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Aquamarine">
+            <summary>
+             Gets the AQUAMARINE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Azure">
+            <summary>
+             Gets the AZURE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Beige">
+            <summary>
+             Gets the BEIGE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Bisque">
+            <summary>
+             Gets the BISQUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Black">
+            <summary>
+             Gets the BLACK color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.BlanchedAlmond">
+            <summary>
+             Gets the BLANCHEDALMOND color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Blue">
+            <summary>
+             Gets the BLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.BlueViolet">
+            <summary>
+             Gets the BLUEVIOLET color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Brown">
+            <summary>
+             Gets the BROWN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.BurlyWood">
+            <summary>
+             Gets the BURLYWOOD color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.CadetBlue">
+            <summary>
+             Gets the CADETBLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Chartreuse">
+            <summary>
+             Gets the CHARTREUSE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Chocolate">
+            <summary>
+             Gets the CHOCOLATE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Coral">
+            <summary>
+             Gets the CORAL color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.CornflowerBlue">
+            <summary>
+             Gets the CORNFLOWERBLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Cornsilk">
+            <summary>
+             Gets the CORNSILK color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Crimson">
+            <summary>
+             Gets the CRIMSON color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Cyan">
+            <summary>
+             Gets the CYAN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DarkBlue">
+            <summary>
+             Gets the DARKBLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DarkCyan">
+            <summary>
+             Gets the DARKCYAN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DarkGoldenrod">
+            <summary>
+             Gets the DARKGOLDENROD color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DarkGray">
+            <summary>
+             Gets the DARKGRAY color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DarkGreen">
+            <summary>
+             Gets the DARKGREEN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DarkKhaki">
+            <summary>
+             Gets the DARKKHAKI color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DarkMagenta">
+            <summary>
+             Gets the DARKMAGENTA color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DarkOliveGreen">
+            <summary>
+             Gets the DARKOLIVEGREEN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DarkOrange">
+            <summary>
+             Gets the DARKORANGE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DarkOrchid">
+            <summary>
+             Gets the DARKORCHID color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DarkRed">
+            <summary>
+             Gets the DARKRED color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DarkSalmon">
+            <summary>
+             Gets the DARKSALMON color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DarkSeaGreen">
+            <summary>
+             Gets the DARKSEAGREEN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DarkSlateBlue">
+            <summary>
+             Gets the DARKSLATEBLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DarkSlateGray">
+            <summary>
+             Gets the DARKSLATEGRAY color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DarkTurquoise">
+            <summary>
+             Gets the DARKTURQUOISE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DarkViolet">
+            <summary>
+             Gets the DARKVIOLET color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DeepPink">
+            <summary>
+             Gets the DEEPPINK color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DeepSkyBlue">
+            <summary>
+             Gets the DEEPSKYBLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DimGray">
+            <summary>
+             Gets the DIMGRAY color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.DodgerBlue">
+            <summary>
+             Gets the DODGERBLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Firebrick">
+            <summary>
+             Gets the FIREBRICK color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.FloralWhite">
+            <summary>
+             Gets the FLORALWHITE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.ForestGreen">
+            <summary>
+             Gets the FORESTGREEN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Fuchsia">
+            <summary>
+             Gets the FUCHSIA color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Gainsboro">
+            <summary>
+             Gets the GAINSBORO color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.GhostWhite">
+            <summary>
+             Gets the GHOSTWHITE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Gold">
+            <summary>
+             Gets the GOLD color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Goldenrod">
+            <summary>
+             Gets the GOLDENROD color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Gray">
+            <summary>
+             Gets the GRAY color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Green">
+            <summary>
+             Gets the GREEN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.GreenYellow">
+            <summary>
+             Gets the GREENYELLOW color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Honeydew">
+            <summary>
+             Gets the HONEYDEW color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.HotPink">
+            <summary>
+             Gets the HOTPINK color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.IndianRed">
+            <summary>
+             Gets the INDIANRED color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Indigo">
+            <summary>
+             Gets the INDIGO color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Ivory">
+            <summary>
+             Gets the IVORY color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Khaki">
+            <summary>
+             Gets the KHAKI color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Lavender">
+            <summary>
+             Gets the LAVENDER color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.LavenderBlush">
+            <summary>
+             Gets the LAVENDERBLUSH color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.LawnGreen">
+            <summary>
+             Gets the LAWNGREEN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.LemonChiffon">
+            <summary>
+             Gets the LEMONCHIFFON color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.LightBlue">
+            <summary>
+             Gets the LIGHTBLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.LightCoral">
+            <summary>
+             Gets the LIGHTCORAL color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.LightCyan">
+            <summary>
+             Gets the LIGHTCYAN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.LightGoldenrodYellow">
+            <summary>
+             Gets the LIGHTGOLDENRODYELLOW color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.LightGreen">
+            <summary>
+             Gets the LIGHTGREEN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.LightGray">
+            <summary>
+             Gets the LIGHTGRAY color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.LightPink">
+            <summary>
+             Gets the LIGHTPINK color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.LightSalmon">
+            <summary>
+             Gets the LIGHTSALMON color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.LightSeaGreen">
+            <summary>
+             Gets the LIGHTSEAGREEN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.LightSkyBlue">
+            <summary>
+             Gets the LIGHTSKYBLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.LightSlateGray">
+            <summary>
+             Gets the LIGHTSLATEGRAY color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.LightSteelBlue">
+            <summary>
+             Gets the LIGHTSTEELBLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.LightYellow">
+            <summary>
+             Gets the LIGHTYELLOW color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Lime">
+            <summary>
+             Gets the LIME color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.LimeGreen">
+            <summary>
+             Gets the LIMEGREEN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Linen">
+            <summary>
+             Gets the LINEN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Magenta">
+            <summary>
+             Gets the MAGENTA color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Maroon">
+            <summary>
+             Gets the MAROON color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.MediumAquamarine">
+            <summary>
+             Gets the MEDIUMAQUAMARINE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.MediumBlue">
+            <summary>
+             Gets the MEDIUMBLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.MediumOrchid">
+            <summary>
+             Gets the MEDIUMORCHID color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.MediumPurple">
+            <summary>
+             Gets the MEDIUMPURPLE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.MediumSeaGreen">
+            <summary>
+             Gets the MEDIUMSEAGREEN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.MediumSlateBlue">
+            <summary>
+             Gets the MEDIUMSLATEBLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.MediumSpringGreen">
+            <summary>
+             Gets the MEDIUMSPRINGGREEN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.MediumTurquoise">
+            <summary>
+             Gets the MEDIUMTURQUOISE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.MediumVioletRed">
+            <summary>
+             Gets the MEDIUMVIOLETRED color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.MidnightBlue">
+            <summary>
+             Gets the MIDNIGHTBLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.MintCream">
+            <summary>
+             Gets the MINTCREAM color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.MistyRose">
+            <summary>
+             Gets the MISTYROSE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Moccasin">
+            <summary>
+             Gets the MOCCASIN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.NavajoWhite">
+            <summary>
+             Gets the NAVAJOWHITE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Navy">
+            <summary>
+             Gets the NAVY color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.OldLace">
+            <summary>
+             Gets the OLDLACE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Olive">
+            <summary>
+             Gets the OLIVE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.OliveDrab">
+            <summary>
+             Gets the OLIVEDRAB color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Orange">
+            <summary>
+             Gets the ORANGE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.OrangeRed">
+            <summary>
+             Gets the ORANGERED color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Orchid">
+            <summary>
+             Gets the ORCHID color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.PaleGoldenrod">
+            <summary>
+             Gets the PALEGOLDENROD color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.PaleGreen">
+            <summary>
+             Gets the PALEGREEN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.PaleTurquoise">
+            <summary>
+             Gets the PALETURQUOISE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.PaleVioletRed">
+            <summary>
+             Gets the PALEVIOLETRED color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.PapayaWhip">
+            <summary>
+             Gets the PAPAYAWHIP color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.PeachPuff">
+            <summary>
+             Gets the PEACHPUFF color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Peru">
+            <summary>
+             Gets the PERU color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Pink">
+            <summary>
+             Gets the PINK color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Plum">
+            <summary>
+             Gets the PLUM color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.PowderBlue">
+            <summary>
+             Gets the POWDERBLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Purple">
+            <summary>
+             Gets the PURPLE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.RebeccaPurple">
+            <summary>
+             Gets the REBECCAPURPLE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Red">
+            <summary>
+             Gets the RED color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.RosyBrown">
+            <summary>
+             Gets the ROSYBROWN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.RoyalBlue">
+            <summary>
+             Gets the ROYALBLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.SaddleBrown">
+            <summary>
+             Gets the SADDLEBROWN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Salmon">
+            <summary>
+             Gets the SALMON color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.SandyBrown">
+            <summary>
+             Gets the SANDYBROWN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.SeaGreen">
+            <summary>
+             Gets the SEAGREEN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.SeaShell">
+            <summary>
+             Gets the SEASHELL color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Sienna">
+            <summary>
+             Gets the SIENNA color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Silver">
+            <summary>
+             Gets the SILVER color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.SkyBlue">
+            <summary>
+             Gets the SKYBLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.SlateBlue">
+            <summary>
+             Gets the SLATEBLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.SlateGray">
+            <summary>
+             Gets the SLATEGRAY color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Snow">
+            <summary>
+             Gets the SNOW color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.SpringGreen">
+            <summary>
+             Gets the SPRINGGREEN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.SteelBlue">
+            <summary>
+             Gets the STEELBLUE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Tan">
+            <summary>
+             Gets the TAN color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Teal">
+            <summary>
+             Gets the TEAL color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Thistle">
+            <summary>
+             Gets the THISTLE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Tomato">
+            <summary>
+             Gets the TOMATO color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Turquoise">
+            <summary>
+             Gets the TURQUOISE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Violet">
+            <summary>
+             Gets the VIOLET color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Wheat">
+            <summary>
+             Gets the WHEAT color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.White">
+            <summary>
+             Gets the WHITE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.WhiteSmoke">
+            <summary>
+             Gets the WHITESMOKE color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.Yellow">
+            <summary>
+             Gets the YELLOW color.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Color.YellowGreen">
+            <summary>
+             Gets the YELLOWGREEN color.
+            </summary>
+        </member>
+        <member name="T:nlcEngine.NlcArgException">
+            <summary>
+            An exception when thrown an argument is invalid.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.NlcArgException.#ctor">
+            <summary>
+            Creates a new instance.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.NlcArgException.#ctor(System.String)">
+            <summary>
+            Creates a new instance with the message.
+            </summary>
+            <param name="msg">message</param>
+        </member>
+        <member name="M:nlcEngine.NlcArgException.#ctor(System.String,System.Exception)">
+            <summary>
+            Creates a new instance with the message, and the inner exception, which caused this exception.
+            </summary>
+            <param name="msg">message</param>
+            <param name="innerException">inner exception</param>
+        </member>
+        <member name="T:nlcEngine.Profile">
+            <summary>
+            Contains a setting to start a game.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Profile.WindowWidth">
+            <summary>
+            Gets the width of the window.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Profile.WindowHeight">
+            <summary>
+            Gets the height of the window.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Profile.BufferWidth">
+            <summary>
+            Gets the width of the buffer.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Profile.BufferHeight">
+            <summary>
+            Gets the height of the buffer.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Profile.Fullscreen">
+            <summary>
+            Gets whether the window is fullscreen.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Profile.Title">
+            <summary>
+            Gets the title text.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Profile.Fps">
+            <summary>
+            Gets the fps.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Profile.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.String)">
+            <summary>
+            Creates a new profile with the window size, buffer size, and title.
+            </summary>
+            <param name="windowWidth">width of the window</param>
+            <param name="windowHeight">height of the window</param>
+            <param name="bufferWidth">width of the buffer</param>
+            <param name="bufferHeight">height of the buffer</param>
+            <param name="title">title text</param>
+        </member>
+        <member name="M:nlcEngine.Profile.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.Double)">
+            <summary>
+            Creates a new instance with the window size, buffer size, title, and fps.
+            </summary>
+            <param name="windowWidth">width of the window</param>
+            <param name="windowHeight">height of the window</param>
+            <param name="bufferWidth">width of the buffer</param>
+            <param name="bufferHeight">height of the buffer</param>
+            <param name="title">title text</param>
+            <param name="fps">frames-per-second</param>
+        </member>
+        <member name="M:nlcEngine.Profile.#ctor(System.Int32,System.Int32,System.String,System.Double)">
+            <summary>
+            Creates a new profile with the buffer size, title, and fps for fullscreen game.
+            </summary>
+            <param name="bufferWidth">width of the buffer</param>
+            <param name="bufferHeight">height of the buffer</param>
+            <param name="title">title text</param>
+            <param name="fps">frames-per-second</param>
+        </member>
+        <member name="T:nlcEngine.Scene">
+            <summary>
+            Represents a scene in the game.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Scene.OnUserUpdate(System.Single)">
+            <summary>
+            Updates the frame, called per frame, when overridden.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Scene.OnUserRender(System.Single)">
+            <summary>
+            Renders the frame, called per frame, when overridden.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Scene.OnUserConstUpdate(System.Single)">
+            <summary>
+            Updates the frame, called per frame, when overridden.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Scene.OnUserLoad">
+            <summary>
+            Loads the frame, called when the scene is loaded, when overridden.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Scene.OnUserCreate">
+            <summary>
+            Initializes the scene, called first time when the scene is loaded, when overridden.
+            </summary>
+        </member>
+        <member name="T:nlcEngine.NlcEngineGame">
+            <summary>
+            Provides the main class for Nlc Game Engine.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.NlcEngineGame.SceneService">
+            <summary>
+            Gets the SceneService instance.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.NlcEngineGame.Init(nlcEngine.Profile)">
+            <summary>
+            Initializes the new game window and loads the all features that must be loaded on the start.
+            </summary>
+            <param name="profile">profile</param>
+        </member>
+        <member name="M:nlcEngine.NlcEngineGame.Start">
+            <summary>
+            Starts the game.
+            </summary>
+        </member>
+        <member name="T:nlcEngine.SceneService">
+            <summary>
+            Provides the interfaces to deal with the scenes.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.SceneService.CurrentScene">
+            <summary>
+            Gets the current scene.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.SceneService.Navigate(nlcEngine.Scene)">
+            <summary>
+            Navigates the specified scene.
+            </summary>
+            <param name="scene">scene</param>
+        </member>
+    </members>
+</doc>
