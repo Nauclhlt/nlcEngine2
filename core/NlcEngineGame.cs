@@ -24,6 +24,9 @@ public static class NlcEngineGame
     static GameWindow _window;
     static Profile _profile;
     static SceneService _sceneService = new SceneService();
+    static List<Action> _releases = new List<Action>();
+
+    static CopyingBuffer _copyingBuffer;
 
     internal static GameWindow Window => _window;
     internal static Profile Profile => _profile;
@@ -62,6 +65,18 @@ public static class NlcEngineGame
         _window.UpdateFrame += OnUpdateWindow;
         _window.RenderFrame += OnRenderWindow;
 
+
+        GL.Enable(EnableCap.Texture2D);
+        GL.Enable(EnableCap.DepthTest);
+
+        DefaultBuffer.CreateBuffer(_profile.BufferWidth, _profile.BufferHeight);
+        _copyingBuffer = CopyingBuffer.CreateBuffer();
+        CoreShaders.Load();
+        Shader.Load();
+        Rdc.Initialize();
+        DefaultBuffer.Bind();
+
+        Viewer.CreateProjection();
     }
 
     /// <summary>
@@ -81,6 +96,15 @@ public static class NlcEngineGame
         }
     }
 
+    /// <summary>
+    /// Ensures the action that releases some resources will be runned when the resources are disposed.
+    /// </summary>
+    /// <param name="action">releasing action</param>
+    public static void EnsureRelease(Action action)
+    {
+        _releases.Add(action);
+    }
+
     private static void Cleanup()
     {
         ResourceCollector.CleanupAll();
@@ -98,15 +122,42 @@ public static class NlcEngineGame
     {
         float elapsed = (float)e.Time;
 
-        _window.MakeCurrent();
+        DefaultBuffer.Bind();
 
-        Color backColor = GlobalState.BackgroundColor;
+        GL.Enable(EnableCap.DepthTest);
+
+        GL.Viewport(0, 0, _profile.BufferWidth, _profile.BufferHeight);
+
+        Color backColor = _sceneService.GetBackgroundColor();
         GL.ClearColor(backColor.Rf, backColor.Gf, backColor.Bf, backColor.Af);
         GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-
+        
         _sceneService.OnUserRender(elapsed);
+
+        _window.MakeCurrent();
+
+        GL.BindFramebuffer(FramebufferTarget.Framebuffer, 0);
+
+        CopyScreen();
 
         GL.Flush();
         _window.SwapBuffers();
+    }
+
+    private static void CopyScreen()
+    {
+        GL.Viewport(0, 0, _window.Size.X, _window.Size.Y);
+
+        Shader shader = CoreShaders.CopyShader;
+        shader.Activate();
+
+        GL.Disable(EnableCap.DepthTest);
+
+        GL.ActiveTexture(TextureUnit.Texture0);
+        GL.BindTexture(TextureTarget.Texture2D, DefaultBuffer.Texture);
+
+        _copyingBuffer.Draw();
+
+        GL.BindTexture(TextureTarget.Texture2D, 0);
     }
 }

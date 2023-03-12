@@ -48,4 +48,9 @@ public sealed class SceneService
     {
         _current.OnUserConstUpdate(elapsedTime);
     }
+
+    internal Color GetBackgroundColor()
+    {
+        return _current.BackgroundColor;
+    }
 }
