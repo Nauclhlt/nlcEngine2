@@ -6,11 +6,21 @@ namespace nlcEngine;
 public class Scene
 {
     bool _created = false;
+    Color _backgroundColor = Color.Black;
 
     internal bool Created
     {
         get => _created;
         set => _created = value;
+    }
+
+    /// <summary>
+    /// Gets or sets the background color of the scene.
+    /// </summary>
+    public Color BackgroundColor
+    {
+        get => _backgroundColor;
+        set => _backgroundColor = value;
     }
 
     /// <summary>

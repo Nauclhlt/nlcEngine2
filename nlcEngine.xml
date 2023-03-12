@@ -824,6 +824,29 @@
             <param name="msg">message</param>
             <param name="innerException">inner exception</param>
         </member>
+        <member name="T:nlcEngine.NlcCommonException">
+            <summary>
+            An exception when thrown an argument is invalid.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.NlcCommonException.#ctor">
+            <summary>
+            Creates a new instance.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.NlcCommonException.#ctor(System.String)">
+            <summary>
+            Creates a new instance with the message.
+            </summary>
+            <param name="msg">message</param>
+        </member>
+        <member name="M:nlcEngine.NlcCommonException.#ctor(System.String,System.Exception)">
+            <summary>
+            Creates a new instance with the message, and the inner exception, which caused this exception.
+            </summary>
+            <param name="msg">message</param>
+            <param name="innerException">inner exception</param>
+        </member>
         <member name="T:nlcEngine.Profile">
             <summary>
             Contains a setting to start a game.
@@ -899,6 +922,11 @@
             Represents a scene in the game.
             </summary>
         </member>
+        <member name="P:nlcEngine.Scene.BackgroundColor">
+            <summary>
+            Gets or sets the background color of the scene.
+            </summary>
+        </member>
         <member name="M:nlcEngine.Scene.OnUserUpdate(System.Single)">
             <summary>
             Updates the frame, called per frame, when overridden.
@@ -945,6 +973,12 @@
             Starts the game.
             </summary>
         </member>
+        <member name="M:nlcEngine.NlcEngineGame.EnsureRelease(System.Action)">
+            <summary>
+            Ensures the action that releases some resources will be runned when the resources are disposed.
+            </summary>
+            <param name="action">releasing action</param>
+        </member>
         <member name="T:nlcEngine.SceneService">
             <summary>
             Provides the interfaces to deal with the scenes.
@@ -960,6 +994,58 @@
             Navigates the specified scene.
             </summary>
             <param name="scene">scene</param>
+        </member>
+        <member name="T:nlcEngine.INamed">
+            <summary>
+            Provides the property to retrieve the resource name held in the wrapper.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.INamed.Name">
+            <summary>
+            Gets the resource name.
+            </summary>
+        </member>
+        <member name="T:nlcEngine.Shader">
+            <summary>
+            Wraps an OpenGL shader.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Shader.Name">
+            <summary>
+            Gets the shader name.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Shader.VertexShader">
+            <summary>
+            Gets the source code of the vertex shader.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Shader.FragmentShader">
+            <summary>
+            Gets the source code of the fragment shader.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Shader.#ctor(System.String,System.String)">
+            <summary>
+            Compiles the shaders, and attaches and link them on the shader program.
+            </summary>
+            <param name="vertexShaderSource">vertex shader source</param>
+            <param name="fragmentShaderSource">fragment shader source</param>
+        </member>
+        <member name="M:nlcEngine.Shader.Activate">
+            <summary>
+            Activates the shader.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Shader.Dispose">
+            <summary>
+            Releases all resources used by the shader.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Shader.Finalize">
+            <summary>
+            A destructor.
+            </summary>
         </member>
     </members>
 </doc>
