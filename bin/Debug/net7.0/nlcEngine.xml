@@ -9,19 +9,19 @@
             Represents a camera.
             </summary>
         </member>
-        <member name="P:nlcEngine.Camera.Position">
+        <member name="F:nlcEngine.Camera.Position">
             <summary>
-            Gets or sets the position of the camera.
+            Camera position.
             </summary>
         </member>
-        <member name="P:nlcEngine.Camera.Target">
+        <member name="F:nlcEngine.Camera.Target">
             <summary>
-            Gets or sets the target point of the camera.
+            Camera target point.
             </summary>
         </member>
-        <member name="P:nlcEngine.Camera.Up">
+        <member name="F:nlcEngine.Camera.Up">
             <summary>
-            Gets or sets the up vector of the camera.
+            Camera up vector.
             </summary>
         </member>
         <member name="T:nlcEngine.Color">
@@ -952,6 +952,595 @@
             <param name="angle">rotation angle</param>
             <returns>rotated vector</returns>
         </member>
+        <member name="M:nlcEngine.Vec3.op_Addition(nlcEngine.Vec3,nlcEngine.Vec3)">
+            <summary>
+            Adds the 2 vectors.
+            </summary>
+            <param name="left">left</param>
+            <param name="right">right</param>
+            <returns>resulting vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec3.op_UnaryNegation(nlcEngine.Vec3)">
+            <summary>
+            Gets the minus vector.
+            </summary>
+            <param name="vec">vector</param>
+            <returns>resulting vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec3.op_Subtraction(nlcEngine.Vec3,nlcEngine.Vec3)">
+            <summary>
+            Subtracts the 2 vectors.
+            </summary>
+            <param name="left">left</param>
+            <param name="right">right</param>
+            <returns>resulting vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec3.op_Multiply(nlcEngine.Vec3,System.Single)">
+            <summary>
+            Returns the scalar product.
+            </summary>
+            <param name="left">vector</param>
+            <param name="scalar">scalar</param>
+            <returns>resulting vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec3.op_Division(nlcEngine.Vec3,System.Single)">
+            <summary>
+            Returns the scalar division.
+            </summary>
+            <param name="left">vector</param>
+            <param name="scalar">scalar</param>
+            <returns>resulting vector</returns>
+        </member>
+        <member name="T:nlcEngine.Key">
+            <summary>
+            Represents a key.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Unknown">
+            <summary>
+                An unknown key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Space">
+            <summary>
+                The spacebar key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Apostrophe">
+            <summary>
+                The apostrophe key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Comma">
+            <summary>
+                The comma key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Minus">
+            <summary>
+                The minus key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Period">
+            <summary>
+                The period key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Slash">
+            <summary>
+                The slash key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D0">
+            <summary>
+                The 0 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D1">
+            <summary>
+                The 1 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D2">
+            <summary>
+                The 2 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D3">
+            <summary>
+                The 3 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D4">
+            <summary>
+                The 4 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D5">
+            <summary>
+                The 5 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D6">
+            <summary>
+                The 6 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D7">
+            <summary>
+                The 7 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D8">
+            <summary>
+                The 8 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D9">
+            <summary>
+                The 9 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Semicolon">
+            <summary>
+                The semicolon key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Equal">
+            <summary>
+                The equal key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.A">
+            <summary>
+                The A key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.B">
+            <summary>
+                The B key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.C">
+            <summary>
+                The C key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D">
+            <summary>
+                The D key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.E">
+            <summary>
+                The E key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F">
+            <summary>
+                The F key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.G">
+            <summary>
+                The G key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.H">
+            <summary>
+                The H key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.I">
+            <summary>
+                The I key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.J">
+            <summary>
+                The J key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.K">
+            <summary>
+                The K key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.L">
+            <summary>
+                The L key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.M">
+            <summary>
+                The M key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.N">
+            <summary>
+                The N key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.O">
+            <summary>
+                The O key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.P">
+            <summary>
+                The P key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Q">
+            <summary>
+                The Q key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.R">
+            <summary>
+                The R key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.S">
+            <summary>
+                The S key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.T">
+            <summary>
+                The T key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.U">
+            <summary>
+                The U key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.V">
+            <summary>
+                The V key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.W">
+            <summary>
+                The W key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.X">
+            <summary>
+                The X key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Y">
+            <summary>
+                The Y key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Z">
+            <summary>
+                The Z key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.LeftBracket">
+            <summary>
+                The left bracket(opening bracket) key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Backslash">
+            <summary>
+                The backslash. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.RightBracket">
+            <summary>
+                The right bracket(closing bracket) key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.GraveAccent">
+            <summary>
+                The grave accent key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Escape">
+            <summary>
+                The escape key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Enter">
+            <summary>
+                The enter key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Tab">
+            <summary>
+                The tab key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Backspace">
+            <summary>
+                The backspace key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Insert">
+            <summary>
+                The insert key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Delete">
+            <summary>
+                The delete key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Right">
+            <summary>
+                The right arrow key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Left">
+            <summary>
+                The left arrow key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Down">
+            <summary>
+                The down arrow key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Up">
+            <summary>
+                The up arrow key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.PageUp">
+            <summary>
+                The page up key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.PageDown">
+            <summary>
+                The page down key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Home">
+            <summary>
+                The home key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.End">
+            <summary>
+                The end key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.CapsLock">
+            <summary>
+                The caps lock key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.ScrollLock">
+            <summary>
+                The scroll lock key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.NumLock">
+            <summary>
+                The num lock key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.PrintScreen">
+            <summary>
+                The print screen key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Pause">
+            <summary>
+                The pause key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F1">
+            <summary>
+                The F1 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F2">
+            <summary>
+                The F2 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F3">
+            <summary>
+                The F3 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F4">
+            <summary>
+                The F4 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F5">
+            <summary>
+                The F5 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F6">
+            <summary>
+                The F6 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F7">
+            <summary>
+                The F7 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F8">
+            <summary>
+                The F8 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F9">
+            <summary>
+                The F9 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F10">
+            <summary>
+                The F10 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F11">
+            <summary>
+                The F11 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F12">
+            <summary>
+                The F12 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F13">
+            <summary>
+                The F13 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F14">
+            <summary>
+                The F14 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F15">
+            <summary>
+                The F15 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F16">
+            <summary>
+                The F16 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F17">
+            <summary>
+                The F17 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F18">
+            <summary>
+                The F18 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F19">
+            <summary>
+                The F19 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F20">
+            <summary>
+                The F20 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F21">
+            <summary>
+                The F21 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F22">
+            <summary>
+                The F22 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F23">
+            <summary>
+                The F23 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F24">
+            <summary>
+                The F24 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F25">
+            <summary>
+                The F25 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad0">
+            <summary>
+                The 0 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad1">
+            <summary>
+                The 1 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad2">
+            <summary>
+                The 2 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad3">
+            <summary>
+                The 3 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad4">
+            <summary>
+                The 4 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad5">
+            <summary>
+                The 5 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad6">
+            <summary>
+                The 6 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad7">
+            <summary>
+                The 7 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad8">
+            <summary>
+                The 8 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad9">
+            <summary>
+                The 9 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPadDecimal">
+            <summary>
+                The decimal key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPadDivide">
+            <summary>
+                The divide key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPadMultiply">
+            <summary>
+                The multiply key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPadSubtract">
+            <summary>
+                The subtract key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPadAdd">
+            <summary>
+                The add key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPadEnter">
+            <summary>
+                The enter key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPadEqual">
+            <summary>
+                The equal key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.LeftShift">
+            <summary>
+                The left shift key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.LeftControl">
+            <summary>
+                The left control key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.LeftAlt">
+            <summary>
+                The left alt key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.LeftSuper">
+            <summary>
+                The left super key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.RightShift">
+            <summary>
+                The right shift key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.RightControl">
+            <summary>
+                The right control key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.RightAlt">
+            <summary>
+                The right alt key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.RightSuper">
+            <summary>
+                The right super key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Menu">
+            <summary>
+                The menu key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.LastKey">
+            <summary>
+                The last valid key in this enum. </summary>
+        </member>
+        <member name="T:nlcEngine.MouseButton">
+            <summary>
+            Represents a mouse button.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Button1">
+            
+             <summary>
+                 The first button. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Button2">
+            
+             <summary>
+                 The second button. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Button3">
+            
+             <summary>
+                 The third button. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Button4">
+            
+             <summary>
+                 The fourth button. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Button5">
+            
+             <summary>
+                 The fifth button. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Button6">
+            
+             <summary>
+                 The sixth button. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Button7">
+            
+             <summary>
+                 The seventh button. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Button8">
+            
+             <summary>
+                 The eighth button. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Left">
+            
+             <summary>
+                 The left mouse button. This corresponds to OpenTK.Windowing.GraphicsLibraryFramework.MouseButton.Button1. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Right">
+            
+             <summary>
+                 The right mouse button. This corresponds to OpenTK.Windowing.GraphicsLibraryFramework.MouseButton.Button2. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Middle">
+            
+             <summary>
+                 The middle mouse button. This corresponds to OpenTK.Windowing.GraphicsLibraryFramework.MouseButton.Button3. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Last">
+            
+             <summary>
+                 The highest mouse button available. </summary>
+        </member>
         <member name="T:nlcEngine.Primitive">
             <summary>
             Primitive type to render.
@@ -1074,7 +1663,7 @@
         </member>
         <member name="T:nlcEngine.NlcCommonException">
             <summary>
-            An exception when thrown an argument is invalid.
+            An exception thrown when general errors.
             </summary>
         </member>
         <member name="M:nlcEngine.NlcCommonException.#ctor">
@@ -1094,6 +1683,22 @@
             </summary>
             <param name="msg">message</param>
             <param name="innerException">inner exception</param>
+        </member>
+        <member name="T:nlcEngine.NlcNotInitializedException">
+            <summary>
+            An exception thrown when the game is not initialized.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.NlcNotInitializedException.#ctor">
+            <summary>
+            Creates a new instance.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.NlcNotInitializedException.#ctor(System.String)">
+            <summary>
+            Creates a new instance with the message.
+            </summary>
+            <param name="msg">message</param>
         </member>
         <member name="T:nlcEngine.Profile">
             <summary>
@@ -1260,6 +1865,44 @@
             <summary>
             Gets or sets the StdShader.
             </summary>
+        </member>
+        <member name="T:nlcEngine.Input">
+            <summary>
+            Provides the API to handle user input.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Input.IsKeyDown(nlcEngine.Key)">
+            <summary>
+            Checks if the specified key is currently pressed.
+            </summary>
+            <param name="key">key</param>
+            <returns>whether the key is pressed</returns>
+        </member>
+        <member name="M:nlcEngine.Input.IsKeyPressed(nlcEngine.Key)">
+            <summary>
+            Checks if the specified key is started to be pressed in this frame.
+            </summary>
+            <param name="key">key</param>
+            <returns>whether the key is pressed</returns>
+        </member>
+        <member name="M:nlcEngine.Input.IsKeyReleased(nlcEngine.Key)">
+            <summary>
+            Checks if the specified key is released in this frame.
+            </summary>
+            <param name="key">key</param>
+            <returns>whether the key is released</returns>
+        </member>
+        <member name="M:nlcEngine.Input.GetMousePoint">
+            <summary>
+            Gets the mouse point relative to the window.
+            </summary>
+            <returns>relative mouse point</returns>
+        </member>
+        <member name="M:nlcEngine.Input.SetMousePoint(nlcEngine.Vec2)">
+            <summary>
+            Sets the mouse point relative to the window.
+            </summary>
+            <param name="pos">relative mouse point</param>
         </member>
         <member name="T:nlcEngine.NlcEngineGame">
             <summary>

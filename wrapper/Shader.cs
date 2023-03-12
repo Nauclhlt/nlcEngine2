@@ -68,6 +68,8 @@ public sealed class Shader : IDisposable, INamed
     /// <param name="fragmentShaderSource">fragment shader source</param>
     public Shader(string vertexShaderSource, string fragmentShaderSource)
     {
+        NlcHelper.InThrow();
+
         _vertexShader = vertexShaderSource;
         _fragmentShader = fragmentShaderSource;
 
@@ -116,6 +118,8 @@ public sealed class Shader : IDisposable, INamed
     /// </summary>
     public void Activate()
     {
+        NlcHelper.DispThrow(_disposed);
+
         GL.UseProgram(_name);
     }
 

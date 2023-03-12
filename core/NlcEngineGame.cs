@@ -69,6 +69,12 @@ public static class NlcEngineGame
         GL.Enable(EnableCap.Texture2D);
         GL.Enable(EnableCap.DepthTest);
 
+        GL.Enable(EnableCap.DebugOutput);
+        GL.DebugMessageCallback((source, type, id, severity, length, message, userParam) => {
+            string msg = Marshal.PtrToStringUTF8(message);
+            Console.Error.WriteLine("ID=" + id + " " + msg);
+        }, 0);
+
         DefaultBuffer.CreateBuffer(_profile.BufferWidth, _profile.BufferHeight);
         _copyingBuffer = CopyingBuffer.CreateBuffer();
         CoreShaders.Load();
@@ -88,8 +94,14 @@ public static class NlcEngineGame
         {
             _window.Run();
         }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
         finally
         {
+            
+
             _window.Dispose();
 
             Cleanup();
@@ -108,6 +120,13 @@ public static class NlcEngineGame
     private static void Cleanup()
     {
         ResourceCollector.CleanupAll();
+
+        for (int i = 0; i < _releases.Count; i++)
+        {
+            _releases[i]();
+        }
+
+        _releases.Clear();
     }
 
     private static void OnUpdateWindow(FrameEventArgs e)

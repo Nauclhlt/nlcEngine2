@@ -89,7 +89,7 @@ public abstract class RenderObject : IDisposable
         {
             CreateBuffer();
         }
-
+    
         Shader shader = ShaderProvider.StdShader;
         shader.Activate();
 

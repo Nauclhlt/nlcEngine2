@@ -3,16 +3,18 @@ namespace nlcEngine;
 /// <summary>
 /// A 2-dementional vector represented with 2 float values.
 /// </summary>
-[StructLayout(LayoutKind.Sequential)]
+[StructLayout(LayoutKind.Explicit, Size=8)]
 public struct Vec2
 {
     /// <summary>
     /// The X element.
     /// </summary>
+    [FieldOffset(0)]
     public float X;
     /// <summary>
     /// The Y element.
     /// </summary>
+    [FieldOffset(4)]
     public float Y;
 
     /// <summary>

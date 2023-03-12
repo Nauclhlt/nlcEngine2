@@ -14,7 +14,7 @@ public static class Viewer
 
     internal static void CreateProjection()
     {
-        _projectionMatrix = Matrix4.CreatePerspectiveFieldOfView((_fieldOfView / 180f) * MathF.PI, NlcEngineGame.Profile.BufferHeight / NlcEngineGame.Profile.BufferWidth, _depthNear, _depthFar);
+        _projectionMatrix = Matrix4.CreatePerspectiveFieldOfView((_fieldOfView / 180f) * MathF.PI, NlcEngineGame.Profile.BufferWidth / NlcEngineGame.Profile.BufferHeight, _depthNear, _depthFar);
     }
 
     /// <summary>
