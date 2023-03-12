@@ -72,8 +72,11 @@ public static class NlcEngineGame
         DefaultBuffer.CreateBuffer(_profile.BufferWidth, _profile.BufferHeight);
         _copyingBuffer = CopyingBuffer.CreateBuffer();
         CoreShaders.Load();
+        Shader.Load();
         Rdc.Initialize();
         DefaultBuffer.Bind();
+
+        Viewer.CreateProjection();
     }
 
     /// <summary>

@@ -17,6 +17,8 @@
   <ItemGroup>
     <EmbeddedResource Include="./shaders/copy.vert" LogicalName="copy_shader_vert" />
     <EmbeddedResource Include="./shaders/copy.frag" LogicalName="copy_shader_frag" />
+    <EmbeddedResource Include="./shaders/std.vert" LogicalName="std_shader_vert" />
+    <EmbeddedResource Include="./shaders/std.frag" LogicalName="std_shader_frag" />
   </ItemGroup>
 
 </Project>

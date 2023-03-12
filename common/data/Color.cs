@@ -3,49 +3,42 @@ namespace nlcEngine;
 /// <summary>
 /// A color represented by RGBA components.
 /// </summary>
+[StructLayout(LayoutKind.Sequential)]
 public struct Color
 {
-    byte _r;
-    byte _g;
-    byte _b;
-    byte _a;
-    float _rf;
-    float _gf;
-    float _bf;
-    float _af;
+    /// <summary>
+    /// The R component.
+    /// </summary>
+    public byte R;
+    /// <summary>
+    /// The G component.
+    /// </summary>
+    public byte G;
+    /// <summary>
+    /// The B component.
+    /// </summary>
+    public byte B;
+    /// <summary>
+    /// The A component.
+    /// </summary>
+    public byte A;
 
-    /// <summary>
-    /// Gets the R component.
-    /// </summary>
-    public byte R => _r;
-    /// <summary>
-    /// Gets the G component.
-    /// </summary>
-    public byte G => _g;
-    /// <summary>
-    /// Gets the B component.
-    /// </summary>
-    public byte B => _b;
-    /// <summary>
-    /// Gets the A component.
-    /// </summary>
-    public byte A => _a;
     /// <summary>
     /// Gets the R component in float.
     /// </summary>
-    public float Rf => _rf;
+    public float Rf => R / 255f;
     /// <summary>
     /// Gets the G component in float.
     /// </summary>
-    public float Gf => _gf;
+    public float Gf => G / 255f;
     /// <summary>
     /// Gets the B component in float.
     /// </summary>
-    public float Bf => _bf;
+    public float Bf => B / 255f;
     /// <summary>
     /// Gets the A component in float.
     /// </summary>
-    public float Af => _af;
+    public float Af => A / 255f;
 
     /// <summary>
     /// Initializes a new structure with the R, G, B, and A component.
@@ -56,14 +49,10 @@ public struct Color
     /// <param name="a">A component</param>
     public Color(byte r, byte g, byte b, byte a)
     {
-        _r = r;
-        _g = g;
-        _b = b;
-        _a = a;
-        _rf = (float)_r / 255f;
-        _gf = (float)_g / 255f;
-        _bf = (float)_b / 255f;
-        _af = (float)_a / 255f;
+        R = r;
+        G = g;
+        B = b;
+        A = a;
     }
 
     /// <summary>
@@ -117,7 +106,7 @@ public struct Color
     /// <returns>inverted color</returns>
     public Color Invert()
     {
-        return new Color((byte)(255 - _r), (byte)(255 - _g), (byte)(255 - _b), _a);
+        return new Color((byte)(255 - R), (byte)(255 - G), (byte)(255 - B), A);
     }
 
 

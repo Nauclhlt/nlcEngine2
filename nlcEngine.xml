@@ -4,29 +4,49 @@
         <name>nlcEngine</name>
     </assembly>
     <members>
+        <member name="T:nlcEngine.Camera">
+            <summary>
+            Represents a camera.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Camera.Position">
+            <summary>
+            Gets or sets the position of the camera.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Camera.Target">
+            <summary>
+            Gets or sets the target point of the camera.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Camera.Up">
+            <summary>
+            Gets or sets the up vector of the camera.
+            </summary>
+        </member>
         <member name="T:nlcEngine.Color">
             <summary>
             A color represented by RGBA components.
             </summary>
         </member>
-        <member name="P:nlcEngine.Color.R">
+        <member name="F:nlcEngine.Color.R">
             <summary>
-            Gets the R component.
+            The R component.
             </summary>
         </member>
-        <member name="P:nlcEngine.Color.G">
+        <member name="F:nlcEngine.Color.G">
             <summary>
-            Gets the G component.
+            The G component.
             </summary>
         </member>
-        <member name="P:nlcEngine.Color.B">
+        <member name="F:nlcEngine.Color.B">
             <summary>
-            Gets the B component.
+            The B component.
             </summary>
         </member>
-        <member name="P:nlcEngine.Color.A">
+        <member name="F:nlcEngine.Color.A">
             <summary>
-            Gets the A component.
+            The A component.
             </summary>
         </member>
         <member name="P:nlcEngine.Color.Rf">
@@ -801,6 +821,234 @@
              Gets the YELLOWGREEN color.
             </summary>
         </member>
+        <member name="T:nlcEngine.Vec2">
+            <summary>
+            A 2-dementional vector represented with 2 float values.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Vec2.X">
+            <summary>
+            The X element.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Vec2.Y">
+            <summary>
+            The Y element.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Vec2.#ctor(System.Single,System.Single)">
+            <summary>
+            Initializes a new structure with the X, and Y elements.
+            </summary>
+            <param name="x">X element</param>
+            <param name="y">Y element</param>
+        </member>
+        <member name="M:nlcEngine.Vec2.#ctor(System.Single)">
+            <summary>
+            Initializes a new structure with the X, and Y elements as the same value.
+            </summary>
+            <param name="d">value for XY elements</param>
+        </member>
+        <member name="M:nlcEngine.Vec2.Length">
+            <summary>
+            Returns the length of the vector.
+            </summary>
+            <returns>length of the vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec2.Normalize">
+            <summary>
+            Normalizes the vector.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Vec2.Normalized">
+            <summary>
+            Returns the normalised vector.
+            </summary>
+            <returns>normalized vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec2.Rotate(System.Single)">
+            <summary>
+            Returns the vector rotated.
+            </summary>
+            <param name="angle">rotation angle</param>
+            <returns>rotated vector</returns>
+        </member>
+        <member name="T:nlcEngine.Vec3">
+            <summary>
+            A 3-dementional vector represented with 3 float values.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Vec3.X">
+            <summary>
+            The X element.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Vec3.Y">
+            <summary>
+            The Y element.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Vec3.Z">
+            <summary>
+            The Z element.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Vec3.#ctor(System.Single,System.Single,System.Single)">
+            <summary>
+            Initializes a new structure with the X, Y, and Z elements.
+            </summary>
+            <param name="x">X element</param>
+            <param name="y">Y element</param>
+            <param name="z">Z element</param>
+        </member>
+        <member name="M:nlcEngine.Vec3.#ctor(System.Single)">
+            <summary>
+            Initializes a new structure with the X, Y, and Z elements as the same value.
+            </summary>
+            <param name="d">value for XYZ elements</param>
+        </member>
+        <member name="M:nlcEngine.Vec3.#ctor(nlcEngine.Vec2,System.Single)">
+            <summary>
+            Initializes a new structure with the X and Y element by the 2d vector, and the Z element by the float value.
+            </summary>
+            <param name="vec">vector</param>
+            <param name="z">Z element</param>
+        </member>
+        <member name="M:nlcEngine.Vec3.Length">
+            <summary>
+            Returns the length of the vector.
+            </summary>
+            <returns>length of the vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec3.Normalize">
+            <summary>
+            Normalizes the vector.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Vec3.Normalized">
+            <summary>
+            Gets the normalized vector.
+            </summary>
+            <returns>normalized vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec3.RotateX(System.Single)">
+            <summary>
+            Returns the vector rotated around the X axis.
+            </summary>
+            <param name="angle">rotation angle</param>
+            <returns>rotated vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec3.RotateY(System.Single)">
+            <summary>
+            Returns the vector rotated around the Y axis.
+            </summary>
+            <param name="angle">rotation angle</param>
+            <returns>rotated vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec3.RotateZ(System.Single)">
+            <summary>
+            Returns the vector rotated around the Z axis.
+            </summary>
+            <param name="angle">rotation angle</param>
+            <returns>rotated vector</returns>
+        </member>
+        <member name="T:nlcEngine.Primitive">
+            <summary>
+            Primitive type to render.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.Points">
+            <summary>
+            Original was GL_POINTS = 0x0000 </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.Lines">
+            <summary>
+            Original was GL_LINES = 0x0001 </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.LineLoop">
+            <summary>
+            Original was GL_LINE_LOOP = 0x0002 </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.LineStrip">
+            <summary>
+            Original was GL_LINE_STRIP = 0x0003 </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.Triangles">
+            <summary>
+            Original was GL_TRIANGLES = 0x0004 </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.TriangleStrip">
+            <summary>
+            Original was GL_TRIANGLE_STRIP = 0x0005 </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.TriangleFan">
+            <summary>
+            Original was GL_TRIANGLE_FAN = 0x0006 </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.Quads">
+            <summary>
+            Original was GL_QUADS = 0x0007 </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.QuadsExt">
+            <summary>
+                Original was GL_QUADS_EXT = 0x0007 </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.LinesAdjacency">
+            <summary>
+            Original was GL_LINES_ADJACENCY = 0x000A </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.LinesAdjacencyArb">
+            <summary>
+            Original was GL_LINES_ADJACENCY_ARB = 0x000A </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.LinesAdjacencyExt">
+            <summary>
+                Original was GL_LINES_ADJACENCY_EXT = 0x000A </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.LineStripAdjacency">
+            <summary>
+            Original was GL_LINE_STRIP_ADJACENCY = 0x000B </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.LineStripAdjacencyArb">
+            <summary>
+            Original was GL_LINE_STRIP_ADJACENCY_ARB = 0x000B </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.LineStripAdjacencyExt">
+            <summary>
+                Original was GL_LINE_STRIP_ADJACENCY_EXT = 0x000B </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.TrianglesAdjacency">
+            <summary>
+            Original was GL_TRIANGLES_ADJACENCY = 0x000C </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.TrianglesAdjacencyArb">
+            <summary>
+            Original was GL_TRIANGLES_ADJACENCY_ARB = 0x000C </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.TrianglesAdjacencyExt">
+            <summary>
+                Original was GL_TRIANGLES_ADJACENCY_EXT = 0x000C </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.TriangleStripAdjacency">
+            <summary>
+            Original was GL_TRIANGLE_STRIP_ADJACENCY = 0x000D </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.TriangleStripAdjacencyArb">
+            <summary>
+            Original was GL_TRIANGLE_STRIP_ADJACENCY_ARB </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.TriangleStripAdjacencyExt">
+            <summary>
+                Original was GL_TRIANGLE_STRIP_ADJACENCY_EXT = 0x000D</summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.Patches">
+            <summary>
+            Original was GL_PATCHES </summary>
+        </member>
+        <member name="F:nlcEngine.Primitive.PatchesExt">
+            <summary>
+                Original was GL_PATCHES_EXT = 0x000E </summary>
+        </member>
         <member name="T:nlcEngine.NlcArgException">
             <summary>
             An exception when thrown an argument is invalid.
@@ -917,6 +1165,57 @@
             <param name="title">title text</param>
             <param name="fps">frames-per-second</param>
         </member>
+        <member name="T:nlcEngine.RenderObject">
+            <summary>
+            A base class for render-objects.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.RenderObject.Vertices">
+            <summary>
+            Gets or sets the vertices.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.RenderObject.Colors">
+            <summary>
+            Gets or sets the colors.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.RenderObject.Normals">
+            <summary>
+            Gets or sets the normals.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.RenderObject.TexCoords">
+            <summary>
+            Gets or sets the texture coords.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.RenderObject.Primitive">
+            <summary>
+            Gets or sets the primitive type used to render the vertices.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.RenderObject.DoCreateBuffer">
+            <summary>
+            Forces to create the buffer.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.RenderObject.RenderJust(nlcEngine.Camera)">
+            <summary>
+            Just renders the object.
+            </summary>
+            <param name="camera">camera</param>
+        </member>
+        <member name="M:nlcEngine.RenderObject.Dispose">
+            <summary>
+            Releases all resources used by the RenderObject.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.RenderObject.Finalize">
+            <summary>
+            A destructor.
+            </summary>
+        </member>
         <member name="T:nlcEngine.Scene">
             <summary>
             Represents a scene in the game.
@@ -950,6 +1249,16 @@
         <member name="M:nlcEngine.Scene.OnUserCreate">
             <summary>
             Initializes the scene, called first time when the scene is loaded, when overridden.
+            </summary>
+        </member>
+        <member name="T:nlcEngine.ShaderProvider">
+            <summary>
+            Provides the shaders based on the types.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.ShaderProvider.StdShader">
+            <summary>
+            Gets or sets the StdShader.
             </summary>
         </member>
         <member name="T:nlcEngine.NlcEngineGame">
@@ -995,6 +1304,24 @@
             </summary>
             <param name="scene">scene</param>
         </member>
+        <member name="T:nlcEngine.Viewer">
+            <summary>
+            Provides settings of viewer.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Viewer.SetFieldOfViewY(System.Single)">
+            <summary>
+            Sets the FOV of Y.
+            </summary>
+            <param name="degrees">angle in degrees</param>
+        </member>
+        <member name="M:nlcEngine.Viewer.SetDepthNearFar(System.Single,System.Single)">
+            <summary>
+            Sets the depth near and far.
+            </summary>
+            <param name="near">depth near</param>
+            <param name="far">depth far</param>
+        </member>
         <member name="T:nlcEngine.INamed">
             <summary>
             Provides the property to retrieve the resource name held in the wrapper.
@@ -1005,9 +1332,39 @@
             Gets the resource name.
             </summary>
         </member>
+        <member name="T:nlcEngine.ObjectBuffer">
+            <summary>
+            Provides the wrapper for an OpenGL vertex array object, to render RenderObjects.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.ObjectBuffer.Name">
+            <summary>
+            Gets the name of vertex array.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.ObjectBuffer.JustCallRender">
+            <summary>
+            Calls DrawArrays with the vertex array binded.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.ObjectBuffer.Dispose">
+            <summary>
+            Releases all resources used by the buffer.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.ObjectBuffer.Finalize">
+            <summary>
+            A destructor.
+            </summary>
+        </member>
         <member name="T:nlcEngine.Shader">
             <summary>
             Wraps an OpenGL shader.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Shader.Standard">
+            <summary>
+            Gets the Standard shader.
             </summary>
         </member>
         <member name="P:nlcEngine.Shader.Name">
