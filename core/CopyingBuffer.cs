@@ -56,10 +56,10 @@ internal sealed class CopyingBuffer
 
         float[] ts = new float[]
         {
-            0f, 0f,
             0f, 1f,
-            1f, 0f,
-            1f, 1f
+            0f, 0f,
+            1f, 1f,
+            1f, 0f
         };
 
         return new CopyingBuffer(vs, ts);

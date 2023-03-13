@@ -105,6 +105,8 @@ public sealed class ObjectBuffer : IDisposable, INamed
         GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
 
         GL.BindVertexArray(0);
+
+        ResourceCollector.Add(this);
     }
 
     /// <summary>
@@ -116,7 +118,7 @@ public sealed class ObjectBuffer : IDisposable, INamed
 
         GL.BindVertexArray(_vertexArray);
 
-        GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
+        GL.DrawArrays((PrimitiveType)_primitive, 0, _vertexCount);
 
         GL.BindVertexArray(0);
     }

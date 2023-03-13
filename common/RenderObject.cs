@@ -11,6 +11,7 @@ public abstract class RenderObject : IDisposable
     private Vec2[] _texCoords;
     private Primitive _primitive;
     private ObjectBuffer _buffer;
+    private ITexture _texture;
     bool _disposed = false;
 
 
@@ -60,6 +61,15 @@ public abstract class RenderObject : IDisposable
     }
 
     /// <summary>
+    /// Gets or sets the texture used to render the vertices.
+    /// </summary>
+    protected ITexture Texture
+    {
+        get => _texture;
+        set => _texture = value;
+    }
+
+    /// <summary>
     /// Forces to create the buffer.
     /// </summary>
     public void DoCreateBuffer()
@@ -83,7 +93,8 @@ public abstract class RenderObject : IDisposable
     /// Just renders the object.
     /// </summary>
     /// <param name="camera">camera</param>
-    public void RenderJust( Camera camera )
+    /// <param name="transform">transformation</param>
+    public void RenderJust( Camera camera, Transform transform = default )
     {
         if (_buffer is null)
         {
@@ -93,17 +104,24 @@ public abstract class RenderObject : IDisposable
         Shader shader = ShaderProvider.StdShader;
         shader.Activate();
 
-        GL.Uniform1(GL.GetUniformLocation(shader.Name, "textured"), 0);
+        GL.Uniform1(GL.GetUniformLocation(shader.Name, "textured"), _texture is not null ? 1 : 0);
+        if (_texture is not null)
+        {
+            GL.ActiveTexture(TextureUnit.Texture0);
+            GL.BindTexture(TextureTarget.Texture2D, _texture.Name);
+        }
 
-        Matrix4 mm = Matrix4.Identity;
+        Matrix4 mm = transform.GetModelMatrix();
         Matrix4 vm = camera.CreateViewMatrix();
         Matrix4 pm = Viewer.ProjectionMatrix;
 
-        GL.UniformMatrix4(0, false, ref mm);
+        GL.UniformMatrix4(0, true, ref mm);
         GL.UniformMatrix4(1, false, ref vm);
         GL.UniformMatrix4(2, false, ref pm);
 
         _buffer.JustCallRender();
+
+        GL.BindTexture(TextureTarget.Texture2D, 0);
     }
 
     private void Dispose(bool disposing)

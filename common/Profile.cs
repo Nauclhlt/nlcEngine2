@@ -121,5 +121,6 @@ public sealed class Profile
         _bufferHeight = bufferHeight;
         _title = title;
         _fps = fps;
+        _fullscreen = true;
     }
 }

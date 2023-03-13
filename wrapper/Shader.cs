@@ -111,6 +111,8 @@ public sealed class Shader : IDisposable, INamed
 
         GL.DeleteShader(vertexShader);
         GL.DeleteShader(fragmentShader);
+
+        ResourceCollector.Add(this);
     }
 
     /// <summary>

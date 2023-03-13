@@ -4,6 +4,50 @@
         <name>nlcEngine</name>
     </assembly>
     <members>
+        <member name="T:nlcEngine.Bound2">
+            <summary>
+            Represents a 2-dementional bounding box with float values.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Bound2.X">
+            <summary>
+            Gets or sets the X.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Bound2.Y">
+            <summary>
+            Gets or sets the Y.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Bound2.Width">
+            <summary>
+            Gets or sets the width.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Bound2.Height">
+            <summary>
+            Gets or sets the height.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Bound2.RightX">
+            <summary>
+            Gets the right X.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Bound2.BottomY">
+            <summary>
+            Gets the bottom Y.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Bound2.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Initializes a new structure with the position and size.
+            </summary>
+            <param name="x">X</param>
+            <param name="y">Y</param>
+            <param name="width">width</param>
+            <param name="height">height</param>
+        </member>
         <member name="T:nlcEngine.Camera">
             <summary>
             Represents a camera.
@@ -821,6 +865,74 @@
              Gets the YELLOWGREEN color.
             </summary>
         </member>
+        <member name="T:nlcEngine.Transform">
+            <summary>
+            Represents a transformation.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Transform.Translate">
+            <summary>
+            Gets or sets the translate.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Transform.Rotate">
+            <summary>
+            Gets or sets the rotate.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Transform.RotationAngle">
+            <summary>
+            Gets or sets the rotation angle.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Transform.Scale">
+            <summary>
+            Gets or sets the scale.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Transform.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Initializes a new structure with the parameters.
+            </summary>
+            <param name="tx"></param>
+            <param name="ty"></param>
+            <param name="tz"></param>
+            <param name="rx"></param>
+            <param name="ry"></param>
+            <param name="rz"></param>
+            <param name="a"></param>
+            <param name="sx"></param>
+            <param name="sy"></param>
+            <param name="sz"></param>
+        </member>
+        <member name="M:nlcEngine.Transform.Translated(System.Single,System.Single,System.Single)">
+            <summary>
+            Gets the translated transform.
+            </summary>
+            <param name="x">translation X</param>
+            <param name="y">translation Y</param>
+            <param name="z">translation Z</param>
+            <returns>translated transform</returns>
+        </member>
+        <member name="M:nlcEngine.Transform.Rotated(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Gets the rotated transform
+            </summary>
+            <param name="x">rotation X</param>
+            <param name="y">rotation Y</param>
+            <param name="z">rotation Z</param>
+            <param name="angle">rotation angle</param>
+            <returns>rotated transform</returns>
+        </member>
+        <member name="M:nlcEngine.Transform.Scaled(System.Single,System.Single,System.Single)">
+            <summary>
+            Gets the scaled transform.
+            </summary>
+            <param name="x">scale X</param>
+            <param name="y">scale Y</param>
+            <param name="z">scale Z</param>
+            <returns>scaled transform</returns>
+        </member>
         <member name="T:nlcEngine.Vec2">
             <summary>
             A 2-dementional vector represented with 2 float values.
@@ -872,6 +984,45 @@
             </summary>
             <param name="angle">rotation angle</param>
             <returns>rotated vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec2.op_Addition(nlcEngine.Vec2,nlcEngine.Vec2)">
+            <summary>
+            Adds the 2 vectors.
+            </summary>
+            <param name="left">left</param>
+            <param name="right">right</param>
+            <returns>resulting vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec2.op_Subtraction(nlcEngine.Vec2,nlcEngine.Vec2)">
+            <summary>
+            Subtracts the 2 vectors.
+            </summary>
+            <param name="left">left</param>
+            <param name="right">right</param>
+            <returns>resulting vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec2.op_UnaryNegation(nlcEngine.Vec2)">
+            <summary>
+            Gets the minus vector.
+            </summary>
+            <param name="vec">vector</param>
+            <returns>-vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec2.op_Multiply(nlcEngine.Vec2,System.Single)">
+            <summary>
+            Returns the scalar product of the vector.
+            </summary>
+            <param name="vec">vector</param>
+            <param name="scalar">scalar</param>
+            <returns>resulting vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec2.op_Division(nlcEngine.Vec2,System.Single)">
+            <summary>
+            Retuens the scalar division of the vector.
+            </summary>
+            <param name="vec">vector</param>
+            <param name="scalar">scalar</param>
+            <returns>resulting vector</returns>
         </member>
         <member name="T:nlcEngine.Vec3">
             <summary>
@@ -1800,16 +1951,22 @@
             Gets or sets the primitive type used to render the vertices.
             </summary>
         </member>
+        <member name="P:nlcEngine.RenderObject.Texture">
+            <summary>
+            Gets or sets the texture used to render the vertices.
+            </summary>
+        </member>
         <member name="M:nlcEngine.RenderObject.DoCreateBuffer">
             <summary>
             Forces to create the buffer.
             </summary>
         </member>
-        <member name="M:nlcEngine.RenderObject.RenderJust(nlcEngine.Camera)">
+        <member name="M:nlcEngine.RenderObject.RenderJust(nlcEngine.Camera,nlcEngine.Transform)">
             <summary>
             Just renders the object.
             </summary>
             <param name="camera">camera</param>
+            <param name="transform">transformation</param>
         </member>
         <member name="M:nlcEngine.RenderObject.Dispose">
             <summary>
@@ -1904,6 +2061,12 @@
             </summary>
             <param name="pos">relative mouse point</param>
         </member>
+        <member name="M:nlcEngine.Input.SetCursorVisibility(System.Boolean)">
+            <summary>
+            Sets the visibility of the mouse cursor.
+            </summary>
+            <param name="visibility">visibility</param>
+        </member>
         <member name="T:nlcEngine.NlcEngineGame">
             <summary>
             Provides the main class for Nlc Game Engine.
@@ -1975,6 +2138,26 @@
             Gets the resource name.
             </summary>
         </member>
+        <member name="T:nlcEngine.ITexture">
+            <summary>
+            Provides the common and uniform information for OpenGL texture wrappers.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.ITexture.Width">
+            <summary>
+            Gets the width of the texture.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.ITexture.Height">
+            <summary>
+            Gets the height of the texture.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.ITexture.Crop">
+            <summary>
+            Gets the cropping bounds of the texture.
+            </summary>
+        </member>
         <member name="T:nlcEngine.ObjectBuffer">
             <summary>
             Provides the wrapper for an OpenGL vertex array object, to render RenderObjects.
@@ -2043,6 +2226,62 @@
             </summary>
         </member>
         <member name="M:nlcEngine.Shader.Finalize">
+            <summary>
+            A destructor.
+            </summary>
+        </member>
+        <member name="T:nlcEngine.Texture">
+            <summary>
+            Wraps an OpenGL texture.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Texture.Name">
+            <summary>
+            Gets the texture name.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Texture.Width">
+            <summary>
+            Gets the width.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Texture.Height">
+            <summary>
+            Gets the height.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Texture.Crop">
+            <summary>
+            Gets the cropping bounds.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Texture.#ctor(System.String)">
+            <summary>
+            Loads the image file.
+            </summary>
+            <param name="filename">file name</param>
+        </member>
+        <member name="M:nlcEngine.Texture.#ctor(System.IO.Stream)">
+            <summary>
+            Loads the image from the stream.
+            </summary>
+            <param name="image">image stream</param>
+        </member>
+        <member name="M:nlcEngine.Texture.SetCrop(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Sets the cropping bounds.
+            </summary>
+            <param name="x">X</param>
+            <param name="y">Y</param>
+            <param name="w">width</param>
+            <param name="h">height</param>
+        </member>
+        <member name="M:nlcEngine.Texture.Dispose">
+            <summary>
+            Releases all resources used by the texture.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Texture.Finalize">
             <summary>
             A destructor.
             </summary>

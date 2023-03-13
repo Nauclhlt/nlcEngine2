@@ -17,4 +17,12 @@ internal static class NlcHelper
             throw new NlcCommonException("Attempted to access the disposed object.");
         }
     }
+
+    public static void FileThrow(string filename)
+    {
+        if (!File.Exists(filename))
+        {
+            throw new NlcCommonException("Specified file path not found.");
+        }
+    }
 }

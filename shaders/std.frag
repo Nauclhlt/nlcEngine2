@@ -12,7 +12,8 @@ void main()
 {
     if (textured)
     {
-        fragColor = texture(pTexture, vTexCoord);
+        vec4 texel = texture(pTexture, vTexCoord);
+        fragColor = vec4(texel.rgb * vColor.rgb, texel.a);
     }
     else
     {

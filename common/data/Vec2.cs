@@ -83,4 +83,58 @@ public struct Vec2
             X * MathF.Sin(angle) + Y * MathF.Cos(angle)
         );
     }
+
+    /// <summary>
+    /// Adds the 2 vectors.
+    /// </summary>
+    /// <param name="left">left</param>
+    /// <param name="right">right</param>
+    /// <returns>resulting vector</returns>
+    public static Vec2 operator +(Vec2 left, Vec2 right)
+    {
+        return new Vec2(left.X + right.X, left.Y + right.Y);
+    }
+
+    /// <summary>
+    /// Subtracts the 2 vectors.
+    /// </summary>
+    /// <param name="left">left</param>
+    /// <param name="right">right</param>
+    /// <returns>resulting vector</returns>
+    public static Vec2 operator -(Vec2 left, Vec2 right)
+    {
+        return new Vec2(left.X - right.X, left.Y - right.Y);
+    }
+
+    /// <summary>
+    /// Gets the minus vector.
+    /// </summary>
+    /// <param name="vec">vector</param>
+    /// <returns>-vector</returns>
+    public static Vec2 operator -(Vec2 vec)
+    {
+        return new Vec2(-vec.X, -vec.Y);
+    }
+
+    /// <summary>
+    /// Returns the scalar product of the vector.
+    /// </summary>
+    /// <param name="vec">vector</param>
+    /// <param name="scalar">scalar</param>
+    /// <returns>resulting vector</returns>
+    public static Vec2 operator *(Vec2 vec, float scalar)
+    {
+        return new Vec2(vec.X * scalar, vec.Y * scalar);
+    }
+
+    /// <summary>
+    /// Retuens the scalar division of the vector.
+    /// </summary>
+    /// <param name="vec">vector</param>
+    /// <param name="scalar">scalar</param>
+    /// <returns>resulting vector</returns>
+    public static Vec2 operator /(Vec2 vec, float scalar)
+    {
+        return new Vec2(vec.X / scalar, vec.Y / scalar);
+    }
 }

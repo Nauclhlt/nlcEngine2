@@ -64,5 +64,12 @@ public static class Input
         NlcEngineGame.Window.MousePosition = new Vector2(pos.X, pos.Y);
     }
 
-    
+    /// <summary>
+    /// Sets the visibility of the mouse cursor.
+    /// </summary>
+    /// <param name="visibility">visibility</param>
+    public static void SetCursorVisibility(bool visibility)
+    {
+        NlcEngineGame.Window.CursorState = visibility ? CursorState.Normal : CursorState.Hidden;
+    }
 }
