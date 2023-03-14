@@ -865,6 +865,80 @@
              Gets the YELLOWGREEN color.
             </summary>
         </member>
+        <member name="T:nlcEngine.Light">
+            <summary>
+            Represents a light.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Light.DiffuseColor">
+            <summary>
+            Gets the diffuse color.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Light.SpecularColor">
+            <summary>
+            Gets the specular color.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Light.Position">
+            <summary>
+            Gets the position of the light.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Light.Radius">
+            <summary>
+            Gets the radius of the light.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Light.Attenuation">
+            <summary>
+            Gets the attenuation.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Light.Intensity">
+            <summary>
+            Gets the intensity of the light.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Light.#ctor(nlcEngine.Color,nlcEngine.Color,nlcEngine.Vec3,System.Single,System.Single,System.Single)">
+            <summary>
+            Creates a new instance with the light colors, position, radius, attenuation, and intensity values.
+            </summary>
+            <param name="diffuse">diffuse color</param>
+            <param name="spec">specular color</param>
+            <param name="position">position of the light</param>
+            <param name="radius">radius of the light</param>
+            <param name="attenuation">attenuation</param>
+            <param name="intensity">intensity of the light</param>
+        </member>
+        <member name="T:nlcEngine.LightEnvironment">
+            <summary>
+            Contains the light setting of Phong-shading-model.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.LightEnvironment.AmbientIntensity">
+            <summary>
+            Gets or sets the intensity of the ambient light.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.LightEnvironment.AmbientColor">
+            <summary>
+            Gets or sets the ambient color.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.LightEnvironment.Lights">
+            <summary>
+            Gets the collection that contains the lights in the environment.<br />
+            Maximum number of the lights is 128. Items indexed over 128 will be ignored when the scene this object is used to render.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.LightEnvironment.#ctor(System.Single,nlcEngine.Color)">
+            <summary>
+            Creates a new instance from the ambient light setting.
+            </summary>
+            <param name="ambientIntensity">intensity of the ambient light</param>
+            <param name="ambientColor">color of the ambient color</param>
+        </member>
         <member name="T:nlcEngine.Transform">
             <summary>
             Represents a transformation.
@@ -1851,6 +1925,21 @@
             </summary>
             <param name="msg">message</param>
         </member>
+        <member name="T:nlcEngine.ListedRenderer">
+            <summary>
+            Contains the list of the objects used to render.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.ListedRenderer.#ctor">
+            <summary>
+            Creates a new instance.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.ListedRenderer.Objects">
+            <summary>
+            Gets the list of the objects.
+            </summary>
+        </member>
         <member name="T:nlcEngine.Profile">
             <summary>
             Contains a setting to start a game.
@@ -1977,6 +2066,15 @@
             <summary>
             A destructor.
             </summary>
+        </member>
+        <member name="M:nlcEngine.RenderObject.RenderWithLightDeferred(nlcEngine.Camera,nlcEngine.ListedRenderer,nlcEngine.LightEnvironment)">
+            <summary>
+            Renders the objects with deferred lighting.<br />
+            This process should be runned at the beginning of a frame, and other objects with no deferred lighting should be rendered after this process.
+            </summary>
+            <param name="camera">camera</param>
+            <param name="renderer">renderer</param>
+            <param name="env">light environment</param>
         </member>
         <member name="T:nlcEngine.Scene">
             <summary>
@@ -2219,6 +2317,34 @@
             <summary>
             Activates the shader.
             </summary>
+        </member>
+        <member name="M:nlcEngine.Shader.SetInt(System.String,System.Int32)">
+            <summary>
+            Sets the uniform int.
+            </summary>
+            <param name="name">name</param>
+            <param name="value">uniform</param>
+        </member>
+        <member name="M:nlcEngine.Shader.SetFloat(System.String,System.Single)">
+            <summary>
+            Sets the uniform float.
+            </summary>
+            <param name="name">name</param>
+            <param name="value">value</param>
+        </member>
+        <member name="M:nlcEngine.Shader.SetBoolean(System.String,System.Boolean)">
+            <summary>
+            Sets the uniform boolean.
+            </summary>
+            <param name="name">name</param>
+            <param name="value">value</param>
+        </member>
+        <member name="M:nlcEngine.Shader.SetVec3(System.String,nlcEngine.Vec3)">
+            <summary>
+            Sets the uniform vector.
+            </summary>
+            <param name="name">name</param>
+            <param name="vector">vector</param>
         </member>
         <member name="M:nlcEngine.Shader.Dispose">
             <summary>

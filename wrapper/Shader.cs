@@ -125,6 +125,46 @@ public sealed class Shader : IDisposable, INamed
         GL.UseProgram(_name);
     }
 
+    /// <summary>
+    /// Sets the uniform int.
+    /// </summary>
+    /// <param name="name">name</param>
+    /// <param name="value">uniform</param>
+    public void SetInt(string name, int value)
+    {
+        GL.Uniform1(GL.GetUniformLocation(_name, name), value);
+    }
+
+    /// <summary>
+    /// Sets the uniform float.
+    /// </summary>
+    /// <param name="name">name</param>
+    /// <param name="value">value</param>
+    public void SetFloat(string name, float value)
+    {
+        GL.Uniform1(GL.GetUniformLocation(_name, name), value);
+    }
+
+    /// <summary>
+    /// Sets the uniform boolean.
+    /// </summary>
+    /// <param name="name">name</param>
+    /// <param name="value">value</param>
+    public void SetBoolean(string name, bool value)
+    {
+        GL.Uniform1(GL.GetUniformLocation(_name, name), value ? 1 : 0);
+    }
+
+    /// <summary>
+    /// Sets the uniform vector.
+    /// </summary>
+    /// <param name="name">name</param>
+    /// <param name="vector">vector</param>
+    public void SetVec3(string name, Vec3 vector)
+    {
+        GL.Uniform3(GL.GetUniformLocation(_name, name), vector.X, vector.Y, vector.Z);
+    }
+
     private void Dispose(bool disposing)
     {
         if (!_disposed)

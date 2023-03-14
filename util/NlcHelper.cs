@@ -25,4 +25,11 @@ internal static class NlcHelper
             throw new NlcCommonException("Specified file path not found.");
         }
     }
+
+    public static void SendMat(Matrix4 model, Matrix4 view, Matrix4 proj)
+    {
+        GL.UniformMatrix4(0, true, ref model);
+        GL.UniformMatrix4(0, false, ref view);
+        GL.UniformMatrix4(0, false, ref proj);
+    }
 }

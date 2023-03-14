@@ -19,6 +19,10 @@
     <EmbeddedResource Include="./shaders/copy.frag" LogicalName="copy_shader_frag" />
     <EmbeddedResource Include="./shaders/std.vert" LogicalName="std_shader_vert" />
     <EmbeddedResource Include="./shaders/std.frag" LogicalName="std_shader_frag" />
+    <EmbeddedResource Include="./shaders/deferg.vert" LogicalName="defer_g_vert" />
+    <EmbeddedResource Include="./shaders/deferg.frag" LogicalName="defer_g_frag" />
+    <EmbeddedResource Include="./shaders/deferlig.vert" LogicalName="defer_light_vert" />
+    <EmbeddedResource Include="./shaders/deferlig.frag" LogicalName="defer_light_frag" />
   </ItemGroup>
 
 </Project>

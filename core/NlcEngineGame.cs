@@ -70,10 +70,10 @@ public static class NlcEngineGame
         GL.Enable(EnableCap.DepthTest);
 
         GL.Enable(EnableCap.DebugOutput);
-        GL.DebugMessageCallback((source, type, id, severity, length, message, userParam) => {
-            string msg = Marshal.PtrToStringUTF8(message);
-            Console.Error.WriteLine("ID=" + id + " " + msg);
-        }, 0);
+        // GL.DebugMessageCallback((source, type, id, severity, length, message, userParam) => {
+        //     string msg = Marshal.PtrToStringUTF8(message);
+        //     Console.Error.WriteLine("ID=" + id + " " + msg);
+        // }, 0);
 
         DefaultBuffer.CreateBuffer(_profile.BufferWidth, _profile.BufferHeight);
         _copyingBuffer = CopyingBuffer.CreateBuffer();
@@ -97,6 +97,7 @@ public static class NlcEngineGame
         catch (Exception e)
         {
             Console.WriteLine(e.Message);
+            Console.WriteLine("STACK_TRACE:  " + e.StackTrace);
         }
         finally
         {
