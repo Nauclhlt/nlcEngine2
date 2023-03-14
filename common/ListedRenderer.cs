@@ -3,27 +3,27 @@ namespace nlcEngine;
 /// <summary>
 /// Contains the list of the objects used to render.
 /// </summary>
-public sealed class ListedRenderer
+public sealed class DeferredList
 {
-    List<RenderObject> _objects;
+    List<IDefer> _objects;
 
     /// <summary>
     /// Creates a new instance.
     /// </summary>
-    public ListedRenderer()
+    public DeferredList()
     {
-        _objects = new List<RenderObject>();
+        _objects = new List<IDefer>();
     }
 
     /// <summary>
     /// Gets the list of the objects.
     /// </summary>
-    public List<RenderObject> Objects
+    public List<IDefer> Objects
     {
         get => _objects;
     }
 
-    internal List<RenderObject> GetListOfObjects()
+    internal List<IDefer> GetListOfObjects()
     {
         return _objects;
     }

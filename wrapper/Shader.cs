@@ -5,44 +5,6 @@ namespace nlcEngine;
 /// </summary>
 public sealed class Shader : IDisposable, INamed
 {
-#region Built-in shaders
-
-    private static Shader _standard;
-
-    /// <summary>
-    /// Gets the Standard shader.
-    /// </summary>
-    public static Shader Standard => _standard;
-
-    internal static void Load()
-    {
-        Assembly asm = typeof(NlcEngineGame).Assembly;
-        _standard = LoadShader(asm, "std_shader_vert", "std_shader_frag");
-    }
-
-    private static Shader LoadShader(Assembly asm, string vertName, string fragName)
-    {
-        string v = Read(asm.GetManifestResourceStream(vertName));
-        string f = Read(asm.GetManifestResourceStream(fragName));
-        return new Shader(v, f);
-    }
-
-    private static string Read(Stream stream)
-    {
-        using (StreamReader reader = new StreamReader(stream))
-        {
-            return reader.ReadToEnd();
-        }
-    }
-
-#endregion
-
-
-
-
-
-
-
     string _vertexShader;
     string _fragmentShader;
     int _name;

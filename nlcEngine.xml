@@ -1925,17 +1925,17 @@
             </summary>
             <param name="msg">message</param>
         </member>
-        <member name="T:nlcEngine.ListedRenderer">
+        <member name="T:nlcEngine.DeferredList">
             <summary>
             Contains the list of the objects used to render.
             </summary>
         </member>
-        <member name="M:nlcEngine.ListedRenderer.#ctor">
+        <member name="M:nlcEngine.DeferredList.#ctor">
             <summary>
             Creates a new instance.
             </summary>
         </member>
-        <member name="P:nlcEngine.ListedRenderer.Objects">
+        <member name="P:nlcEngine.DeferredList.Objects">
             <summary>
             Gets the list of the objects.
             </summary>
@@ -2057,6 +2057,12 @@
             <param name="camera">camera</param>
             <param name="transform">transformation</param>
         </member>
+        <member name="M:nlcEngine.RenderObject.DeferRender(OpenTK.Mathematics.Matrix4,OpenTK.Mathematics.Matrix4,OpenTK.Mathematics.Matrix4)">
+            <summary>
+            Renders self. <br />
+            THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
+            </summary>
+        </member>
         <member name="M:nlcEngine.RenderObject.Dispose">
             <summary>
             Releases all resources used by the RenderObject.
@@ -2067,7 +2073,7 @@
             A destructor.
             </summary>
         </member>
-        <member name="M:nlcEngine.RenderObject.RenderWithLightDeferred(nlcEngine.Camera,nlcEngine.ListedRenderer,nlcEngine.LightEnvironment)">
+        <member name="M:nlcEngine.RenderObject.RenderWithLightDeferred(nlcEngine.Camera,nlcEngine.DeferredList,nlcEngine.LightEnvironment,nlcEngine.Transform)">
             <summary>
             Renders the objects with deferred lighting.<br />
             This process should be runned at the beginning of a frame, and other objects with no deferred lighting should be rendered after this process.
@@ -2109,16 +2115,6 @@
         <member name="M:nlcEngine.Scene.OnUserCreate">
             <summary>
             Initializes the scene, called first time when the scene is loaded, when overridden.
-            </summary>
-        </member>
-        <member name="T:nlcEngine.ShaderProvider">
-            <summary>
-            Provides the shaders based on the types.
-            </summary>
-        </member>
-        <member name="P:nlcEngine.ShaderProvider.StdShader">
-            <summary>
-            Gets or sets the StdShader.
             </summary>
         </member>
         <member name="T:nlcEngine.Input">
@@ -2226,6 +2222,16 @@
             <param name="near">depth near</param>
             <param name="far">depth far</param>
         </member>
+        <member name="T:nlcEngine.IDefer">
+            <summary>
+            Provides objects that can be rendered with deferred shading.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.IDefer.DeferRender(OpenTK.Mathematics.Matrix4,OpenTK.Mathematics.Matrix4,OpenTK.Mathematics.Matrix4)">
+            <summary>
+            Renders self with the deferred shading.
+            </summary>
+        </member>
         <member name="T:nlcEngine.INamed">
             <summary>
             Provides the property to retrieve the resource name held in the wrapper.
@@ -2256,6 +2262,75 @@
             Gets the cropping bounds of the texture.
             </summary>
         </member>
+        <member name="T:nlcEngine.Models.Mesh">
+            <summary>
+            Contains mesh data.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Models.Mesh.Vertices">
+            <summary>
+            Gets the array of the vertices.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Models.Mesh.Normals">
+            <summary>
+            Gets the array of the normals.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Models.Mesh.TexCoords">
+            <summary>
+            Gets the array of the texture coords.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Models.Mesh.Indices">
+            <summary>
+            Gets the array of the indices.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Models.Mesh.HasTexture">
+            <summary>
+            Gets whether the mesh has a texture.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Models.Mesh.LoadFile(System.String)">
+            <summary>
+            Loads the model in the file and returns the loaded mesh.
+            </summary>
+            <param name="filename">file name</param>
+            <returns>created mesh instance</returns>
+        </member>
+        <member name="T:nlcEngine.Models.MeshObject">
+            <summary>
+            A base class for render-objects that contains mesh data.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Models.MeshObject.Meshes">
+            <summary>
+            Gets the array that contains meshes.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.LoadMeshes(nlcEngine.Models.Mesh[])">
+            <summary>
+            Loads the meshes.
+            </summary>
+            <param name="meshes">meshes to load</param>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.DeferRender(OpenTK.Mathematics.Matrix4,OpenTK.Mathematics.Matrix4,OpenTK.Mathematics.Matrix4)">
+            <summary>
+            Renders self. <br />
+            THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.Dispose">
+            <summary>
+            Releases all resources used by the mesh buffer.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.Finalize">
+            <summary>
+            A destructor.
+            </summary>
+        </member>
         <member name="T:nlcEngine.ObjectBuffer">
             <summary>
             Provides the wrapper for an OpenGL vertex array object, to render RenderObjects.
@@ -2284,11 +2359,6 @@
         <member name="T:nlcEngine.Shader">
             <summary>
             Wraps an OpenGL shader.
-            </summary>
-        </member>
-        <member name="P:nlcEngine.Shader.Standard">
-            <summary>
-            Gets the Standard shader.
             </summary>
         </member>
         <member name="P:nlcEngine.Shader.Name">

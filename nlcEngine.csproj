@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AssimpNet" Version="4.1.0" />
     <PackageReference Include="OpenTK" Version="4.7.7" />
     <PackageReference Include="SixLabors.ImageSharp" Version="3.0.0" />
   </ItemGroup>
@@ -23,6 +24,10 @@
     <EmbeddedResource Include="./shaders/deferg.frag" LogicalName="defer_g_frag" />
     <EmbeddedResource Include="./shaders/deferlig.vert" LogicalName="defer_light_vert" />
     <EmbeddedResource Include="./shaders/deferlig.frag" LogicalName="defer_light_frag" />
+    <EmbeddedResource Include="./shaders/std_light.vert" LogicalName="std_light_vert" />
+    <EmbeddedResource Include="./shaders/std_light.frag" LogicalName="std_light_frag" />
+    <EmbeddedResource Include="./shaders/model_deferg.vert" LogicalName="model_defer_g_vert" />
+    <EmbeddedResource Include="./shaders/model_deferg.frag" LogicalName="model_defer_g_frag" />
   </ItemGroup>
 
 </Project>
