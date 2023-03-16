@@ -1,0 +1,5 @@
+Model rendering doesn't work with deferred shading
+TODO here:
+1. Write a test shader that just draws a model to check mesh loading
+2. Print the data to check mesh loading
+3. Just debug that deferred shading pipeline is valid

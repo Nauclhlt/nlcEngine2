@@ -12,6 +12,7 @@ public abstract class RenderObject : IDisposable, IDefer
     private Primitive _primitive;
     private ObjectBuffer _buffer;
     private ITexture _texture;
+    Transform _transform;
     bool _disposed = false;
 
 
@@ -70,6 +71,15 @@ public abstract class RenderObject : IDisposable, IDefer
     }
 
     /// <summary>
+    /// Gets or sets the transform applied to the object.
+    /// </summary>
+    public Transform Transform
+    {
+        get => _transform;
+        set => _transform = value;
+    }
+
+    /// <summary>
     /// Forces to create the buffer.
     /// </summary>
     public void DoCreateBuffer()
@@ -83,7 +93,7 @@ public abstract class RenderObject : IDisposable, IDefer
         {
             _buffer = new ObjectBuffer(_vertices, _colors, _normals, _texCoords, _primitive);
         }
-        else 
+        else
         {
             // TODO: implement rebuffering
         }
@@ -93,14 +103,13 @@ public abstract class RenderObject : IDisposable, IDefer
     /// Just renders the object.
     /// </summary>
     /// <param name="camera">camera</param>
-    /// <param name="transform">transformation</param>
-    public void RenderJust( Camera camera, Transform transform = default )
+    public void RenderJust(Camera camera)
     {
         if (_buffer is null)
         {
             CreateBuffer();
         }
-    
+
         Shader shader = CoreShaders.StdShader;
         shader.Activate();
 
@@ -111,13 +120,11 @@ public abstract class RenderObject : IDisposable, IDefer
             GL.BindTexture(TextureTarget.Texture2D, _texture.Name);
         }
 
-        Matrix4 mm = transform.GetModelMatrix();
+        Matrix4 mm = _transform.GetModelMatrix();
         Matrix4 vm = camera.CreateViewMatrix();
         Matrix4 pm = Viewer.ProjectionMatrix;
 
-        GL.UniformMatrix4(0, true, ref mm);
-        GL.UniformMatrix4(1, false, ref vm);
-        GL.UniformMatrix4(2, false, ref pm);
+        NlcHelper.SendMat(mm, vm, pm);
 
         _buffer.JustCallRender();
 
@@ -133,19 +140,39 @@ public abstract class RenderObject : IDisposable, IDefer
         Shader shader = CoreShaders.DeferGBufShader;
         shader.Activate();
 
-        NlcHelper.SendMat(model, view, proj);
-
         shader.SetBoolean("textured", _texture is not null);
+
+        NlcHelper.SendMat(_transform.GetModelMatrix(), view, proj);
+
+
+
         if (_texture is not null)
         {
-            shader.SetInt("pTexture", 0);
             GL.ActiveTexture(TextureUnit.Texture0);
             GL.BindTexture(TextureTarget.Texture2D, _texture.Name);
+            shader.SetInt("pTexture", 0);
         }
 
         CreateCallRender();
 
         GL.BindTexture(TextureTarget.Texture2D, 0);
+    }
+
+    /// <summary>
+    /// Renders self.<br />
+    /// THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
+    /// </summary>
+    /// <param name="lightSpaceMatrix"></param>
+    public void DepthRender(Matrix4 lightSpaceMatrix)
+    {
+        Shader shader = CoreShaders.StdDepthShader;
+        shader.Activate();
+
+        Matrix4 model = _transform.GetModelMatrix();
+        GL.UniformMatrix4(0, false, ref lightSpaceMatrix);
+        GL.UniformMatrix4(1, true, ref model);
+
+        CreateCallRender();
     }
 
     internal void CreateCallRender()
@@ -187,135 +214,4 @@ public abstract class RenderObject : IDisposable, IDefer
     {
         Dispose(false);
     }
-
-
-
-    #region statics
-
-    static GBuffer _gBuffer;
-    static LightStorageBuffer _lightBuffer;
-
-    private static GBuffer GetOrCreateGBuffer()
-    {
-        if (_gBuffer is null)
-        {
-            _gBuffer = new GBuffer();
-            return _gBuffer;
-        }
-        else
-        {
-            return _gBuffer;
-        }
-    }
-
-    private static void EnsureLightBufferCreate()
-    {
-        if (_lightBuffer is null)
-        {
-            _lightBuffer = new LightStorageBuffer();
-        }
-    }
-
-    /// <summary>
-    /// Renders the objects with deferred lighting.<br />
-    /// This process should be runned at the beginning of a frame, and other objects with no deferred lighting should be rendered after this process.
-    /// </summary>
-    /// <param name="camera">camera</param>
-    /// <param name="renderer">renderer</param>
-    /// <param name="env">light environment</param>
-    public static void RenderWithLightDeferred( Camera camera, DeferredList renderer, LightEnvironment env, Transform transform = default )
-    {
-        Color backColor = NlcEngineGame.SceneService.GetBackgroundColor();
-
-        GBuffer gbuffer = GetOrCreateGBuffer();
-        EnsureLightBufferCreate();
-        GL.BindFramebuffer(FramebufferTarget.Framebuffer, gbuffer.Name);
-        GL.ClearColor(0, 0, 0, 0);
-        GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-
-        Matrix4 projection = Viewer.ProjectionMatrix;
-        Matrix4 view = camera.CreateViewMatrix();
-        Matrix4 model = transform.GetModelMatrix();
-
-        var objList = renderer.GetListOfObjects();
-        for (int i = 0; i < objList.Count; i++)
-        {
-            objList[i].DeferRender(model, view, projection);
-        }
-
-        //GL.BindFramebuffer(FramebufferTarget.Framebuffer, 0);
-        DefaultBuffer.Bind();
-
-        //Color b = Color.Red;
-        GL.ClearColor(backColor.Rf, backColor.Gf, backColor.Bf, backColor.Af);
-        GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-
-        Shader shader = CoreShaders.DeferLightShader;
-        shader.Activate();
-
-        GL.ActiveTexture(TextureUnit.Texture0);
-        GL.BindTexture(TextureTarget.Texture2D, _gBuffer.GPosition);
-        GL.ActiveTexture(TextureUnit.Texture1);
-        GL.BindTexture(TextureTarget.Texture2D, _gBuffer.GNormal);
-        GL.ActiveTexture(TextureUnit.Texture2);
-        GL.BindTexture(TextureTarget.Texture2D, _gBuffer.GColorSpec);
-
-        _lightBuffer.Buffer(env.Lights);
-
-        GL.BindBuffer(BufferTarget.ShaderStorageBuffer, _lightBuffer.Name);
-        GL.BindBufferBase(BufferRangeTarget.ShaderStorageBuffer, 0, _lightBuffer.Name);
-
-        shader.SetFloat("ambientIntensity", env.AmbientIntensity);
-        shader.SetVec3("ambientColor", new Vec3(env.AmbientColor.Rf, env.AmbientColor.Gf, env.AmbientColor.Bf));
-        shader.SetInt("lightCount", Math.Min(env.Lights.Count, 128));
-        
-        shader.SetVec3("viewPos", camera.Position);
-
-        shader.SetInt("gPosition", 0);
-        shader.SetInt("gNormal", 1);
-        shader.SetInt("gColorSpec", 2);
-        shader.SetVec3("backColor", new Vec3(backColor.Rf, backColor.Gf, backColor.Bf));
-
-        RenderDefQuad();
-
-        GL.ActiveTexture(TextureUnit.Texture0);
-        GL.BindTexture(TextureTarget.Texture2D, 0);
-
-        GL.BindFramebuffer(FramebufferTarget.ReadFramebuffer, gbuffer.Name);
-        GL.BindFramebuffer(FramebufferTarget.DrawFramebuffer, DefaultBuffer.Framebuffer);
-
-        GL.BlitFramebuffer(0, 0, NlcEngineGame.Profile.BufferWidth, NlcEngineGame.Profile.BufferHeight, 0, 0, NlcEngineGame.Profile.BufferWidth, NlcEngineGame.Profile.BufferHeight, ClearBufferMask.DepthBufferBit, BlitFramebufferFilter.Nearest);
-        GL.BindFramebuffer(FramebufferTarget.Framebuffer, 0);
-
-        DefaultBuffer.Bind();
-
-        GL.BindBufferBase(BufferRangeTarget.ShaderStorageBuffer, 0, 0);
-        GL.BindBuffer(BufferTarget.ShaderStorageBuffer, 0);
-    }
-
-    private static void RenderDefQuad()
-    {
-        float[] va = new float[]
-        {
-            -1f, 1f, 0f,
-            -1f, -1f, 0f,
-            1f, 1f, 0f,
-            1f, -1f, 0f
-        };
-
-        float[] ta = new float[]
-        {
-            0f, 1f,
-            0f, 0f,
-            1f, 1f,
-            1f, 0f
-        };
-
-        Rdc.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 0, va);
-        Rdc.VertexAttribPointer(1, 2, VertexAttribPointerType.Float, false, 0, ta);
-
-        Rdc.DrawArrays(PrimitiveType.TriangleStrip, 0, 4);
-    }
-
-    #endregion
 }

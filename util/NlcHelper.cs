@@ -29,7 +29,12 @@ internal static class NlcHelper
     public static void SendMat(Matrix4 model, Matrix4 view, Matrix4 proj)
     {
         GL.UniformMatrix4(0, true, ref model);
-        GL.UniformMatrix4(0, false, ref view);
-        GL.UniformMatrix4(0, false, ref proj);
+        GL.UniformMatrix4(1, false, ref view);
+        GL.UniformMatrix4(2, false, ref proj);
+    }
+
+    public static Vector3 Conv(Vec3 vector)
+    {
+        return new Vector3(vector.X, vector.Y, vector.Z);
     }
 }

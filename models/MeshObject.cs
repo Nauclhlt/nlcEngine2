@@ -7,6 +7,7 @@ public abstract class MeshObject : IDisposable, IDefer
 {
     Mesh[] _meshes;
     MeshBuffer[] _buffers;
+    Transform _transform;
     bool _disposed = false;
 
     /// <summary>
@@ -15,6 +16,15 @@ public abstract class MeshObject : IDisposable, IDefer
     protected Mesh[] Meshes
     {
         get => _meshes;
+    }
+
+    /// <summary>
+    /// Gets or sets the transform applied to the object.
+    /// </summary>
+    public Transform Transform
+    {
+        get => _transform;
+        set => _transform = value;
     }
 
     /// <summary>
@@ -46,7 +56,7 @@ public abstract class MeshObject : IDisposable, IDefer
         Shader shader = CoreShaders.ModelDeferGShader;
         shader.Activate();
 
-        NlcHelper.SendMat(model, view, proj);
+        NlcHelper.SendMat(_transform.GetModelMatrix(), view, proj);
 
         shader.SetBoolean("textured", false);
 
@@ -54,6 +64,39 @@ public abstract class MeshObject : IDisposable, IDefer
         {
             CreateCallRender();
         }
+    }
+
+    /// <summary>
+    /// Renders self. <br />
+    /// THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
+    /// </summary>
+    public void DepthRender(Matrix4 lightSpaceMatrix)
+    {
+        Shader shader = CoreShaders.ModelDepthShader;
+        shader.Activate();
+
+        Matrix4 model = _transform.GetModelMatrix();
+        GL.UniformMatrix4(0, false, ref lightSpaceMatrix);
+        GL.UniformMatrix4(1, true, ref model);
+
+        CreateCallRender();
+    }
+
+    /// <summary>
+    /// Just renders the mesh.
+    /// </summary>
+    /// <param name="camera">camera</param>
+    /// <param name="transform">transformation</param>
+    public void RenderJust(Camera camera, Transform transform = default)
+    {
+        Shader shader = CoreShaders.ModelStdShader;
+        shader.Activate();
+
+        shader.SetBoolean("textured", false);
+
+        NlcHelper.SendMat(transform.GetModelMatrix(), camera.CreateViewMatrix(), Viewer.ProjectionMatrix);
+
+        CreateCallRender();
     }
 
     private void DoCreateBuffer()
@@ -73,10 +116,10 @@ public abstract class MeshObject : IDisposable, IDefer
         }
         else
         {
-            for (int i = 0; i < _buffers.Length; i++)
-            {
-                _buffers[i].CreateBuffer();
-            }
+            // for (int i = 0; i < _buffers.Length; i++)
+            // {
+            //     _buffers[i].CreateBuffer();
+            // }
         }
     }
 
@@ -87,10 +130,14 @@ public abstract class MeshObject : IDisposable, IDefer
             CreateBuffer();
         }
 
+        
+
         for (int i = 0; i < _buffers.Length; i++)
         {
             _buffers[i].JustCallRender();
         }
+
+        
     }
 
     private void Dispose(bool disposing)

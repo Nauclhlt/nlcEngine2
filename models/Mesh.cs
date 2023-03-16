@@ -102,12 +102,13 @@ public sealed class Mesh
 
         if (scene.MeshCount == 0)
         {
-
+            throw new NlcCommonException("The file has no mesh.");
         }
 
         Mesh[] outputs = new Mesh[scene.MeshCount];
         for (int i = 0; i < scene.MeshCount; i++ )
         {
+            //Console.WriteLine("NAME=" + scene.Meshes[i].Name + "  VERTICES=" + scene.Meshes[i].VertexCount);
             outputs[i] = new Mesh(scene, scene.Meshes[i]);
         }
 

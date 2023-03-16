@@ -20,6 +20,8 @@ internal sealed class MeshBuffer : IDisposable
         _normalBuffer = GL.GenBuffer();
         _texCoordBuffer = GL.GenBuffer();
         _indexBuffer = GL.GenBuffer();
+
+        ResourceCollector.Add(this);
     }
 
     public unsafe void CreateBuffer()
@@ -36,11 +38,14 @@ internal sealed class MeshBuffer : IDisposable
         GL.BindBuffer(BufferTarget.ArrayBuffer, _texCoordBuffer);
         GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec2size * _mesh.TexCoords.Length), _mesh.TexCoords, BufferUsageHint.DynamicDraw);
 
+        GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+
         // TODO: implement index buffer
         GL.BindBuffer(BufferTarget.ElementArrayBuffer, _indexBuffer);
-        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(uintSize * _mesh.Indices.Length), _mesh.Indices, BufferUsageHint.DynamicDraw);
+        GL.BufferData(BufferTarget.ElementArrayBuffer, new IntPtr(uintSize * _mesh.Indices.Length), _mesh.Indices, BufferUsageHint.DynamicDraw);
 
-        GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+        
+        GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
 
         GL.BindVertexArray(_vertexArray);
 
@@ -56,7 +61,11 @@ internal sealed class MeshBuffer : IDisposable
         GL.BindBuffer(BufferTarget.ArrayBuffer, _texCoordBuffer);
         GL.VertexAttribPointer(2, 2, VertexAttribPointerType.Float, false, 0, 0);
 
+        GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+
         GL.BindVertexArray(0);
+
+        
     }
 
     public void JustCallRender()
@@ -65,6 +74,9 @@ internal sealed class MeshBuffer : IDisposable
         GL.BindBuffer(BufferTarget.ElementArrayBuffer, _indexBuffer);
 
         GL.DrawElements(PrimitiveType.Triangles, _mesh.Indices.Length, DrawElementsType.UnsignedInt, 0);
+
+        // OpenTK.Graphics.OpenGL4.ErrorCode code = GL.GetError();
+        // Console.WriteLine(code);
 
         GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
         GL.BindVertexArray(0);

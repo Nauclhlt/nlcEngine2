@@ -939,6 +939,26 @@
             <param name="ambientIntensity">intensity of the ambient light</param>
             <param name="ambientColor">color of the ambient color</param>
         </member>
+        <member name="T:nlcEngine.ShadowView">
+            <summary>
+            Contains the settings of Shadow Mapping, which is used to make shadows of objects.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.ShadowView.ShadowIntensity">
+            <summary>
+            Gets or sets the intensity of the shadows.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.ShadowView.LightPerspective">
+            <summary>
+            Gets or sets the perspective of the light that makes the shadows.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.ShadowView.#ctor">
+            <summary>
+            Creates a new instance.
+            </summary>
+        </member>
         <member name="T:nlcEngine.Transform">
             <summary>
             Represents a transformation.
@@ -1940,6 +1960,77 @@
             Gets the list of the objects.
             </summary>
         </member>
+        <member name="T:nlcEngine.Bloom">
+            <summary>
+            Provides the bloom post process.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Bloom.#ctor">
+            <summary>
+            Creates a new instance.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Bloom.SetOption(nlcEngine.BloomOption)">
+            <summary>
+            Sets the blooming options.
+            </summary>
+            <param name="options">a structure that contains options</param>
+        </member>
+        <member name="M:nlcEngine.Bloom.Run">
+            <summary>
+            Runs the process.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Bloom.Dispose">
+            <summary>
+            Releases all resources used by <see cref="T:nlcEngine.Bloom"/>.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Bloom.Finalize">
+            <summary>
+            A destructor.
+            </summary>
+        </member>
+        <member name="T:nlcEngine.BloomOption">
+            <summary>
+            Contains options for blooming process.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.BloomOption.BlurFactor">
+            <summary>
+            Gets or sets the factor for blur colors. The default value is 0.7.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.BloomOption.BaseFactor">
+            <summary>
+            Gets or sets the factor for base colors. The default value is 1.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.BloomOption.Intensity">
+            <summary>
+            Gets or sets the intensity of the emission, means the number of sample texels. The default value is 12.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.BloomOption.BlurExp">
+            <summary>
+            Gets or sets the exponent for the blur weights. The default value is 1400.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.BloomOption.MinBrightness">
+            <summary>
+            Gets or sets the minimum brightness of pixels that should be bloom-applied. The default value is 0.4.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.BloomOption.Count">
+            <summary>
+            Gets or sets the number of blur processes. The default value is 1.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.BloomOption.#ctor">
+            <summary>
+            Initializes a new structure with default values.
+            </summary>
+        </member>
         <member name="T:nlcEngine.Profile">
             <summary>
             Contains a setting to start a game.
@@ -2010,6 +2101,36 @@
             <param name="title">title text</param>
             <param name="fps">frames-per-second</param>
         </member>
+        <member name="T:nlcEngine.RotationCamera">
+            <summary>
+            Provides a camera represented with X-axis rotation(pitch) and Y-axis rotation(yaw).
+            </summary>
+        </member>
+        <member name="M:nlcEngine.RotationCamera.#ctor">
+            <summary>
+            Creates a new instance.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.RotationCamera.Delta(System.Single,System.Single)">
+            <summary>
+            Adds the delta value specified.
+            </summary>
+            <param name="yaw">yaw delta</param>
+            <param name="pitch">pitch delta</param>
+        </member>
+        <member name="M:nlcEngine.RotationCamera.SetCameraTarget(nlcEngine.Camera@)">
+            <summary>
+            Sets the target of the specified camera, based on the holding pitch and yaw values.
+            </summary>
+            <param name="camera">camera to modify</param>
+            <returns>direction of the camera</returns>
+        </member>
+        <member name="M:nlcEngine.RotationCamera.GetDirection">
+            <summary>
+            Gets the direction vector in unit vector.
+            </summary>
+            <returns>direction</returns>
+        </member>
         <member name="T:nlcEngine.RenderObject">
             <summary>
             A base class for render-objects.
@@ -2045,23 +2166,34 @@
             Gets or sets the texture used to render the vertices.
             </summary>
         </member>
+        <member name="P:nlcEngine.RenderObject.Transform">
+            <summary>
+            Gets or sets the transform applied to the object.
+            </summary>
+        </member>
         <member name="M:nlcEngine.RenderObject.DoCreateBuffer">
             <summary>
             Forces to create the buffer.
             </summary>
         </member>
-        <member name="M:nlcEngine.RenderObject.RenderJust(nlcEngine.Camera,nlcEngine.Transform)">
+        <member name="M:nlcEngine.RenderObject.RenderJust(nlcEngine.Camera)">
             <summary>
             Just renders the object.
             </summary>
             <param name="camera">camera</param>
-            <param name="transform">transformation</param>
         </member>
         <member name="M:nlcEngine.RenderObject.DeferRender(OpenTK.Mathematics.Matrix4,OpenTK.Mathematics.Matrix4,OpenTK.Mathematics.Matrix4)">
             <summary>
             Renders self. <br />
             THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
             </summary>
+        </member>
+        <member name="M:nlcEngine.RenderObject.DepthRender(OpenTK.Mathematics.Matrix4)">
+            <summary>
+            Renders self.<br />
+            THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
+            </summary>
+            <param name="lightSpaceMatrix"></param>
         </member>
         <member name="M:nlcEngine.RenderObject.Dispose">
             <summary>
@@ -2072,15 +2204,6 @@
             <summary>
             A destructor.
             </summary>
-        </member>
-        <member name="M:nlcEngine.RenderObject.RenderWithLightDeferred(nlcEngine.Camera,nlcEngine.DeferredList,nlcEngine.LightEnvironment,nlcEngine.Transform)">
-            <summary>
-            Renders the objects with deferred lighting.<br />
-            This process should be runned at the beginning of a frame, and other objects with no deferred lighting should be rendered after this process.
-            </summary>
-            <param name="camera">camera</param>
-            <param name="renderer">renderer</param>
-            <param name="env">light environment</param>
         </member>
         <member name="T:nlcEngine.Scene">
             <summary>
@@ -2116,6 +2239,30 @@
             <summary>
             Initializes the scene, called first time when the scene is loaded, when overridden.
             </summary>
+        </member>
+        <member name="T:nlcEngine.SceneRenderer">
+            <summary>
+            Provides methods to render objects.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.SceneRenderer.RenderWithLightDeferred(nlcEngine.Camera,nlcEngine.DeferredList,nlcEngine.LightEnvironment)">
+            <summary>
+            Renders the objects with deferred lighting.<br />
+            This process should be runned at the beginning of a frame, and other objects with no deferred lighting should be rendered after this process.
+            </summary>
+            <param name="camera">camera</param>
+            <param name="renderer">renderer</param>
+            <param name="env">light environment</param>
+        </member>
+        <member name="M:nlcEngine.SceneRenderer.RenderWithLightAndShadowDeferred(nlcEngine.Camera,nlcEngine.DeferredList,nlcEngine.LightEnvironment,nlcEngine.ShadowView)">
+            <summary>
+            Renders the objects with deferred lighting and shadow mapping.<br />
+            This process should be runned at the beginning of a frame, and other objects with no deferred lighting should be rendered after this process.
+            </summary>
+            <param name="camera">camera</param>
+            <param name="renderer">renderer</param>
+            <param name="env">light environment</param>
+            <param name="shadowView">shadow setting</param>
         </member>
         <member name="T:nlcEngine.Input">
             <summary>
@@ -2232,6 +2379,12 @@
             Renders self with the deferred shading.
             </summary>
         </member>
+        <member name="M:nlcEngine.IDefer.DepthRender(OpenTK.Mathematics.Matrix4)">
+            <summary>
+            Renders self on a shadow map.
+            </summary>
+            <param name="lightSpaceMatrix">light space matrix</param>
+        </member>
         <member name="T:nlcEngine.INamed">
             <summary>
             Provides the property to retrieve the resource name held in the wrapper.
@@ -2309,6 +2462,11 @@
             Gets the array that contains meshes.
             </summary>
         </member>
+        <member name="P:nlcEngine.Models.MeshObject.Transform">
+            <summary>
+            Gets or sets the transform applied to the object.
+            </summary>
+        </member>
         <member name="M:nlcEngine.Models.MeshObject.LoadMeshes(nlcEngine.Models.Mesh[])">
             <summary>
             Loads the meshes.
@@ -2320,6 +2478,19 @@
             Renders self. <br />
             THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
             </summary>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.DepthRender(OpenTK.Mathematics.Matrix4)">
+            <summary>
+            Renders self. <br />
+            THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.RenderJust(nlcEngine.Camera,nlcEngine.Transform)">
+            <summary>
+            Just renders the mesh.
+            </summary>
+            <param name="camera">camera</param>
+            <param name="transform">transformation</param>
         </member>
         <member name="M:nlcEngine.Models.MeshObject.Dispose">
             <summary>
