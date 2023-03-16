@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AssimpNet" Version="4.1.0" />
     <PackageReference Include="OpenTK" Version="4.7.7" />
     <PackageReference Include="SixLabors.ImageSharp" Version="3.0.0" />
   </ItemGroup>
@@ -19,6 +20,30 @@
     <EmbeddedResource Include="./shaders/copy.frag" LogicalName="copy_shader_frag" />
     <EmbeddedResource Include="./shaders/std.vert" LogicalName="std_shader_vert" />
     <EmbeddedResource Include="./shaders/std.frag" LogicalName="std_shader_frag" />
+    <EmbeddedResource Include="./shaders/deferg.vert" LogicalName="defer_g_vert" />
+    <EmbeddedResource Include="./shaders/deferg.frag" LogicalName="defer_g_frag" />
+    <EmbeddedResource Include="./shaders/deferlig.vert" LogicalName="defer_light_vert" />
+    <EmbeddedResource Include="./shaders/deferlig.frag" LogicalName="defer_light_frag" />
+    <EmbeddedResource Include="./shaders/std_light.vert" LogicalName="std_light_vert" />
+    <EmbeddedResource Include="./shaders/std_light.frag" LogicalName="std_light_frag" />
+    <EmbeddedResource Include="./shaders/model_deferg.vert" LogicalName="model_defer_g_vert" />
+    <EmbeddedResource Include="./shaders/model_deferg.frag" LogicalName="model_defer_g_frag" />
+    <EmbeddedResource Include="./shaders/model.vert" LogicalName="model_std_vert" />
+    <EmbeddedResource Include="./shaders/model.frag" LogicalName="model_std_frag" />
+    <EmbeddedResource Include="./shaders/badd.vert" LogicalName="bloom_add_vert" />
+    <EmbeddedResource Include="./shaders/badd.frag" LogicalName="bloom_add_frag" />
+    <EmbeddedResource Include="./shaders/blur.vert" LogicalName="bloom_blur_vert" />
+    <EmbeddedResource Include="./shaders/blur.frag" LogicalName="bloom_blur_frag" />
+    <EmbeddedResource Include="./shaders/brext.vert" LogicalName="bloom_bright_vert" />
+    <EmbeddedResource Include="./shaders/brext.frag" LogicalName="bloom_bright_frag" />
+    <EmbeddedResource Include="./shaders/std_depth.vert" LogicalName="std_depth_vert" />
+    <EmbeddedResource Include="./shaders/std_depth.frag" LogicalName="std_depth_frag" />
+    <EmbeddedResource Include="./shaders/defer_depthlight.vert" LogicalName="shadow_defer_vert" />
+    <EmbeddedResource Include="./shaders/defer_depthlight.frag" LogicalName="shadow_defer_frag" />
+    <EmbeddedResource Include="./shaders/model_depth.vert" LogicalName="model_depth_vert" />
+    <EmbeddedResource Include="./shaders/model_depth.frag" LogicalName="model_depth_frag" />
+    <EmbeddedResource Include="./shaders/depth_debug.vert" LogicalName="depth_debug_vert" />
+    <EmbeddedResource Include="./shaders/depth_debug.frag" LogicalName="depth_debug_frag" />
   </ItemGroup>
 
 </Project>

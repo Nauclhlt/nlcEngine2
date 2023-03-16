@@ -3,20 +3,23 @@ namespace nlcEngine;
 /// <summary>
 /// A 3-dementional vector represented with 3 float values.
 /// </summary>
-[StructLayout(LayoutKind.Sequential)]
+[StructLayout(LayoutKind.Explicit, Size=12)]
 public struct Vec3
 {
     /// <summary>
     /// The X element.
     /// </summary>
+    [FieldOffset(0)]
     public float X;
     /// <summary>
     /// The Y element.
     /// </summary>
+    [FieldOffset(4)]
     public float Y;
     /// <summary>
     /// The Z element.
     /// </summary>
+    [FieldOffset(8)]
     public float Z;
 
     /// <summary>
@@ -133,5 +136,59 @@ public struct Vec3
             X * MathF.Sin(angle) + Y * MathF.Cos(angle),
             Z
         );
+    }
+
+    /// <summary>
+    /// Adds the 2 vectors.
+    /// </summary>
+    /// <param name="left">left</param>
+    /// <param name="right">right</param>
+    /// <returns>resulting vector</returns>
+    public static Vec3 operator +(Vec3 left, Vec3 right)
+    {
+        return new Vec3(left.X + right.X, left.Y + right.Y, left.Z + right.Z);
+    }
+
+    /// <summary>
+    /// Gets the minus vector.
+    /// </summary>
+    /// <param name="vec">vector</param>
+    /// <returns>resulting vector</returns>
+    public static Vec3 operator -(Vec3 vec)
+    {
+        return new Vec3(-vec.X, -vec.Y, -vec.Z);
+    }
+
+    /// <summary>
+    /// Subtracts the 2 vectors.
+    /// </summary>
+    /// <param name="left">left</param>
+    /// <param name="right">right</param>
+    /// <returns>resulting vector</returns>
+    public static Vec3 operator -(Vec3 left, Vec3 right)
+    {
+        return new Vec3(left.X - right.X, left.Y - right.Y, left.Z - right.Z);
+    }
+
+    /// <summary>
+    /// Returns the scalar product.
+    /// </summary>
+    /// <param name="left">vector</param>
+    /// <param name="scalar">scalar</param>
+    /// <returns>resulting vector</returns>
+    public static Vec3 operator *(Vec3 left, float scalar)
+    {
+        return new Vec3(left.X * scalar, left.Y * scalar, left.Z * scalar);
+    }
+
+    /// <summary>
+    /// Returns the scalar division.
+    /// </summary>
+    /// <param name="left">vector</param>
+    /// <param name="scalar">scalar</param>
+    /// <returns>resulting vector</returns>
+    public static Vec3 operator /(Vec3 left, float scalar)
+    {
+        return new Vec3(left.X / scalar, left.Y / scalar, left.Z / scalar);
     }
 }

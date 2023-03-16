@@ -33,10 +33,42 @@ public sealed class ObjectBuffer : IDisposable, INamed
         _vertexCount = v.Length;
         _primitive = primitive;
 
+
+
+        // float[] va = new float[v.Length * 3];
+        // for (int i = 0; i < v.Length; i++)
+        // {
+        //     va[i * 3] = v[i].X;
+        //     va[i * 3 + 1] = v[i].Y;
+        //     va[i * 3 + 2] = v[i].Z;
+        // }
+        // float[] ca = new float[c.Length * 4];
+        // for (int i = 0; i < c.Length; i++)
+        // {
+        //     ca[i * 4] = c[i].Rf;
+        //     ca[i * 4 + 1] = c[i].Gf;
+        //     ca[i * 4 + 2] = c[i].Bf;
+        //     ca[i * 4 + 3] = c[i].Af;
+        // }
+        // float[] na = new float[n.Length * 3];
+        // for (int i = 0; i < n.Length; i++)
+        // {
+        //     na[i * 3] = n[i].X;
+        //     na[i * 3 + 1] = n[i].Y;
+        //     na[i * 3 + 2] = n[i].Z;
+        // }
+        // float[] ta = new float[t.Length * 2];
+        // for (int i = 0; i < t.Length; i++)
+        // {
+        //     ta[i * 2] = t[i].X;
+        //     ta[i * 2 + 1] = t[i].Y;
+        // }
+
+
         int vec3size = sizeof(Vec3);
         int colorSize = sizeof(Color);
         int vec2size = sizeof(Vec2);
-        GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexArray);
+        GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBuffer);
         GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec3size * v.Length), v, BufferUsageHint.StaticDraw);
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, _colorBuffer);
@@ -48,6 +80,7 @@ public sealed class ObjectBuffer : IDisposable, INamed
         GL.BindBuffer(BufferTarget.ArrayBuffer, _texCoordBuffer);
         GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec2size * t.Length), t, BufferUsageHint.StaticDraw);
 
+        GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
 
         _vertexArray = GL.GenVertexArray();
 
@@ -59,7 +92,7 @@ public sealed class ObjectBuffer : IDisposable, INamed
 
         GL.EnableVertexAttribArray(1);
         GL.BindBuffer(BufferTarget.ArrayBuffer, _colorBuffer);
-        GL.VertexAttribPointer(1, 4, VertexAttribPointerType.Float, false, 0, 0);
+        GL.VertexAttribPointer(1, 4, VertexAttribPointerType.UnsignedByte, true, 0, 0);
 
         GL.EnableVertexAttribArray(2);
         GL.BindBuffer(BufferTarget.ArrayBuffer, _normalBuffer);
@@ -72,6 +105,8 @@ public sealed class ObjectBuffer : IDisposable, INamed
         GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
 
         GL.BindVertexArray(0);
+
+        ResourceCollector.Add(this);
     }
 
     /// <summary>
@@ -79,6 +114,8 @@ public sealed class ObjectBuffer : IDisposable, INamed
     /// </summary>
     public void JustCallRender()
     {
+        NlcHelper.InThrow();
+
         GL.BindVertexArray(_vertexArray);
 
         GL.DrawArrays((PrimitiveType)_primitive, 0, _vertexCount);

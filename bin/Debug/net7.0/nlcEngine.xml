@@ -4,24 +4,68 @@
         <name>nlcEngine</name>
     </assembly>
     <members>
+        <member name="T:nlcEngine.Bound2">
+            <summary>
+            Represents a 2-dementional bounding box with float values.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Bound2.X">
+            <summary>
+            Gets or sets the X.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Bound2.Y">
+            <summary>
+            Gets or sets the Y.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Bound2.Width">
+            <summary>
+            Gets or sets the width.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Bound2.Height">
+            <summary>
+            Gets or sets the height.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Bound2.RightX">
+            <summary>
+            Gets the right X.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Bound2.BottomY">
+            <summary>
+            Gets the bottom Y.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Bound2.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Initializes a new structure with the position and size.
+            </summary>
+            <param name="x">X</param>
+            <param name="y">Y</param>
+            <param name="width">width</param>
+            <param name="height">height</param>
+        </member>
         <member name="T:nlcEngine.Camera">
             <summary>
             Represents a camera.
             </summary>
         </member>
-        <member name="P:nlcEngine.Camera.Position">
+        <member name="F:nlcEngine.Camera.Position">
             <summary>
-            Gets or sets the position of the camera.
+            Camera position.
             </summary>
         </member>
-        <member name="P:nlcEngine.Camera.Target">
+        <member name="F:nlcEngine.Camera.Target">
             <summary>
-            Gets or sets the target point of the camera.
+            Camera target point.
             </summary>
         </member>
-        <member name="P:nlcEngine.Camera.Up">
+        <member name="F:nlcEngine.Camera.Up">
             <summary>
-            Gets or sets the up vector of the camera.
+            Camera up vector.
             </summary>
         </member>
         <member name="T:nlcEngine.Color">
@@ -821,6 +865,168 @@
              Gets the YELLOWGREEN color.
             </summary>
         </member>
+        <member name="T:nlcEngine.Light">
+            <summary>
+            Represents a light.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Light.DiffuseColor">
+            <summary>
+            Gets the diffuse color.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Light.SpecularColor">
+            <summary>
+            Gets the specular color.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Light.Position">
+            <summary>
+            Gets the position of the light.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Light.Radius">
+            <summary>
+            Gets the radius of the light.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Light.Attenuation">
+            <summary>
+            Gets the attenuation.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Light.Intensity">
+            <summary>
+            Gets the intensity of the light.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Light.#ctor(nlcEngine.Color,nlcEngine.Color,nlcEngine.Vec3,System.Single,System.Single,System.Single)">
+            <summary>
+            Creates a new instance with the light colors, position, radius, attenuation, and intensity values.
+            </summary>
+            <param name="diffuse">diffuse color</param>
+            <param name="spec">specular color</param>
+            <param name="position">position of the light</param>
+            <param name="radius">radius of the light</param>
+            <param name="attenuation">attenuation</param>
+            <param name="intensity">intensity of the light</param>
+        </member>
+        <member name="T:nlcEngine.LightEnvironment">
+            <summary>
+            Contains the light setting of Phong-shading-model.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.LightEnvironment.AmbientIntensity">
+            <summary>
+            Gets or sets the intensity of the ambient light.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.LightEnvironment.AmbientColor">
+            <summary>
+            Gets or sets the ambient color.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.LightEnvironment.Lights">
+            <summary>
+            Gets the collection that contains the lights in the environment.<br />
+            Maximum number of the lights is 128. Items indexed over 128 will be ignored when the scene this object is used to render.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.LightEnvironment.#ctor(System.Single,nlcEngine.Color)">
+            <summary>
+            Creates a new instance from the ambient light setting.
+            </summary>
+            <param name="ambientIntensity">intensity of the ambient light</param>
+            <param name="ambientColor">color of the ambient color</param>
+        </member>
+        <member name="T:nlcEngine.ShadowView">
+            <summary>
+            Contains the settings of Shadow Mapping, which is used to make shadows of objects.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.ShadowView.ShadowIntensity">
+            <summary>
+            Gets or sets the intensity of the shadows.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.ShadowView.LightPerspective">
+            <summary>
+            Gets or sets the perspective of the light that makes the shadows.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.ShadowView.#ctor">
+            <summary>
+            Creates a new instance.
+            </summary>
+        </member>
+        <member name="T:nlcEngine.Transform">
+            <summary>
+            Represents a transformation.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Transform.Translate">
+            <summary>
+            Gets or sets the translate.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Transform.Rotate">
+            <summary>
+            Gets or sets the rotate.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Transform.RotationAngle">
+            <summary>
+            Gets or sets the rotation angle.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Transform.Scale">
+            <summary>
+            Gets or sets the scale.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Transform.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Initializes a new structure with the parameters.
+            </summary>
+            <param name="tx"></param>
+            <param name="ty"></param>
+            <param name="tz"></param>
+            <param name="rx"></param>
+            <param name="ry"></param>
+            <param name="rz"></param>
+            <param name="a"></param>
+            <param name="sx"></param>
+            <param name="sy"></param>
+            <param name="sz"></param>
+        </member>
+        <member name="M:nlcEngine.Transform.Translated(System.Single,System.Single,System.Single)">
+            <summary>
+            Gets the translated transform.
+            </summary>
+            <param name="x">translation X</param>
+            <param name="y">translation Y</param>
+            <param name="z">translation Z</param>
+            <returns>translated transform</returns>
+        </member>
+        <member name="M:nlcEngine.Transform.Rotated(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Gets the rotated transform
+            </summary>
+            <param name="x">rotation X</param>
+            <param name="y">rotation Y</param>
+            <param name="z">rotation Z</param>
+            <param name="angle">rotation angle</param>
+            <returns>rotated transform</returns>
+        </member>
+        <member name="M:nlcEngine.Transform.Scaled(System.Single,System.Single,System.Single)">
+            <summary>
+            Gets the scaled transform.
+            </summary>
+            <param name="x">scale X</param>
+            <param name="y">scale Y</param>
+            <param name="z">scale Z</param>
+            <returns>scaled transform</returns>
+        </member>
         <member name="T:nlcEngine.Vec2">
             <summary>
             A 2-dementional vector represented with 2 float values.
@@ -872,6 +1078,45 @@
             </summary>
             <param name="angle">rotation angle</param>
             <returns>rotated vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec2.op_Addition(nlcEngine.Vec2,nlcEngine.Vec2)">
+            <summary>
+            Adds the 2 vectors.
+            </summary>
+            <param name="left">left</param>
+            <param name="right">right</param>
+            <returns>resulting vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec2.op_Subtraction(nlcEngine.Vec2,nlcEngine.Vec2)">
+            <summary>
+            Subtracts the 2 vectors.
+            </summary>
+            <param name="left">left</param>
+            <param name="right">right</param>
+            <returns>resulting vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec2.op_UnaryNegation(nlcEngine.Vec2)">
+            <summary>
+            Gets the minus vector.
+            </summary>
+            <param name="vec">vector</param>
+            <returns>-vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec2.op_Multiply(nlcEngine.Vec2,System.Single)">
+            <summary>
+            Returns the scalar product of the vector.
+            </summary>
+            <param name="vec">vector</param>
+            <param name="scalar">scalar</param>
+            <returns>resulting vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec2.op_Division(nlcEngine.Vec2,System.Single)">
+            <summary>
+            Retuens the scalar division of the vector.
+            </summary>
+            <param name="vec">vector</param>
+            <param name="scalar">scalar</param>
+            <returns>resulting vector</returns>
         </member>
         <member name="T:nlcEngine.Vec3">
             <summary>
@@ -951,6 +1196,595 @@
             </summary>
             <param name="angle">rotation angle</param>
             <returns>rotated vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec3.op_Addition(nlcEngine.Vec3,nlcEngine.Vec3)">
+            <summary>
+            Adds the 2 vectors.
+            </summary>
+            <param name="left">left</param>
+            <param name="right">right</param>
+            <returns>resulting vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec3.op_UnaryNegation(nlcEngine.Vec3)">
+            <summary>
+            Gets the minus vector.
+            </summary>
+            <param name="vec">vector</param>
+            <returns>resulting vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec3.op_Subtraction(nlcEngine.Vec3,nlcEngine.Vec3)">
+            <summary>
+            Subtracts the 2 vectors.
+            </summary>
+            <param name="left">left</param>
+            <param name="right">right</param>
+            <returns>resulting vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec3.op_Multiply(nlcEngine.Vec3,System.Single)">
+            <summary>
+            Returns the scalar product.
+            </summary>
+            <param name="left">vector</param>
+            <param name="scalar">scalar</param>
+            <returns>resulting vector</returns>
+        </member>
+        <member name="M:nlcEngine.Vec3.op_Division(nlcEngine.Vec3,System.Single)">
+            <summary>
+            Returns the scalar division.
+            </summary>
+            <param name="left">vector</param>
+            <param name="scalar">scalar</param>
+            <returns>resulting vector</returns>
+        </member>
+        <member name="T:nlcEngine.Key">
+            <summary>
+            Represents a key.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Unknown">
+            <summary>
+                An unknown key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Space">
+            <summary>
+                The spacebar key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Apostrophe">
+            <summary>
+                The apostrophe key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Comma">
+            <summary>
+                The comma key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Minus">
+            <summary>
+                The minus key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Period">
+            <summary>
+                The period key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Slash">
+            <summary>
+                The slash key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D0">
+            <summary>
+                The 0 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D1">
+            <summary>
+                The 1 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D2">
+            <summary>
+                The 2 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D3">
+            <summary>
+                The 3 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D4">
+            <summary>
+                The 4 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D5">
+            <summary>
+                The 5 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D6">
+            <summary>
+                The 6 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D7">
+            <summary>
+                The 7 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D8">
+            <summary>
+                The 8 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D9">
+            <summary>
+                The 9 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Semicolon">
+            <summary>
+                The semicolon key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Equal">
+            <summary>
+                The equal key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.A">
+            <summary>
+                The A key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.B">
+            <summary>
+                The B key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.C">
+            <summary>
+                The C key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.D">
+            <summary>
+                The D key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.E">
+            <summary>
+                The E key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F">
+            <summary>
+                The F key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.G">
+            <summary>
+                The G key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.H">
+            <summary>
+                The H key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.I">
+            <summary>
+                The I key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.J">
+            <summary>
+                The J key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.K">
+            <summary>
+                The K key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.L">
+            <summary>
+                The L key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.M">
+            <summary>
+                The M key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.N">
+            <summary>
+                The N key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.O">
+            <summary>
+                The O key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.P">
+            <summary>
+                The P key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Q">
+            <summary>
+                The Q key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.R">
+            <summary>
+                The R key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.S">
+            <summary>
+                The S key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.T">
+            <summary>
+                The T key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.U">
+            <summary>
+                The U key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.V">
+            <summary>
+                The V key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.W">
+            <summary>
+                The W key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.X">
+            <summary>
+                The X key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Y">
+            <summary>
+                The Y key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Z">
+            <summary>
+                The Z key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.LeftBracket">
+            <summary>
+                The left bracket(opening bracket) key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Backslash">
+            <summary>
+                The backslash. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.RightBracket">
+            <summary>
+                The right bracket(closing bracket) key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.GraveAccent">
+            <summary>
+                The grave accent key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Escape">
+            <summary>
+                The escape key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Enter">
+            <summary>
+                The enter key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Tab">
+            <summary>
+                The tab key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Backspace">
+            <summary>
+                The backspace key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Insert">
+            <summary>
+                The insert key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Delete">
+            <summary>
+                The delete key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Right">
+            <summary>
+                The right arrow key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Left">
+            <summary>
+                The left arrow key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Down">
+            <summary>
+                The down arrow key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Up">
+            <summary>
+                The up arrow key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.PageUp">
+            <summary>
+                The page up key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.PageDown">
+            <summary>
+                The page down key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Home">
+            <summary>
+                The home key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.End">
+            <summary>
+                The end key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.CapsLock">
+            <summary>
+                The caps lock key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.ScrollLock">
+            <summary>
+                The scroll lock key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.NumLock">
+            <summary>
+                The num lock key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.PrintScreen">
+            <summary>
+                The print screen key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Pause">
+            <summary>
+                The pause key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F1">
+            <summary>
+                The F1 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F2">
+            <summary>
+                The F2 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F3">
+            <summary>
+                The F3 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F4">
+            <summary>
+                The F4 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F5">
+            <summary>
+                The F5 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F6">
+            <summary>
+                The F6 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F7">
+            <summary>
+                The F7 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F8">
+            <summary>
+                The F8 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F9">
+            <summary>
+                The F9 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F10">
+            <summary>
+                The F10 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F11">
+            <summary>
+                The F11 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F12">
+            <summary>
+                The F12 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F13">
+            <summary>
+                The F13 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F14">
+            <summary>
+                The F14 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F15">
+            <summary>
+                The F15 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F16">
+            <summary>
+                The F16 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F17">
+            <summary>
+                The F17 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F18">
+            <summary>
+                The F18 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F19">
+            <summary>
+                The F19 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F20">
+            <summary>
+                The F20 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F21">
+            <summary>
+                The F21 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F22">
+            <summary>
+                The F22 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F23">
+            <summary>
+                The F23 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F24">
+            <summary>
+                The F24 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.F25">
+            <summary>
+                The F25 key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad0">
+            <summary>
+                The 0 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad1">
+            <summary>
+                The 1 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad2">
+            <summary>
+                The 2 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad3">
+            <summary>
+                The 3 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad4">
+            <summary>
+                The 4 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad5">
+            <summary>
+                The 5 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad6">
+            <summary>
+                The 6 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad7">
+            <summary>
+                The 7 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad8">
+            <summary>
+                The 8 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPad9">
+            <summary>
+                The 9 key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPadDecimal">
+            <summary>
+                The decimal key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPadDivide">
+            <summary>
+                The divide key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPadMultiply">
+            <summary>
+                The multiply key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPadSubtract">
+            <summary>
+                The subtract key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPadAdd">
+            <summary>
+                The add key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPadEnter">
+            <summary>
+                The enter key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.KeyPadEqual">
+            <summary>
+                The equal key on the key pad. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.LeftShift">
+            <summary>
+                The left shift key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.LeftControl">
+            <summary>
+                The left control key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.LeftAlt">
+            <summary>
+                The left alt key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.LeftSuper">
+            <summary>
+                The left super key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.RightShift">
+            <summary>
+                The right shift key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.RightControl">
+            <summary>
+                The right control key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.RightAlt">
+            <summary>
+                The right alt key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.RightSuper">
+            <summary>
+                The right super key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.Menu">
+            <summary>
+                The menu key. </summary>
+        </member>
+        <member name="F:nlcEngine.Key.LastKey">
+            <summary>
+                The last valid key in this enum. </summary>
+        </member>
+        <member name="T:nlcEngine.MouseButton">
+            <summary>
+            Represents a mouse button.
+            </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Button1">
+            
+             <summary>
+                 The first button. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Button2">
+            
+             <summary>
+                 The second button. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Button3">
+            
+             <summary>
+                 The third button. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Button4">
+            
+             <summary>
+                 The fourth button. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Button5">
+            
+             <summary>
+                 The fifth button. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Button6">
+            
+             <summary>
+                 The sixth button. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Button7">
+            
+             <summary>
+                 The seventh button. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Button8">
+            
+             <summary>
+                 The eighth button. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Left">
+            
+             <summary>
+                 The left mouse button. This corresponds to OpenTK.Windowing.GraphicsLibraryFramework.MouseButton.Button1. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Right">
+            
+             <summary>
+                 The right mouse button. This corresponds to OpenTK.Windowing.GraphicsLibraryFramework.MouseButton.Button2. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Middle">
+            
+             <summary>
+                 The middle mouse button. This corresponds to OpenTK.Windowing.GraphicsLibraryFramework.MouseButton.Button3. </summary>
+        </member>
+        <member name="F:nlcEngine.MouseButton.Last">
+            
+             <summary>
+                 The highest mouse button available. </summary>
         </member>
         <member name="T:nlcEngine.Primitive">
             <summary>
@@ -1074,7 +1908,7 @@
         </member>
         <member name="T:nlcEngine.NlcCommonException">
             <summary>
-            An exception when thrown an argument is invalid.
+            An exception thrown when general errors.
             </summary>
         </member>
         <member name="M:nlcEngine.NlcCommonException.#ctor">
@@ -1094,6 +1928,108 @@
             </summary>
             <param name="msg">message</param>
             <param name="innerException">inner exception</param>
+        </member>
+        <member name="T:nlcEngine.NlcNotInitializedException">
+            <summary>
+            An exception thrown when the game is not initialized.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.NlcNotInitializedException.#ctor">
+            <summary>
+            Creates a new instance.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.NlcNotInitializedException.#ctor(System.String)">
+            <summary>
+            Creates a new instance with the message.
+            </summary>
+            <param name="msg">message</param>
+        </member>
+        <member name="T:nlcEngine.DeferredList">
+            <summary>
+            Contains the list of the objects used to render.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.DeferredList.#ctor">
+            <summary>
+            Creates a new instance.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.DeferredList.Objects">
+            <summary>
+            Gets the list of the objects.
+            </summary>
+        </member>
+        <member name="T:nlcEngine.Bloom">
+            <summary>
+            Provides the bloom post process.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Bloom.#ctor">
+            <summary>
+            Creates a new instance.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Bloom.SetOption(nlcEngine.BloomOption)">
+            <summary>
+            Sets the blooming options.
+            </summary>
+            <param name="options">a structure that contains options</param>
+        </member>
+        <member name="M:nlcEngine.Bloom.Run">
+            <summary>
+            Runs the process.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Bloom.Dispose">
+            <summary>
+            Releases all resources used by <see cref="T:nlcEngine.Bloom"/>.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Bloom.Finalize">
+            <summary>
+            A destructor.
+            </summary>
+        </member>
+        <member name="T:nlcEngine.BloomOption">
+            <summary>
+            Contains options for blooming process.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.BloomOption.BlurFactor">
+            <summary>
+            Gets or sets the factor for blur colors. The default value is 0.7.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.BloomOption.BaseFactor">
+            <summary>
+            Gets or sets the factor for base colors. The default value is 1.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.BloomOption.Intensity">
+            <summary>
+            Gets or sets the intensity of the emission, means the number of sample texels. The default value is 12.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.BloomOption.BlurExp">
+            <summary>
+            Gets or sets the exponent for the blur weights. The default value is 1400.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.BloomOption.MinBrightness">
+            <summary>
+            Gets or sets the minimum brightness of pixels that should be bloom-applied. The default value is 0.4.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.BloomOption.Count">
+            <summary>
+            Gets or sets the number of blur processes. The default value is 1.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.BloomOption.#ctor">
+            <summary>
+            Initializes a new structure with default values.
+            </summary>
         </member>
         <member name="T:nlcEngine.Profile">
             <summary>
@@ -1165,6 +2101,36 @@
             <param name="title">title text</param>
             <param name="fps">frames-per-second</param>
         </member>
+        <member name="T:nlcEngine.RotationCamera">
+            <summary>
+            Provides a camera represented with X-axis rotation(pitch) and Y-axis rotation(yaw).
+            </summary>
+        </member>
+        <member name="M:nlcEngine.RotationCamera.#ctor">
+            <summary>
+            Creates a new instance.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.RotationCamera.Delta(System.Single,System.Single)">
+            <summary>
+            Adds the delta value specified.
+            </summary>
+            <param name="yaw">yaw delta</param>
+            <param name="pitch">pitch delta</param>
+        </member>
+        <member name="M:nlcEngine.RotationCamera.SetCameraTarget(nlcEngine.Camera@)">
+            <summary>
+            Sets the target of the specified camera, based on the holding pitch and yaw values.
+            </summary>
+            <param name="camera">camera to modify</param>
+            <returns>direction of the camera</returns>
+        </member>
+        <member name="M:nlcEngine.RotationCamera.GetDirection">
+            <summary>
+            Gets the direction vector in unit vector.
+            </summary>
+            <returns>direction</returns>
+        </member>
         <member name="T:nlcEngine.RenderObject">
             <summary>
             A base class for render-objects.
@@ -1195,6 +2161,16 @@
             Gets or sets the primitive type used to render the vertices.
             </summary>
         </member>
+        <member name="P:nlcEngine.RenderObject.Texture">
+            <summary>
+            Gets or sets the texture used to render the vertices.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.RenderObject.Transform">
+            <summary>
+            Gets or sets the transform applied to the object.
+            </summary>
+        </member>
         <member name="M:nlcEngine.RenderObject.DoCreateBuffer">
             <summary>
             Forces to create the buffer.
@@ -1205,6 +2181,19 @@
             Just renders the object.
             </summary>
             <param name="camera">camera</param>
+        </member>
+        <member name="M:nlcEngine.RenderObject.DeferRender(OpenTK.Mathematics.Matrix4,OpenTK.Mathematics.Matrix4,OpenTK.Mathematics.Matrix4)">
+            <summary>
+            Renders self. <br />
+            THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.RenderObject.DepthRender(OpenTK.Mathematics.Matrix4)">
+            <summary>
+            Renders self.<br />
+            THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
+            </summary>
+            <param name="lightSpaceMatrix"></param>
         </member>
         <member name="M:nlcEngine.RenderObject.Dispose">
             <summary>
@@ -1251,15 +2240,73 @@
             Initializes the scene, called first time when the scene is loaded, when overridden.
             </summary>
         </member>
-        <member name="T:nlcEngine.ShaderProvider">
+        <member name="T:nlcEngine.SceneRenderer">
             <summary>
-            Provides the shaders based on the types.
+            Provides methods to render objects.
             </summary>
         </member>
-        <member name="P:nlcEngine.ShaderProvider.StdShader">
+        <member name="M:nlcEngine.SceneRenderer.RenderWithLightDeferred(nlcEngine.Camera,nlcEngine.DeferredList,nlcEngine.LightEnvironment)">
             <summary>
-            Gets or sets the StdShader.
+            Renders the objects with deferred lighting.<br />
+            This process should be runned at the beginning of a frame, and other objects with no deferred lighting should be rendered after this process.
             </summary>
+            <param name="camera">camera</param>
+            <param name="renderer">renderer</param>
+            <param name="env">light environment</param>
+        </member>
+        <member name="M:nlcEngine.SceneRenderer.RenderWithLightAndShadowDeferred(nlcEngine.Camera,nlcEngine.DeferredList,nlcEngine.LightEnvironment,nlcEngine.ShadowView)">
+            <summary>
+            Renders the objects with deferred lighting and shadow mapping.<br />
+            This process should be runned at the beginning of a frame, and other objects with no deferred lighting should be rendered after this process.
+            </summary>
+            <param name="camera">camera</param>
+            <param name="renderer">renderer</param>
+            <param name="env">light environment</param>
+            <param name="shadowView">shadow setting</param>
+        </member>
+        <member name="T:nlcEngine.Input">
+            <summary>
+            Provides the API to handle user input.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Input.IsKeyDown(nlcEngine.Key)">
+            <summary>
+            Checks if the specified key is currently pressed.
+            </summary>
+            <param name="key">key</param>
+            <returns>whether the key is pressed</returns>
+        </member>
+        <member name="M:nlcEngine.Input.IsKeyPressed(nlcEngine.Key)">
+            <summary>
+            Checks if the specified key is started to be pressed in this frame.
+            </summary>
+            <param name="key">key</param>
+            <returns>whether the key is pressed</returns>
+        </member>
+        <member name="M:nlcEngine.Input.IsKeyReleased(nlcEngine.Key)">
+            <summary>
+            Checks if the specified key is released in this frame.
+            </summary>
+            <param name="key">key</param>
+            <returns>whether the key is released</returns>
+        </member>
+        <member name="M:nlcEngine.Input.GetMousePoint">
+            <summary>
+            Gets the mouse point relative to the window.
+            </summary>
+            <returns>relative mouse point</returns>
+        </member>
+        <member name="M:nlcEngine.Input.SetMousePoint(nlcEngine.Vec2)">
+            <summary>
+            Sets the mouse point relative to the window.
+            </summary>
+            <param name="pos">relative mouse point</param>
+        </member>
+        <member name="M:nlcEngine.Input.SetCursorVisibility(System.Boolean)">
+            <summary>
+            Sets the visibility of the mouse cursor.
+            </summary>
+            <param name="visibility">visibility</param>
         </member>
         <member name="T:nlcEngine.NlcEngineGame">
             <summary>
@@ -1322,6 +2369,22 @@
             <param name="near">depth near</param>
             <param name="far">depth far</param>
         </member>
+        <member name="T:nlcEngine.IDefer">
+            <summary>
+            Provides objects that can be rendered with deferred shading.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.IDefer.DeferRender(OpenTK.Mathematics.Matrix4,OpenTK.Mathematics.Matrix4,OpenTK.Mathematics.Matrix4)">
+            <summary>
+            Renders self with the deferred shading.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.IDefer.DepthRender(OpenTK.Mathematics.Matrix4)">
+            <summary>
+            Renders self on a shadow map.
+            </summary>
+            <param name="lightSpaceMatrix">light space matrix</param>
+        </member>
         <member name="T:nlcEngine.INamed">
             <summary>
             Provides the property to retrieve the resource name held in the wrapper.
@@ -1330,6 +2393,113 @@
         <member name="P:nlcEngine.INamed.Name">
             <summary>
             Gets the resource name.
+            </summary>
+        </member>
+        <member name="T:nlcEngine.ITexture">
+            <summary>
+            Provides the common and uniform information for OpenGL texture wrappers.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.ITexture.Width">
+            <summary>
+            Gets the width of the texture.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.ITexture.Height">
+            <summary>
+            Gets the height of the texture.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.ITexture.Crop">
+            <summary>
+            Gets the cropping bounds of the texture.
+            </summary>
+        </member>
+        <member name="T:nlcEngine.Models.Mesh">
+            <summary>
+            Contains mesh data.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Models.Mesh.Vertices">
+            <summary>
+            Gets the array of the vertices.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Models.Mesh.Normals">
+            <summary>
+            Gets the array of the normals.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Models.Mesh.TexCoords">
+            <summary>
+            Gets the array of the texture coords.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Models.Mesh.Indices">
+            <summary>
+            Gets the array of the indices.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Models.Mesh.HasTexture">
+            <summary>
+            Gets whether the mesh has a texture.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Models.Mesh.LoadFile(System.String)">
+            <summary>
+            Loads the model in the file and returns the loaded mesh.
+            </summary>
+            <param name="filename">file name</param>
+            <returns>created mesh instance</returns>
+        </member>
+        <member name="T:nlcEngine.Models.MeshObject">
+            <summary>
+            A base class for render-objects that contains mesh data.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Models.MeshObject.Meshes">
+            <summary>
+            Gets the array that contains meshes.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Models.MeshObject.Transform">
+            <summary>
+            Gets or sets the transform applied to the object.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.LoadMeshes(nlcEngine.Models.Mesh[])">
+            <summary>
+            Loads the meshes.
+            </summary>
+            <param name="meshes">meshes to load</param>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.DeferRender(OpenTK.Mathematics.Matrix4,OpenTK.Mathematics.Matrix4,OpenTK.Mathematics.Matrix4)">
+            <summary>
+            Renders self. <br />
+            THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.DepthRender(OpenTK.Mathematics.Matrix4)">
+            <summary>
+            Renders self. <br />
+            THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.RenderJust(nlcEngine.Camera,nlcEngine.Transform)">
+            <summary>
+            Just renders the mesh.
+            </summary>
+            <param name="camera">camera</param>
+            <param name="transform">transformation</param>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.Dispose">
+            <summary>
+            Releases all resources used by the mesh buffer.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.Finalize">
+            <summary>
+            A destructor.
             </summary>
         </member>
         <member name="T:nlcEngine.ObjectBuffer">
@@ -1362,11 +2532,6 @@
             Wraps an OpenGL shader.
             </summary>
         </member>
-        <member name="P:nlcEngine.Shader.Standard">
-            <summary>
-            Gets the Standard shader.
-            </summary>
-        </member>
         <member name="P:nlcEngine.Shader.Name">
             <summary>
             Gets the shader name.
@@ -1394,12 +2559,96 @@
             Activates the shader.
             </summary>
         </member>
+        <member name="M:nlcEngine.Shader.SetInt(System.String,System.Int32)">
+            <summary>
+            Sets the uniform int.
+            </summary>
+            <param name="name">name</param>
+            <param name="value">uniform</param>
+        </member>
+        <member name="M:nlcEngine.Shader.SetFloat(System.String,System.Single)">
+            <summary>
+            Sets the uniform float.
+            </summary>
+            <param name="name">name</param>
+            <param name="value">value</param>
+        </member>
+        <member name="M:nlcEngine.Shader.SetBoolean(System.String,System.Boolean)">
+            <summary>
+            Sets the uniform boolean.
+            </summary>
+            <param name="name">name</param>
+            <param name="value">value</param>
+        </member>
+        <member name="M:nlcEngine.Shader.SetVec3(System.String,nlcEngine.Vec3)">
+            <summary>
+            Sets the uniform vector.
+            </summary>
+            <param name="name">name</param>
+            <param name="vector">vector</param>
+        </member>
         <member name="M:nlcEngine.Shader.Dispose">
             <summary>
             Releases all resources used by the shader.
             </summary>
         </member>
         <member name="M:nlcEngine.Shader.Finalize">
+            <summary>
+            A destructor.
+            </summary>
+        </member>
+        <member name="T:nlcEngine.Texture">
+            <summary>
+            Wraps an OpenGL texture.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Texture.Name">
+            <summary>
+            Gets the texture name.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Texture.Width">
+            <summary>
+            Gets the width.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Texture.Height">
+            <summary>
+            Gets the height.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Texture.Crop">
+            <summary>
+            Gets the cropping bounds.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Texture.#ctor(System.String)">
+            <summary>
+            Loads the image file.
+            </summary>
+            <param name="filename">file name</param>
+        </member>
+        <member name="M:nlcEngine.Texture.#ctor(System.IO.Stream)">
+            <summary>
+            Loads the image from the stream.
+            </summary>
+            <param name="image">image stream</param>
+        </member>
+        <member name="M:nlcEngine.Texture.SetCrop(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Sets the cropping bounds.
+            </summary>
+            <param name="x">X</param>
+            <param name="y">Y</param>
+            <param name="w">width</param>
+            <param name="h">height</param>
+        </member>
+        <member name="M:nlcEngine.Texture.Dispose">
+            <summary>
+            Releases all resources used by the texture.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Texture.Finalize">
             <summary>
             A destructor.
             </summary>

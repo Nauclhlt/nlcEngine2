@@ -26,6 +26,14 @@ public sealed class NlcArgException : Exception
         }
     }
 
+    internal static void LeftZeroThrow(string name, float value)
+    {
+        if (value <= 0f)
+        {
+            Throw(name, "Can't be less or equals to 0.");
+        }
+    }
+
 
     /// <summary>
     /// Creates a new instance.

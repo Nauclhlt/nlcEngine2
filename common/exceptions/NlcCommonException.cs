@@ -1,7 +1,7 @@
 namespace nlcEngine;
 
 /// <summary>
-/// An exception when thrown an argument is invalid.
+/// An exception thrown when general errors.
 /// </summary>
 public sealed class NlcCommonException : Exception
 {

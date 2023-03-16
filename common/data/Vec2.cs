@@ -3,16 +3,18 @@ namespace nlcEngine;
 /// <summary>
 /// A 2-dementional vector represented with 2 float values.
 /// </summary>
-[StructLayout(LayoutKind.Sequential)]
+[StructLayout(LayoutKind.Explicit, Size=8)]
 public struct Vec2
 {
     /// <summary>
     /// The X element.
     /// </summary>
+    [FieldOffset(0)]
     public float X;
     /// <summary>
     /// The Y element.
     /// </summary>
+    [FieldOffset(4)]
     public float Y;
 
     /// <summary>
@@ -80,5 +82,59 @@ public struct Vec2
             X * MathF.Cos(angle) - Y * MathF.Sin(angle),
             X * MathF.Sin(angle) + Y * MathF.Cos(angle)
         );
+    }
+
+    /// <summary>
+    /// Adds the 2 vectors.
+    /// </summary>
+    /// <param name="left">left</param>
+    /// <param name="right">right</param>
+    /// <returns>resulting vector</returns>
+    public static Vec2 operator +(Vec2 left, Vec2 right)
+    {
+        return new Vec2(left.X + right.X, left.Y + right.Y);
+    }
+
+    /// <summary>
+    /// Subtracts the 2 vectors.
+    /// </summary>
+    /// <param name="left">left</param>
+    /// <param name="right">right</param>
+    /// <returns>resulting vector</returns>
+    public static Vec2 operator -(Vec2 left, Vec2 right)
+    {
+        return new Vec2(left.X - right.X, left.Y - right.Y);
+    }
+
+    /// <summary>
+    /// Gets the minus vector.
+    /// </summary>
+    /// <param name="vec">vector</param>
+    /// <returns>-vector</returns>
+    public static Vec2 operator -(Vec2 vec)
+    {
+        return new Vec2(-vec.X, -vec.Y);
+    }
+
+    /// <summary>
+    /// Returns the scalar product of the vector.
+    /// </summary>
+    /// <param name="vec">vector</param>
+    /// <param name="scalar">scalar</param>
+    /// <returns>resulting vector</returns>
+    public static Vec2 operator *(Vec2 vec, float scalar)
+    {
+        return new Vec2(vec.X * scalar, vec.Y * scalar);
+    }
+
+    /// <summary>
+    /// Retuens the scalar division of the vector.
+    /// </summary>
+    /// <param name="vec">vector</param>
+    /// <param name="scalar">scalar</param>
+    /// <returns>resulting vector</returns>
+    public static Vec2 operator /(Vec2 vec, float scalar)
+    {
+        return new Vec2(vec.X / scalar, vec.Y / scalar);
     }
 }
