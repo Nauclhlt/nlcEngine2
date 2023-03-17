@@ -4,11 +4,12 @@ internal sealed class MeshBuffer : IDisposable
 {
     int _vertexArray;
     int _vertexBuffer;
-    int _normalBuffer;
-    int _texCoordBuffer;
     int _indexBuffer;
+    Texture _texture;
     bool _disposed = false;
     Mesh _mesh;
+
+    public bool HasTexture => _texture is not null;
 
 
     public MeshBuffer(Mesh mesh)
@@ -17,26 +18,22 @@ internal sealed class MeshBuffer : IDisposable
 
         _vertexArray = GL.GenVertexArray();
         _vertexBuffer = GL.GenBuffer();
-        _normalBuffer = GL.GenBuffer();
-        _texCoordBuffer = GL.GenBuffer();
         _indexBuffer = GL.GenBuffer();
+
+        if (mesh.HasTexture)
+        {
+            
+        }
 
         ResourceCollector.Add(this);
     }
 
     public unsafe void CreateBuffer()
     {
-        int vec3size = sizeof(Vec3);
-        int vec2size = sizeof(Vec2);
+        int vertexSize = sizeof(Vertex);
         int uintSize = sizeof(uint);
         GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBuffer);
-        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec3size * _mesh.Vertices.Length), _mesh.Vertices, BufferUsageHint.DynamicDraw);
-
-        GL.BindBuffer(BufferTarget.ArrayBuffer, _normalBuffer);
-        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec3size * _mesh.Normals.Length), _mesh.Normals, BufferUsageHint.DynamicDraw);
-
-        GL.BindBuffer(BufferTarget.ArrayBuffer, _texCoordBuffer);
-        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec2size * _mesh.TexCoords.Length), _mesh.TexCoords, BufferUsageHint.DynamicDraw);
+        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vertexSize * _mesh.Vertices.Length), _mesh.Vertices, BufferUsageHint.DynamicDraw);
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
 
@@ -51,15 +48,22 @@ internal sealed class MeshBuffer : IDisposable
 
         GL.EnableVertexAttribArray(0);
         GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBuffer);
-        GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 0, 0);
+        GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, vertexSize, Marshal.OffsetOf<Vertex>("Position"));
 
         GL.EnableVertexAttribArray(1);
-        GL.BindBuffer(BufferTarget.ArrayBuffer, _normalBuffer);
-        GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 0, 0);
+        GL.VertexAttribPointer(1, 4, VertexAttribPointerType.UnsignedByte, true, vertexSize, Marshal.OffsetOf<Vertex>("Color"));
 
         GL.EnableVertexAttribArray(2);
-        GL.BindBuffer(BufferTarget.ArrayBuffer, _texCoordBuffer);
-        GL.VertexAttribPointer(2, 2, VertexAttribPointerType.Float, false, 0, 0);
+        GL.VertexAttribPointer(2, 3, VertexAttribPointerType.Float, false, vertexSize, Marshal.OffsetOf<Vertex>("Normal"));
+
+        GL.EnableVertexAttribArray(3);
+        GL.VertexAttribPointer(3, 2, VertexAttribPointerType.Float, false, vertexSize, Marshal.OffsetOf<Vertex>("TexCoords"));
+
+        GL.EnableVertexAttribArray(4);
+        GL.VertexAttribIPointer(4, 4, VertexAttribIntegerType.Int, vertexSize, Marshal.OffsetOf<Vertex>("BoneIds0"));
+
+        GL.EnableVertexAttribArray(5);
+        GL.VertexAttribPointer(5, 4, VertexAttribPointerType.Float, false, vertexSize, Marshal.OffsetOf<Vertex>("Weights0"));
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
 
@@ -70,6 +74,7 @@ internal sealed class MeshBuffer : IDisposable
 
     public void JustCallRender()
     {
+        
         GL.BindVertexArray(_vertexArray);
         GL.BindBuffer(BufferTarget.ElementArrayBuffer, _indexBuffer);
 
@@ -93,8 +98,6 @@ internal sealed class MeshBuffer : IDisposable
 
             GL.DeleteVertexArray(_vertexArray);
             GL.DeleteBuffer(_vertexBuffer);
-            GL.DeleteBuffer(_normalBuffer);
-            GL.DeleteBuffer(_texCoordBuffer);
             GL.DeleteBuffer(_indexBuffer);
 
             _disposed = true;

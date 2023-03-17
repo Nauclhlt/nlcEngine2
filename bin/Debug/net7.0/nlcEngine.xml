@@ -4,6 +4,60 @@
         <name>nlcEngine</name>
     </assembly>
     <members>
+        <member name="T:nlcEngine.Audio">
+            <summary>
+            Provides an OpenAL audio.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Audio.Volume">
+            <summary>
+            Gets or sets the volume of the audio.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Audio.IsPlaying">
+            <summary>
+            Gets whether the audio is currently being played.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Audio.LoadWave(System.String)">
+            <summary>
+            Loads the wave file.
+            </summary>
+            <param name="filename">file name</param>
+            <returns>loaded audio</returns>
+        </member>
+        <member name="M:nlcEngine.Audio.LoadMp3(System.String)">
+            <summary>
+            Loads the mp3 file.
+            </summary>
+            <param name="filename">file name</param>
+            <returns>loaded audio</returns>
+        </member>
+        <member name="M:nlcEngine.Audio.Play">
+            <summary>
+            Plays the audio.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Audio.Pause">
+            <summary>
+            Pauses the audio.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Audio.Stop">
+            <summary>
+            Stops the audio.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Audio.Dispose">
+            <summary>
+            Releases all resource used by <see cref="T:nlcEngine.Audio"/>.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Audio.Finalize">
+            <summary>
+            A destructor.
+            </summary>
+        </member>
         <member name="T:nlcEngine.Bound2">
             <summary>
             Represents a 2-dementional bounding box with float values.
@@ -1260,6 +1314,118 @@
             <param name="left">vector</param>
             <param name="scalar">scalar</param>
             <returns>resulting vector</returns>
+        </member>
+        <member name="T:nlcEngine.Models.Animation">
+            <summary>
+            Represents an animation.
+            </summary>
+        </member>
+        <member name="T:nlcEngine.Models.Animator">
+            <summary>
+            Provides an animator.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Models.Animator.#ctor(nlcEngine.Models.Animation)">
+            <summary>
+            Creates a new instance with the animation.
+            </summary>
+            <param name="animation">animation</param>
+        </member>
+        <member name="M:nlcEngine.Models.Animator.UpdateAnimation(System.Single)">
+            <summary>
+            Updates the animation.
+            </summary>
+            <param name="dt">deltaTime</param>
+        </member>
+        <member name="M:nlcEngine.Models.Animator.PlayAnimation(nlcEngine.Models.Animation)">
+            <summary>
+            Plays the animation.
+            </summary>
+            <param name="animation">animation</param>
+        </member>
+        <member name="T:nlcEngine.Models.Mesh">
+            <summary>
+            Contains mesh data.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Models.Mesh.Indices">
+            <summary>
+            Gets the array of the indices.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Models.Mesh.HasTexture">
+            <summary>
+            Gets whether the mesh has a texture.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Models.Mesh.LoadFile(System.String)">
+            <summary>
+            Loads the model in the file and returns the loaded mesh.
+            </summary>
+            <param name="filename">file name</param>
+            <returns>created mesh instance</returns>
+        </member>
+        <member name="T:nlcEngine.Models.MeshObject">
+            <summary>
+            A base class for render-objects that contains mesh data.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Models.MeshObject.Meshes">
+            <summary>
+            Gets the array that contains meshes.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Models.MeshObject.Transform">
+            <summary>
+            Gets or sets the transform applied to the object.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.LoadMeshes(nlcEngine.Models.Mesh[])">
+            <summary>
+            Loads the meshes.
+            </summary>
+            <param name="meshes">meshes to load</param>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.CreateAnimation(System.String)">
+            <summary>
+            Creates a new animation.
+            </summary>
+            <param name="filename">filename</param>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.ApplyAnimation(nlcEngine.Models.Animator)">
+            <summary>
+            Applies the animator.
+            </summary>
+            <param name="animator">animator</param>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.DeferRender(OpenTK.Mathematics.Matrix4,OpenTK.Mathematics.Matrix4,OpenTK.Mathematics.Matrix4)">
+            <summary>
+            Renders self. <br />
+            THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.DepthRender(OpenTK.Mathematics.Matrix4)">
+            <summary>
+            Renders self. <br />
+            THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.RenderJust(nlcEngine.Camera,nlcEngine.Transform)">
+            <summary>
+            Just renders the mesh.
+            </summary>
+            <param name="camera">camera</param>
+            <param name="transform">transformation</param>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.Dispose">
+            <summary>
+            Releases all resources used by the mesh buffer.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.Models.MeshObject.Finalize">
+            <summary>
+            A destructor.
+            </summary>
         </member>
         <member name="T:nlcEngine.Key">
             <summary>
@@ -2599,93 +2765,6 @@
         <member name="P:nlcEngine.ITexture.Crop">
             <summary>
             Gets the cropping bounds of the texture.
-            </summary>
-        </member>
-        <member name="T:nlcEngine.Models.Mesh">
-            <summary>
-            Contains mesh data.
-            </summary>
-        </member>
-        <member name="P:nlcEngine.Models.Mesh.Vertices">
-            <summary>
-            Gets the array of the vertices.
-            </summary>
-        </member>
-        <member name="P:nlcEngine.Models.Mesh.Normals">
-            <summary>
-            Gets the array of the normals.
-            </summary>
-        </member>
-        <member name="P:nlcEngine.Models.Mesh.TexCoords">
-            <summary>
-            Gets the array of the texture coords.
-            </summary>
-        </member>
-        <member name="P:nlcEngine.Models.Mesh.Indices">
-            <summary>
-            Gets the array of the indices.
-            </summary>
-        </member>
-        <member name="P:nlcEngine.Models.Mesh.HasTexture">
-            <summary>
-            Gets whether the mesh has a texture.
-            </summary>
-        </member>
-        <member name="M:nlcEngine.Models.Mesh.LoadFile(System.String)">
-            <summary>
-            Loads the model in the file and returns the loaded mesh.
-            </summary>
-            <param name="filename">file name</param>
-            <returns>created mesh instance</returns>
-        </member>
-        <member name="T:nlcEngine.Models.MeshObject">
-            <summary>
-            A base class for render-objects that contains mesh data.
-            </summary>
-        </member>
-        <member name="P:nlcEngine.Models.MeshObject.Meshes">
-            <summary>
-            Gets the array that contains meshes.
-            </summary>
-        </member>
-        <member name="P:nlcEngine.Models.MeshObject.Transform">
-            <summary>
-            Gets or sets the transform applied to the object.
-            </summary>
-        </member>
-        <member name="M:nlcEngine.Models.MeshObject.LoadMeshes(nlcEngine.Models.Mesh[])">
-            <summary>
-            Loads the meshes.
-            </summary>
-            <param name="meshes">meshes to load</param>
-        </member>
-        <member name="M:nlcEngine.Models.MeshObject.DeferRender(OpenTK.Mathematics.Matrix4,OpenTK.Mathematics.Matrix4,OpenTK.Mathematics.Matrix4)">
-            <summary>
-            Renders self. <br />
-            THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
-            </summary>
-        </member>
-        <member name="M:nlcEngine.Models.MeshObject.DepthRender(OpenTK.Mathematics.Matrix4)">
-            <summary>
-            Renders self. <br />
-            THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
-            </summary>
-        </member>
-        <member name="M:nlcEngine.Models.MeshObject.RenderJust(nlcEngine.Camera,nlcEngine.Transform)">
-            <summary>
-            Just renders the mesh.
-            </summary>
-            <param name="camera">camera</param>
-            <param name="transform">transformation</param>
-        </member>
-        <member name="M:nlcEngine.Models.MeshObject.Dispose">
-            <summary>
-            Releases all resources used by the mesh buffer.
-            </summary>
-        </member>
-        <member name="M:nlcEngine.Models.MeshObject.Finalize">
-            <summary>
-            A destructor.
             </summary>
         </member>
         <member name="T:nlcEngine.ObjectBuffer">

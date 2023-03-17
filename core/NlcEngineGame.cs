@@ -69,6 +69,8 @@ public static class NlcEngineGame
         GL.Enable(EnableCap.Texture2D);
         GL.Enable(EnableCap.TextureCubeMap);
         GL.Enable(EnableCap.DepthTest);
+        GL.Enable(EnableCap.Multisample);
+        GL.Enable(EnableCap.CullFace);
 
         GL.Enable(EnableCap.DebugOutput);
         // GL.DebugMessageCallback((source, type, id, severity, length, message, userParam) => {

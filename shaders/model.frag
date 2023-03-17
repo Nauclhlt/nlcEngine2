@@ -5,6 +5,7 @@ uniform bool textured;
 
 in vec3 vNormal;
 in vec2 vTexCoord;
+in vec4 vColor;
 
 out vec4 fragColor;
 
@@ -16,6 +17,6 @@ void main()
     }
     else
     {
-        fragColor = vec4(1, 1, 1, 1);
+        fragColor = vColor;
     }
 }

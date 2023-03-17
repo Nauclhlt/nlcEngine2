@@ -144,7 +144,7 @@ public static class SceneRenderer
         Matrix4 lightProjection, lightView, lightSpaceMatrix;
         lightProjection = Matrix4.CreateOrthographic(depthBuffer.Width, depthBuffer.Height, 0.02f, 7000f);
         lightView = Matrix4.LookAt(NlcHelper.Conv(depthLightCam.Position), NlcHelper.Conv(depthLightCam.Target), NlcHelper.Conv(depthLightCam.Up));
-        lightSpaceMatrix = lightView * lightProjection;  // maybe wrong
+        lightSpaceMatrix = lightView * lightProjection;
         //lightSpaceMatrix.Transpose();
 
         GL.Viewport(0, 0, depthBuffer.Width, depthBuffer.Height);

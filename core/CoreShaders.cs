@@ -17,6 +17,7 @@ internal static class CoreShaders
     private static Shader _modelDepthShader;
     private static Shader _depthDebugShader;
     private static Shader _skyboxShader;
+    private static Shader _modelAnimDeferGShader;
 
     public static Shader CopyShader => _copyShader;
     public static Shader StdShader => _stdShader;
@@ -33,6 +34,7 @@ internal static class CoreShaders
     public static Shader ModelDepthShader => _modelDepthShader;
     public static Shader DepthDebugShader => _depthDebugShader;
     public static Shader SkyboxShader => _skyboxShader;
+    public static Shader ModelAnimDeferGShader => _modelAnimDeferGShader;
 
     public static void Load()
     {
@@ -53,6 +55,7 @@ internal static class CoreShaders
         _modelDepthShader = LoadFrom(asm, "model_depth_vert", "model_depth_frag");
         _depthDebugShader = LoadFrom(asm, "depth_debug_vert", "depth_debug_frag");
         _skyboxShader = LoadFrom(asm, "skybox_vert", "skybox_frag");
+        _modelAnimDeferGShader = LoadFrom(asm, "model_anim_defer_vert", "model_anim_defer_frag");
     }
 
     private static Shader LoadFrom(Assembly asm, string vertName, string fragName)

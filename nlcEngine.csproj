@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="AssimpNet" Version="4.1.0" />
+    <PackageReference Include="NAudio" Version="2.1.0" />
     <PackageReference Include="OpenTK" Version="4.7.7" />
     <PackageReference Include="SixLabors.ImageSharp" Version="3.0.0" />
   </ItemGroup>
@@ -46,6 +47,8 @@
     <EmbeddedResource Include="./shaders/depth_debug.frag" LogicalName="depth_debug_frag" />
     <EmbeddedResource Include="./shaders/skybox.vert" LogicalName="skybox_vert" />
     <EmbeddedResource Include="./shaders/skybox.frag" LogicalName="skybox_frag" />
+    <EmbeddedResource Include="./shaders/model_anim_defer.vert" LogicalName="model_anim_defer_vert" />
+    <EmbeddedResource Include="./shaders/model_anim_defer.frag" LogicalName="model_anim_defer_frag" />
   </ItemGroup>
 
 </Project>

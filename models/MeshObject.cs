@@ -9,6 +9,7 @@ public abstract class MeshObject : IDisposable, IDefer
     MeshBuffer[] _buffers;
     Transform _transform;
     bool _disposed = false;
+    Animator _animator;
 
     /// <summary>
     /// Gets the array that contains meshes.
@@ -47,23 +48,69 @@ public abstract class MeshObject : IDisposable, IDefer
     }
 
     /// <summary>
+    /// Creates a new animation.
+    /// </summary>
+    /// <param name="filename">filename</param>
+    public Animation CreateAnimation(string filename)
+    {
+        return new Animation(filename, _meshes[0]);
+    }
+
+    /// <summary>
+    /// Applies the animator.
+    /// </summary>
+    /// <param name="animator">animator</param>
+    public void ApplyAnimation(Animator animator)
+    {
+        NlcArgException.NullThrow(nameof(animator), animator);
+
+        _animator = animator;
+    }
+
+    /// <summary>
     /// Renders self. <br />
     /// THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
     /// </summary>
     public void DeferRender(Matrix4 model, Matrix4 view, Matrix4 proj)
     {
-
-        Shader shader = CoreShaders.ModelDeferGShader;
-        shader.Activate();
-
-        NlcHelper.SendMat(_transform.GetModelMatrix(), view, proj);
-
-        shader.SetBoolean("textured", false);
-
-        for (int i = 0; i < _buffers.Length; i++)
+        if (_animator is not null)
         {
-            CreateCallRender();
+            Shader shader = CoreShaders.ModelAnimDeferGShader;
+            shader.Activate();
+
+            NlcHelper.SendMat(_transform.GetModelMatrix(), view, proj);
+            var matrices = _animator.GetFinalBoneMatrices();
+
+            for (int i = 0; i < matrices.Count; i++)
+            {
+                int loc = GL.GetUniformLocation(shader.Name, "finalBoneMatrices[" + i + "]");
+                Matrix4 m = matrices[i];
+                GL.UniformMatrix4(loc, false, ref m);
+            }
+
+            shader.SetBoolean("textured", false);
+
+            for (int i = 0; i < _buffers.Length; i++)
+            {
+                CreateCallRender();
+            }
         }
+        else
+        {
+            Shader shader = CoreShaders.ModelDeferGShader;
+            shader.Activate();
+
+            NlcHelper.SendMat(_transform.GetModelMatrix(), view, proj);
+
+            shader.SetBoolean("textured", false);
+
+            for (int i = 0; i < _buffers.Length; i++)
+            {
+                CreateCallRender();
+            }
+        }
+
+        _animator = null;
     }
 
     /// <summary>
@@ -72,14 +119,24 @@ public abstract class MeshObject : IDisposable, IDefer
     /// </summary>
     public void DepthRender(Matrix4 lightSpaceMatrix)
     {
-        Shader shader = CoreShaders.ModelDepthShader;
-        shader.Activate();
+        if (_animator is not null)
+        {
+            // animated
 
-        Matrix4 model = _transform.GetModelMatrix();
-        GL.UniformMatrix4(0, false, ref lightSpaceMatrix);
-        GL.UniformMatrix4(1, true, ref model);
+        }
+        else
+        {
+            Shader shader = CoreShaders.ModelDepthShader;
+            shader.Activate();
 
-        CreateCallRender();
+            Matrix4 model = _transform.GetModelMatrix();
+            GL.UniformMatrix4(0, false, ref lightSpaceMatrix);
+            GL.UniformMatrix4(1, true, ref model);
+
+            CreateCallRender();
+        }
+
+        
     }
 
     /// <summary>
@@ -96,7 +153,13 @@ public abstract class MeshObject : IDisposable, IDefer
 
         NlcHelper.SendMat(transform.GetModelMatrix(), camera.CreateViewMatrix(), Viewer.ProjectionMatrix);
 
-        CreateCallRender();
+        CreateBuffer();
+
+        for (int i = 0; i < _buffers.Length; i++)
+        {
+            
+            _buffers[i].JustCallRender();
+        }
     }
 
     private void DoCreateBuffer()

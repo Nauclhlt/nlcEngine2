@@ -3,28 +3,24 @@ namespace nlcEngine;
 /// <summary>
 /// A color represented by RGBA components.
 /// </summary>
-[StructLayout(LayoutKind.Explicit, Size=4)]
+[StructLayout(LayoutKind.Sequential)]
 public struct Color
 {
     /// <summary>
     /// The R component.
     /// </summary>
-    [FieldOffset(0)]
     public byte R;
     /// <summary>
     /// The G component.
     /// </summary>
-    [FieldOffset(1)]
     public byte G;
     /// <summary>
     /// The B component.
     /// </summary>
-    [FieldOffset(2)]
     public byte B;
     /// <summary>
     /// The A component.
     /// </summary>
-    [FieldOffset(3)]
     public byte A;
 
     /// <summary>
