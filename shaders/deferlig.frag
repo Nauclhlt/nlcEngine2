@@ -71,5 +71,7 @@ void main()
         lightingResult += (diffuse + specular) * L_Its;
     }
 
+    lightingResult = pow(lightingResult, vec3(1.0/2.2));
+
     fragColor = vec4(lightingResult, 1.0);
 }

@@ -16,6 +16,7 @@ internal static class CoreShaders
     private static Shader _depthLightShader;
     private static Shader _modelDepthShader;
     private static Shader _depthDebugShader;
+    private static Shader _skyboxShader;
 
     public static Shader CopyShader => _copyShader;
     public static Shader StdShader => _stdShader;
@@ -31,6 +32,7 @@ internal static class CoreShaders
     public static Shader DepthLightShader => _depthLightShader;
     public static Shader ModelDepthShader => _modelDepthShader;
     public static Shader DepthDebugShader => _depthDebugShader;
+    public static Shader SkyboxShader => _skyboxShader;
 
     public static void Load()
     {
@@ -45,11 +47,12 @@ internal static class CoreShaders
         _modelStdShader = LoadFrom(asm, "model_std_vert", "model_std_frag");
         _brightShader = LoadFrom(asm, "bloom_bright_vert", "bloom_bright_frag");
         _blurShader = LoadFrom(asm, "bloom_blur_vert", "bloom_blur_frag");
-        _addShader = LoadFrom(asm, "bloom_blur_frag", "bloom_add_frag");
+        _addShader = LoadFrom(asm, "bloom_add_vert", "bloom_add_frag");
         _stdDepthShader = LoadFrom(asm, "std_depth_vert", "std_depth_frag");
         _depthLightShader = LoadFrom(asm, "shadow_defer_vert", "shadow_defer_frag");
         _modelDepthShader = LoadFrom(asm, "model_depth_vert", "model_depth_frag");
         _depthDebugShader = LoadFrom(asm, "depth_debug_vert", "depth_debug_frag");
+        _skyboxShader = LoadFrom(asm, "skybox_vert", "skybox_frag");
     }
 
     private static Shader LoadFrom(Assembly asm, string vertName, string fragName)

@@ -10,7 +10,10 @@ public abstract class RenderObject : IDisposable, IDefer
     private Vec3[] _normals;
     private Vec2[] _texCoords;
     private Primitive _primitive;
-    private ObjectBuffer _buffer;
+    /// <summary>
+    /// Object buffer.
+    /// </summary>
+    protected ObjectBuffer _buffer;
     private ITexture _texture;
     Transform _transform;
     bool _disposed = false;
@@ -91,12 +94,29 @@ public abstract class RenderObject : IDisposable, IDefer
     {
         if (_buffer is null)
         {
-            _buffer = new ObjectBuffer(_vertices, _colors, _normals, _texCoords, _primitive);
+            FirstGenerateBuffer();
         }
         else
         {
             // TODO: implement rebuffering
+            Rebuffer();
         }
+    }
+
+    /// <summary>
+    /// Generates the first buffer.
+    /// </summary>
+    protected virtual void FirstGenerateBuffer()
+    {
+        _buffer = new ObjectBuffer(_vertices, _colors, _normals, _texCoords, _primitive);
+    }
+
+    /// <summary>
+    /// Rebuffers.
+    /// </summary>
+    protected virtual void Rebuffer()
+    {
+        _buffer.Rebuffer(_vertices, _colors, _normals, _texCoords);
     }
 
     /// <summary>
@@ -185,7 +205,11 @@ public abstract class RenderObject : IDisposable, IDefer
         _buffer.JustCallRender();
     }
 
-    private void Dispose(bool disposing)
+    /// <summary>
+    /// Disposes the resources.
+    /// </summary>
+    /// <param name="disposing">disposing</param>
+    protected void Dispose(bool disposing)
     {
         if (!_disposed)
         {

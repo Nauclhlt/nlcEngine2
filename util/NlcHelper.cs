@@ -37,4 +37,18 @@ internal static class NlcHelper
     {
         return new Vector3(vector.X, vector.Y, vector.Z);
     }
+
+    
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static T[] ExtractArray<T>( List<T> list )
+    {
+        if (list is null)
+            return null;
+        return Unsafe.As<ListMem<T>>(list).Items;
+    }
+}
+
+internal class ListMem<T>
+{
+    internal T[] Items = null;
 }

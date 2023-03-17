@@ -939,6 +939,31 @@
             <param name="ambientIntensity">intensity of the ambient light</param>
             <param name="ambientColor">color of the ambient color</param>
         </member>
+        <member name="T:nlcEngine.PBRMaterial">
+            <summary>
+            Represents a material of PBR(Physically-Based-Rendering).
+            </summary>
+        </member>
+        <member name="M:nlcEngine.PBRMaterial.#ctor">
+            <summary>
+            Creates a new instance.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.PBRMaterial.Metalness">
+            <summary>
+            Gets or sets the metalness.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.PBRMaterial.Roughness">
+            <summary>
+            Gets or sets the roughness.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.PBRMaterial.AO">
+            <summary>
+            Gets or sets the ambient occlusion.
+            </summary>
+        </member>
         <member name="T:nlcEngine.ShadowView">
             <summary>
             Contains the settings of Shadow Mapping, which is used to make shadows of objects.
@@ -2136,6 +2161,11 @@
             A base class for render-objects.
             </summary>
         </member>
+        <member name="F:nlcEngine.RenderObject._buffer">
+            <summary>
+            Object buffer.
+            </summary>
+        </member>
         <member name="P:nlcEngine.RenderObject.Vertices">
             <summary>
             Gets or sets the vertices.
@@ -2176,6 +2206,16 @@
             Forces to create the buffer.
             </summary>
         </member>
+        <member name="M:nlcEngine.RenderObject.FirstGenerateBuffer">
+            <summary>
+            Generates the first buffer.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.RenderObject.Rebuffer">
+            <summary>
+            Rebuffers.
+            </summary>
+        </member>
         <member name="M:nlcEngine.RenderObject.RenderJust(nlcEngine.Camera)">
             <summary>
             Just renders the object.
@@ -2194,6 +2234,12 @@
             THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
             </summary>
             <param name="lightSpaceMatrix"></param>
+        </member>
+        <member name="M:nlcEngine.RenderObject.Dispose(System.Boolean)">
+            <summary>
+            Disposes the resources.
+            </summary>
+            <param name="disposing">disposing</param>
         </member>
         <member name="M:nlcEngine.RenderObject.Dispose">
             <summary>
@@ -2263,6 +2309,146 @@
             <param name="renderer">renderer</param>
             <param name="env">light environment</param>
             <param name="shadowView">shadow setting</param>
+        </member>
+        <member name="M:nlcEngine.SceneRenderer.RenderWithLightAndShadowDeferredPBR(nlcEngine.Camera,nlcEngine.DeferredList,nlcEngine.LightEnvironment,nlcEngine.ShadowView)">
+            <summary>
+            NOT IMPLEMENTED YET.
+            </summary>
+            <param name="camera"></param>
+            <param name="renderer"></param>
+            <param name="env"></param>
+            <param name="shadowView"></param>
+        </member>
+        <member name="T:nlcEngine.VectorObject">
+            <summary>
+            Represents a RenderObject with variable-length vertices.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.VectorObject.#ctor(nlcEngine.Primitive,System.Int32)">
+            <summary>
+            Creates a new instance with the primitive type.
+            </summary>
+            <param name="primitive">primitive type</param>
+            <param name="size">initial size</param>
+        </member>
+        <member name="M:nlcEngine.VectorObject.AddTriangle(nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Color)">
+            <summary>
+            Adds a triangle.
+            </summary>
+            <param name="v1">vertex 1</param>
+            <param name="v2">vertex 2</param>
+            <param name="v3">vertex 3</param>
+            <param name="normal">normal vector</param>
+            <param name="color">color</param>
+        </member>
+        <member name="M:nlcEngine.VectorObject.AddTriangle(nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Color,nlcEngine.Color,nlcEngine.Color)">
+            <summary>
+            Adds a triangle.
+            </summary>
+            <param name="v1">vertex 1</param>
+            <param name="v2">vertex 2</param>
+            <param name="v3">vertex 3</param>
+            <param name="normal">normal vector</param>
+            <param name="color1">color</param>
+            <param name="color2">color</param>
+            <param name="color3">color</param>
+        </member>
+        <member name="M:nlcEngine.VectorObject.AddQuad(nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Color)">
+            <summary>
+            Adds a quadrangle.
+            </summary>
+            <param name="v1">vertex 1</param>
+            <param name="v2">vertex 2</param>
+            <param name="v3">vertex 3</param>
+            <param name="v4">vertex 4</param>
+            <param name="normal1">normal 1</param>
+            <param name="normal2">normal 2</param>
+            <param name="normal3">normal 3</param>
+            <param name="normal4">normal 4</param>
+            <param name="color">color</param>
+        </member>
+        <member name="M:nlcEngine.VectorObject.AddQuad(nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Color,nlcEngine.Color,nlcEngine.Color,nlcEngine.Color)">
+            <summary>
+            Adds a quadrangle.
+            </summary>
+            <param name="v1">vertex 1</param>
+            <param name="v2">vertex 2</param>
+            <param name="v3">vertex 3</param>
+            <param name="v4">vertex 4</param>
+            <param name="normal1">normal 1</param>
+            <param name="normal2">normal 2</param>
+            <param name="normal3">normal 3</param>
+            <param name="normal4">normal 4</param>
+            <param name="color1">color 1</param>
+            <param name="color2">color 2</param>
+            <param name="color3">color 3</param>
+            <param name="color4">color 4</param>
+        </member>
+        <member name="M:nlcEngine.VectorObject.AddLine(nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Color,nlcEngine.Color)">
+            <summary>
+            Adds a line.
+            </summary>
+            <param name="v1">vertex 1</param>
+            <param name="v2">vertex 2</param>
+            <param name="normal1">normal 1</param>
+            <param name="normal2">normal 2</param>
+            <param name="color1">color 1</param>
+            <param name="color2">color 1</param>
+        </member>
+        <member name="M:nlcEngine.VectorObject.AddLine(nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Color)">
+            <summary>
+            Adds a line.
+            </summary>
+            <param name="v1">vertex 1</param>
+            <param name="v2">vertex 2</param>
+            <param name="normal1">normal 1</param>
+            <param name="normal2">normal 2</param>
+            <param name="color">color</param>
+        </member>
+        <member name="M:nlcEngine.VectorObject.AddPoint(nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Color)">
+            <summary>
+            Adds a point.
+            </summary>
+            <param name="v">vertex</param>
+            <param name="normal">normal</param>
+            <param name="color">color</param>
+        </member>
+        <member name="M:nlcEngine.VectorObject.AddTextureQuad(nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Color,nlcEngine.ITexture)">
+            <summary>
+            Adds a textured quadrangle.
+            </summary>
+            <param name="v1">vertex 1, upper left</param>
+            <param name="v2">vertex 2, lower left</param>
+            <param name="v3">vertex 3, upper right</param>
+            <param name="v4">vertex 4, lower right</param>
+            <param name="normal">normal vector</param>
+            <param name="color">color</param>
+            <param name="texture">texture</param>
+        </member>
+        <member name="M:nlcEngine.VectorObject.AddTextureQuad(nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Vec3,nlcEngine.Color,nlcEngine.ITexture)">
+            <summary>
+            Adds a textured quadrangle.
+            </summary>
+            <param name="v1">vertex 1, upper left</param>
+            <param name="v2">vertex 2, lower left</param>
+            <param name="v3">vertex 3, upper right</param>
+            <param name="v4">vertex 4, lower right</param>
+            <param name="normal1">normal 1</param>
+            <param name="normal2">normal 2</param>
+            <param name="normal3">normal 3</param>
+            <param name="normal4">normal 4</param>
+            <param name="color">color</param>
+            <param name="texture">texture</param>
+        </member>
+        <member name="M:nlcEngine.VectorObject.FirstGenerateBuffer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:nlcEngine.VectorObject.Rebuffer">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:nlcEngine.Input">
             <summary>
@@ -2597,6 +2783,65 @@
             A destructor.
             </summary>
         </member>
+        <member name="T:nlcEngine.SkyCubeMap">
+            <summary>
+            Wraps an OpenGL cube texture, which is commonly used to render the sky box.<br />
+            This object is made only for sky box rendering.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.SkyCubeMap.Name">
+            <summary>
+            Gets the texture name.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.SkyCubeMap.#ctor(nlcEngine.Texture[])">
+            <summary>
+            Creates a new instance with the faces.
+            </summary>
+            <param name="faces">array that contains 6 faces</param>
+        </member>
+        <member name="M:nlcEngine.SkyCubeMap.Render(nlcEngine.Camera)">
+            <summary>
+            Renders the sky box. Order: right, left, top, bottom, front, back
+            </summary>
+            <param name="camera">camera</param>
+        </member>
+        <member name="M:nlcEngine.SkyCubeMap.Dispose">
+            <summary>
+            Releases all resources used by the sky box.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.SkyCubeMap.Finalize">
+            <summary>
+            A destructor.
+            </summary>
+        </member>
+        <member name="T:nlcEngine.Subtexture">
+            <summary>
+            Provides a texture wrapper that contains minimal information. <br />
+            Instances of subtextures can be created from only Texture class.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Subtexture.Width">
+            <summary>
+            Gets the width of the texture. Returns the cropping size if this subtexture is cropped.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Subtexture.Height">
+            <summary>
+            Gets the height of the texture. Returns the cropping size if this subtexture is cropped.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Subtexture.Name">
+            <summary>
+            Gets the texture name. Returns the original texture name if this subtexture is subset of a texture.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.Subtexture.Crop">
+            <summary>
+            Gets the cropping bounds.
+            </summary>
+        </member>
         <member name="T:nlcEngine.Texture">
             <summary>
             Wraps an OpenGL texture.
@@ -2637,6 +2882,15 @@
         <member name="M:nlcEngine.Texture.SetCrop(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             Sets the cropping bounds.
+            </summary>
+            <param name="x">X</param>
+            <param name="y">Y</param>
+            <param name="w">width</param>
+            <param name="h">height</param>
+        </member>
+        <member name="M:nlcEngine.Texture.GetCropped(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Gets the cropped texture.
             </summary>
             <param name="x">X</param>
             <param name="y">Y</param>

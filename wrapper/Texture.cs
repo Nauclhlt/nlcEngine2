@@ -98,6 +98,23 @@ public sealed class Texture : ITexture, IDisposable
         _crop = new Bound2(x / _width, y / _height, w / _width, h / _height);
     }
 
+    /// <summary>
+    /// Gets the cropped texture.
+    /// </summary>
+    /// <param name="x">X</param>
+    /// <param name="y">Y</param>
+    /// <param name="w">width</param>
+    /// <param name="h">height</param>
+    public Subtexture GetCropped(float x, float y, float w, float h)
+    {
+        NlcHelper.DispThrow(_disposed);
+        NlcArgException.LeftZeroThrow(nameof(w), w);
+        NlcArgException.LeftZeroThrow(nameof(h), h);
+
+        Bound2 c = new Bound2(x / _width, y / _height, w / _width, h / _height);
+        return new Subtexture(_name, (int)c.Width, (int)c.Height, c);
+    }
+
     private void Dispose(bool disposing)
     {
         if (!_disposed)

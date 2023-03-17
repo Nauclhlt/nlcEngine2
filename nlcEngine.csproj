@@ -44,6 +44,8 @@
     <EmbeddedResource Include="./shaders/model_depth.frag" LogicalName="model_depth_frag" />
     <EmbeddedResource Include="./shaders/depth_debug.vert" LogicalName="depth_debug_vert" />
     <EmbeddedResource Include="./shaders/depth_debug.frag" LogicalName="depth_debug_frag" />
+    <EmbeddedResource Include="./shaders/skybox.vert" LogicalName="skybox_vert" />
+    <EmbeddedResource Include="./shaders/skybox.frag" LogicalName="skybox_frag" />
   </ItemGroup>
 
 </Project>
