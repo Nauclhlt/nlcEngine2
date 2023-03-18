@@ -16,8 +16,10 @@ public sealed class Mesh
     uint[] _indices;
     List<Ai::Face> _faces;
     bool _hasTexture;
+    Texture _texture;
 
     internal Vertex[] Vertices => _vertices;
+    internal Texture Texture => _texture;
 
     /// <summary>
     /// Gets the array of the indices.
@@ -47,6 +49,23 @@ public sealed class Mesh
     {
         Ai::Material material = scene.Materials[mesh.MaterialIndex];
 
+        if ( material.HasTextureDiffuse )
+        {
+            Console.WriteLine("TEXTURE");
+            string path = material.TextureDiffuse.FilePath;
+            Ai::EmbeddedTexture embTexture = scene.Textures[material.TextureDiffuse.TextureIndex];
+            if (embTexture.HasCompressedData)
+            {
+                using ( MemoryStream stream = new MemoryStream( embTexture.CompressedData ) )
+                {
+                    Texture texture = new Texture(stream);
+                    _texture = texture;
+                }
+            }
+
+            _hasTexture = true;
+        }
+
         _vertices = new Vertex[mesh.VertexCount];
         
         for (int i = 0; i < mesh.VertexCount; i++)
@@ -74,12 +93,14 @@ public sealed class Mesh
                 Ai.Vector3D coord = mesh.TextureCoordinateChannels[0][i];
                 vertex.TexCoords = new Vector2(coord.X, coord.Y);
             }
+            
 
             
 
             _vertices[i] = vertex;
         }
 
+        
         
 
         _faces = mesh.Faces;

@@ -21,6 +21,7 @@ out vec4 Color;
 void main()
 {
     vec4 totalPosition = vec4(0.0);
+    vec3 totalNormal = vec3(0.0);
     for (int i = 0; i < 4; i++)
     {
         if (boneIds[i] == -1)
@@ -37,12 +38,13 @@ void main()
         vec4 localPosition = finalBoneMatrices[boneIds[i]] * vec4(position,1.0);
         totalPosition += localPosition * weights[i];
         vec3 localNormal = mat3(finalBoneMatrices[boneIds[i]]) * normal;
+        totalNormal += localNormal * weights[i];
     }
 
     FragPos = (modelMatrix * totalPosition).xyz;
     TexCoords = texCoord;
     mat3 normalMatrix = transpose(inverse(mat3(modelMatrix)));
-    Normal = normalMatrix * normal;
+    Normal = normalMatrix * totalNormal;
     Color = color;
     
     mat4 viewModel = viewMatrix * modelMatrix;

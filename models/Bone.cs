@@ -88,7 +88,7 @@ internal class Bone
         Matrix4 translation = InterpolatePosition(animationTime);
         Matrix4 rotation = InterpolateRotation(animationTime);
         Matrix4 scale = InterpolateScale(animationTime);
-        _localTransform = scale * rotation * translation;
+        _localTransform = rotation * translation;
         //_localTransform = Matrix4.Identity;
     }
 
@@ -156,6 +156,7 @@ internal class Bone
 
     Matrix4 InterpolateRotation(float animationTime)
     {
+        //return Matrix4.Identity;
         if (_rotationCount == 1)
         {
             Matrix4 m = Matrix4.CreateFromQuaternion(_rotations[0].Orientation.Normalized());
@@ -166,8 +167,9 @@ internal class Bone
         int p1Index = p0Index + 1;
         
         float scaleFactor = GetScaleFactor(_rotations[p0Index].Timestamp, _rotations[p1Index].Timestamp, animationTime);
-        Quaternion finalRotation = ModelHelper.Mix(_rotations[p0Index].Orientation, _rotations[p1Index].Orientation, scaleFactor);
-        return Matrix4.CreateFromQuaternion(finalRotation);
+        Quaternion finalRotation = ModelHelper.Mix(_rotations[p0Index].Orientation.Normalized(), _rotations[p1Index].Orientation.Normalized(), scaleFactor);
+        Vector3 euler = finalRotation.ToEulerAngles();
+        return Matrix4.CreateFromQuaternion(finalRotation.Normalized());
     }
 
     Matrix4 InterpolateScale(float animationTime)

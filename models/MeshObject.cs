@@ -102,11 +102,21 @@ public abstract class MeshObject : IDisposable, IDefer
 
             NlcHelper.SendMat(_transform.GetModelMatrix(), view, proj);
 
-            shader.SetBoolean("textured", false);
+            
 
             for (int i = 0; i < _buffers.Length; i++)
             {
+                shader.SetBoolean("textured", _meshes[i].HasTexture);
+
+                if (_buffers[i].HasTexture)
+                {
+                    GL.ActiveTexture(TextureUnit.Texture0);
+                    GL.BindTexture(TextureTarget.Texture2D, _meshes[i].Texture.Name);
+                }
+
                 CreateCallRender();
+
+                GL.BindTexture(TextureTarget.Texture2D, 0);
             }
         }
 
