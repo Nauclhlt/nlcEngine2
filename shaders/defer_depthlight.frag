@@ -30,6 +30,9 @@ uniform vec3 ambientColor;
 uniform vec3 backColor;
 uniform mat4 lightSpaceMatrix;
 uniform vec3 lightPos;
+uniform vec3 lightDirection;
+uniform vec3 directionalColor;
+uniform float directionalIntensity;
 
 float calcShadow(vec4 fragPosLightSpace, vec3 normal, vec3 fragPos)
 {
@@ -80,9 +83,17 @@ void main()
         return;
     }
 
-    vec3 lightingResult = (Diffuse * ambientColor) * ambientIntensity;
-    vec3 viewDir = normalize(viewPos - FragPos);
     float shadow = calcShadow(FragPosLightSpace, Normal, FragPos);
+    vec3 lightingResult = ((Diffuse * ambientColor) * ambientIntensity) * (1.0 - shadow);
+    vec3 viewDir = normalize(viewPos - FragPos);
+
+    {
+        vec3 lightDir = normalize(lightDirection);
+        vec3 d = max(dot(Normal, lightDir), 0.0) * Diffuse * directionalColor;
+
+        lightingResult += d * (1.0 - shadow);
+    }
+
     for (int i = 0; i < lightCount; i++)
     {
         int head = i * 12;

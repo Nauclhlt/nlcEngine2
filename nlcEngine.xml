@@ -980,6 +980,21 @@
             Gets or sets the ambient color.
             </summary>
         </member>
+        <member name="P:nlcEngine.LightEnvironment.Direction">
+            <summary>
+            Gets or sets the direction vector of the directional light.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.LightEnvironment.DirectionalColor">
+            <summary>
+            Gets or sets the color of the directional light.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.LightEnvironment.DirectionalIntensity">
+            <summary>
+            Gets or sets the intensity of the directional light.
+            </summary>
+        </member>
         <member name="P:nlcEngine.LightEnvironment.Lights">
             <summary>
             Gets the collection that contains the lights in the environment.<br />
@@ -2151,6 +2166,39 @@
             Gets the list of the objects.
             </summary>
         </member>
+        <member name="T:nlcEngine.MemoryImage">
+            <summary>
+            Contains an editable image on the memory.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.MemoryImage.#ctor(System.String)">
+            <summary>
+            Creates a new instance from the file name.
+            </summary>
+            <param name="filename">file name</param>
+        </member>
+        <member name="M:nlcEngine.MemoryImage.#ctor(System.IO.Stream)">
+            <summary>
+            Creates a new instance from the stream.
+            </summary>
+            <param name="stream">stream that contains image data</param>
+        </member>
+        <member name="M:nlcEngine.MemoryImage.CreateTexture">
+            <summary>
+            Creates a new texture from this image's data.
+            </summary>
+            <returns>created texture</returns>
+        </member>
+        <member name="M:nlcEngine.MemoryImage.Dispose">
+            <summary>
+            Releases all resources used by this image.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.MemoryImage.Finalize">
+            <summary>
+            A destructor.
+            </summary>
+        </member>
         <member name="T:nlcEngine.Bloom">
             <summary>
             Provides the bloom post process.
@@ -2322,6 +2370,17 @@
             </summary>
             <returns>direction</returns>
         </member>
+        <member name="T:nlcEngine.RenderingOptions">
+            <summary>
+            Handles the rendering options.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.RenderingOptions.SetFaceCullingEnabled(System.Boolean)">
+            <summary>
+            Sets whether the face culling is enabled.
+            </summary>
+            <param name="ability">ability</param>
+        </member>
         <member name="T:nlcEngine.RenderObject">
             <summary>
             A base class for render-objects.
@@ -2490,6 +2549,11 @@
             Represents a RenderObject with variable-length vertices.
             </summary>
         </member>
+        <member name="P:nlcEngine.VectorObject.Texture">
+            <summary>
+            Sets the texture.
+            </summary>
+        </member>
         <member name="M:nlcEngine.VectorObject.#ctor(nlcEngine.Primitive,System.Int32)">
             <summary>
             Creates a new instance with the primitive type.
@@ -2605,6 +2669,11 @@
             <param name="normal4">normal 4</param>
             <param name="color">color</param>
             <param name="texture">texture</param>
+        </member>
+        <member name="M:nlcEngine.VectorObject.Clear">
+            <summary>
+            Clears the whole vertices.
+            </summary>
         </member>
         <member name="M:nlcEngine.VectorObject.FirstGenerateBuffer">
             <summary>
@@ -2975,6 +3044,20 @@
             <param name="y">Y</param>
             <param name="w">width</param>
             <param name="h">height</param>
+        </member>
+        <member name="M:nlcEngine.Texture.SetResizingFilter(System.String)">
+            <summary>
+            Sets the resizing filter of the texture.
+            </summary>
+            <param name="filter">filter</param>
+        </member>
+        <member name="M:nlcEngine.Texture.CreateAtlas(nlcEngine.MemoryImage[],nlcEngine.Texture@)">
+            <summary>
+            Creates a texture atlas from the specified images.
+            </summary>
+            <param name="sources">source images</param>
+            <param name="baseTexture">texture atlas</param>
+            <returns>textures</returns>
         </member>
         <member name="M:nlcEngine.Texture.Dispose">
             <summary>

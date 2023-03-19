@@ -27,6 +27,9 @@ uniform vec3 viewPos;
 uniform float ambientIntensity;
 uniform vec3 ambientColor;
 uniform vec3 backColor;
+uniform vec3 lightDirection;
+uniform vec3 directionalColor;
+uniform float directionalIntensity;
 
 void main()
 {
@@ -43,6 +46,14 @@ void main()
 
     vec3 lightingResult = (Diffuse * ambientColor) * ambientIntensity;
     vec3 viewDir = normalize(viewPos - FragPos);
+
+    {
+        vec3 lightDir = normalize(lightDirection);
+        vec3 d = max(dot(Normal, lightDir), 0.0) * Diffuse * directionalColor;
+
+        lightingResult += d * (1.0 - shadow);
+    }
+
     for (int i = 0; i < lightCount; i++)
     {
         int head = i * 12;

@@ -2151,6 +2151,39 @@
             Gets the list of the objects.
             </summary>
         </member>
+        <member name="T:nlcEngine.MemoryImage">
+            <summary>
+            Contains an editable image on the memory.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.MemoryImage.#ctor(System.String)">
+            <summary>
+            Creates a new instance from the file name.
+            </summary>
+            <param name="filename">file name</param>
+        </member>
+        <member name="M:nlcEngine.MemoryImage.#ctor(System.IO.Stream)">
+            <summary>
+            Creates a new instance from the stream.
+            </summary>
+            <param name="stream">stream that contains image data</param>
+        </member>
+        <member name="M:nlcEngine.MemoryImage.CreateTexture">
+            <summary>
+            Creates a new texture from this image's data.
+            </summary>
+            <returns>created texture</returns>
+        </member>
+        <member name="M:nlcEngine.MemoryImage.Dispose">
+            <summary>
+            Releases all resources used by this image.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.MemoryImage.Finalize">
+            <summary>
+            A destructor.
+            </summary>
+        </member>
         <member name="T:nlcEngine.Bloom">
             <summary>
             Provides the bloom post process.

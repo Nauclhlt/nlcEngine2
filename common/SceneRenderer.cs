@@ -93,6 +93,9 @@ public static class SceneRenderer
 
         shader.SetFloat("ambientIntensity", env.AmbientIntensity);
         shader.SetVec3("ambientColor", new Vec3(env.AmbientColor.Rf, env.AmbientColor.Gf, env.AmbientColor.Bf));
+        shader.SetFloat("directionalIntensity", env.DirectionalIntensity);
+        shader.SetVec3("directionalColor", new Vec3(env.DirectionalColor.Rf, env.DirectionalColor.Gf, env.DirectionalColor.Bf));
+        shader.SetVec3("lightDirection", env.Direction);
         shader.SetInt("lightCount", Math.Min(env.Lights.Count, 128));
         
         shader.SetVec3("viewPos", camera.Position);
@@ -218,6 +221,9 @@ public static class SceneRenderer
 
         shader.SetFloat("ambientIntensity", env.AmbientIntensity);
         shader.SetVec3("ambientColor", new Vec3(env.AmbientColor.Rf, env.AmbientColor.Gf, env.AmbientColor.Bf));
+        shader.SetFloat("directionalIntensity", env.DirectionalIntensity);
+        shader.SetVec3("directionalColor", new Vec3(env.DirectionalColor.Rf, env.DirectionalColor.Gf, env.DirectionalColor.Bf));
+        shader.SetVec3("lightDirection", env.Direction);
         shader.SetInt("lightCount", Math.Min(env.Lights.Count, 128));
         
         shader.SetVec3("viewPos", camera.Position);
@@ -355,6 +361,9 @@ public static class SceneRenderer
 
         shader.SetFloat("ambientIntensity", env.AmbientIntensity);
         shader.SetVec3("ambientColor", new Vec3(env.AmbientColor.Rf, env.AmbientColor.Gf, env.AmbientColor.Bf));
+        shader.SetFloat("directionalIntensity", env.DirectionalIntensity);
+        shader.SetVec3("directionalColor", new Vec3(env.DirectionalColor.Rf, env.DirectionalColor.Gf, env.DirectionalColor.Bf));
+        shader.SetVec3("lightDirection", env.Direction);
         shader.SetInt("lightCount", Math.Min(env.Lights.Count, 128));
         
         shader.SetVec3("viewPos", camera.Position);

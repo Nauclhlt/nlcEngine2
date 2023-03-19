@@ -7,6 +7,9 @@ public sealed class LightEnvironment
 {
     float _ambientIntensity;
     Color _ambientColor;
+    float _directionalIntensity;
+    Color _directionalColor;
+    Vec3 _direction;
     List<Light> _lights;
 
     /// <summary>
@@ -24,6 +27,30 @@ public sealed class LightEnvironment
     {
         get => _ambientColor;
         set => _ambientColor = value;
+    }
+    /// <summary>
+    /// Gets or sets the direction vector of the directional light.
+    /// </summary>
+    public Vec3 Direction
+    {
+        get => _direction;
+        set => _direction = value;
+    }
+    /// <summary>
+    /// Gets or sets the color of the directional light.
+    /// </summary>
+    public Color DirectionalColor
+    {
+        get => _directionalColor;
+        set => _directionalColor = value;
+    }
+    /// <summary>
+    /// Gets or sets the intensity of the directional light.
+    /// </summary>
+    public float DirectionalIntensity
+    {
+        get => _directionalIntensity;
+        set => _directionalIntensity = value;
     }
     /// <summary>
     /// Gets the collection that contains the lights in the environment.<br />

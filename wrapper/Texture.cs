@@ -62,6 +62,16 @@ public sealed class Texture : ITexture, IDisposable
         ResourceCollector.Add(this);
     }
 
+    internal Texture(SixLabors.ImageSharp.Image<Rgba32> image)
+    {
+        NlcHelper.InThrow();
+        NlcArgException.NullThrow(nameof(image), image);
+
+        FromImage(image);
+
+        ResourceCollector.Add(this);
+    }
+
     private void FromImage(SixLabors.ImageSharp.Image<Rgba32> image)
     {
         byte[] pixelData = new byte[4 * image.Width * image.Height];
@@ -113,6 +123,88 @@ public sealed class Texture : ITexture, IDisposable
 
         Bound2 c = new Bound2(x / _width, y / _height, w / _width, h / _height);
         return new Subtexture(_name, (int)c.Width, (int)c.Height, c);
+    }
+
+    /// <summary>
+    /// Sets the resizing filter of the texture.
+    /// </summary>
+    /// <param name="filter">filter</param>
+    public void SetResizingFilter(string filter)
+    {
+        if (filter == "nearest")
+        {
+            GL.TextureParameter(_name, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
+            GL.TextureParameter(_name, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
+        }
+        else if (filter == "linear")
+        {
+            
+            GL.TextureParameter(_name, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
+            GL.TextureParameter(_name, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
+        }
+    }
+
+    /// <summary>
+    /// Creates a texture atlas from the specified images.
+    /// </summary>
+    /// <param name="sources">source images</param>
+    /// <param name="baseTexture">texture atlas</param>
+    /// <returns>textures</returns>
+    public static ITexture[] CreateAtlas(MemoryImage[] sources, out Texture baseTexture)
+    {
+        int width = 0;
+        int height = 0;
+        int lineHeight = 0;
+        int x = 0;
+        int y = 0;
+        List<Bound2> bounds = new List<Bound2>();
+
+        for (int i = 0; i < sources.Length; i++)
+        {
+            MemoryImage image = sources[i];
+
+            if (x + image.Image.Width > 2048)
+            {
+                width = Math.Max(width, x);
+                y += lineHeight;
+                x = 0;
+                lineHeight = 0;
+            }
+
+            lineHeight = Math.Max(lineHeight, image.Image.Height);
+
+            bounds.Add(new Bound2(x, y, image.Image.Width, image.Image.Height));
+
+            x += image.Image.Width;
+        }
+
+        height = y + lineHeight;
+        width = Math.Max(width, x);
+
+        SixLabors.ImageSharp.Image<Rgba32> atlas = new Image<Rgba32>(width, height, SixLabors.ImageSharp.Color.Transparent);
+
+        for (int i = 0; i < sources.Length; i++)
+        {
+            Bound2 b = bounds[i];
+            atlas.Mutate(c => c.DrawImage(sources[i].Image,
+            new SixLabors.ImageSharp.Point((int)b.X, (int)b.Y),
+            1f
+            ));
+            
+
+            
+        }
+
+        baseTexture = new Texture(atlas);
+
+        ITexture[] outputs = new ITexture[sources.Length];
+        for (int i = 0; i < sources.Length; i++)
+        {
+            Bound2 b = bounds[i];
+            outputs[i] = baseTexture.GetCropped(b.X, b.Y, b.Width, b.Height);
+        }
+
+        return outputs;
     }
 
     private void Dispose(bool disposing)

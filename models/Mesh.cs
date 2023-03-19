@@ -51,7 +51,7 @@ public sealed class Mesh
 
         if ( material.HasTextureDiffuse )
         {
-            Console.WriteLine("TEXTURE");
+            //Console.WriteLine("TEXTURE");
             string path = material.TextureDiffuse.FilePath;
             Ai::EmbeddedTexture embTexture = scene.Textures[material.TextureDiffuse.TextureIndex];
             if (embTexture.HasCompressedData)

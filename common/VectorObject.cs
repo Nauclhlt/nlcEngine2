@@ -13,6 +13,15 @@ public sealed class VectorObject : RenderObject
     int _vertexCount;
 
     /// <summary>
+    /// Sets the texture.
+    /// </summary>
+    public new ITexture Texture
+    {
+        get => base.Texture;
+        set => base.Texture = value;
+    }
+
+    /// <summary>
     /// Creates a new instance with the primitive type.
     /// </summary>
     /// <param name="primitive">primitive type</param>
@@ -318,6 +327,17 @@ public sealed class VectorObject : RenderObject
         _texCoords.Add(new Vec2(crop.RightX, crop.Y));
         _texCoords.Add(new Vec2(crop.X, crop.BottomY));
         _texCoords.Add(new Vec2(crop.RightX, crop.BottomY));
+    }
+
+    /// <summary>
+    /// Clears the whole vertices.
+    /// </summary>
+    public void Clear()
+    {
+        _vertices.Clear();
+        _colors.Clear();
+        _normals.Clear();
+        _texCoords.Clear();
     }
 
     /// <summary>
