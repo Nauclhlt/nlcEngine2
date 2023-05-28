@@ -42,6 +42,42 @@ public static class Input
     }
 
     /// <summary>
+    /// Checks if the specified mouse button is pressed.
+    /// </summary>
+    /// <param name="button">mouse button</param>
+    /// <returns>whether the mouse button is pressed</returns>
+    public static bool IsMouseDown(MouseButton button)
+    {
+        NlcHelper.InThrow();
+
+        return NlcEngineGame.Window.IsMouseButtonDown((OpenTK.Windowing.GraphicsLibraryFramework.MouseButton)button);
+    }
+
+    /// <summary>
+    /// Checks if the specified mouse button is started to be pressed in this frame.
+    /// </summary>
+    /// <param name="button">mouse button</param>
+    /// <returns>whether the mouse button is pressed</returns>
+    public static bool IsMousePressed(MouseButton button)
+    {
+        NlcHelper.InThrow();
+
+        return NlcEngineGame.Window.IsMouseButtonPressed((OpenTK.Windowing.GraphicsLibraryFramework.MouseButton)button);
+    }
+
+    /// <summary>
+    /// Checks if the specified mouse button is released in this frame.
+    /// </summary>
+    /// <param name="button">mouse button</param>
+    /// <returns>whether the mouse button is released</returns>
+    public static bool IsMouseReleased(MouseButton button)
+    {
+        NlcHelper.InThrow();
+
+        return NlcEngineGame.Window.IsMouseButtonReleased((OpenTK.Windowing.GraphicsLibraryFramework.MouseButton)button);
+    }
+
+    /// <summary>
     /// Gets the mouse point relative to the window.
     /// </summary>
     /// <returns>relative mouse point</returns>

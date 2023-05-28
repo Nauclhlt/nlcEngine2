@@ -18,7 +18,12 @@ void main()
     gNormal = normalize(Normal);
     if (textured)
     {
-        gColorSpec.rgb = texture(pTexture, TexCoords).rgb;
+        vec4 texel = texture(pTexture, TexCoords);
+        if (texel.a == 0.0)
+        {
+            discard;
+        }
+        gColorSpec.rgb = texel.rgb;
     }
     else
     {

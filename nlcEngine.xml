@@ -1048,6 +1048,21 @@
             Gets or sets the perspective of the light that makes the shadows.
             </summary>
         </member>
+        <member name="P:nlcEngine.ShadowView.PerspectiveScale">
+            <summary>
+            Gets or sets the scale of the light view matrix.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.ShadowView.FarPlane">
+            <summary>
+            Gets or sets the far plane of the light view matrix.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.ShadowView.NearPlane">
+            <summary>
+            Gets or sets the near plane of the light view matrix.
+            </summary>
+        </member>
         <member name="M:nlcEngine.ShadowView.#ctor">
             <summary>
             Creates a new instance.
@@ -1419,7 +1434,7 @@
             THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
             </summary>
         </member>
-        <member name="M:nlcEngine.Models.MeshObject.DepthRender(OpenTK.Mathematics.Matrix4)">
+        <member name="M:nlcEngine.Models.MeshObject.DepthRender(OpenTK.Mathematics.Matrix4,System.Single,System.Single)">
             <summary>
             Renders self. <br />
             THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
@@ -2453,12 +2468,14 @@
             THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
             </summary>
         </member>
-        <member name="M:nlcEngine.RenderObject.DepthRender(OpenTK.Mathematics.Matrix4)">
+        <member name="M:nlcEngine.RenderObject.DepthRender(OpenTK.Mathematics.Matrix4,System.Single,System.Single)">
             <summary>
             Renders self.<br />
             THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
             </summary>
             <param name="lightSpaceMatrix"></param>
+            <param name="nearPlane"></param>
+            <param name="farPlane"></param>
         </member>
         <member name="M:nlcEngine.RenderObject.Dispose(System.Boolean)">
             <summary>
@@ -2525,7 +2542,7 @@
             <param name="renderer">renderer</param>
             <param name="env">light environment</param>
         </member>
-        <member name="M:nlcEngine.SceneRenderer.RenderWithLightAndShadowDeferred(nlcEngine.Camera,nlcEngine.DeferredList,nlcEngine.LightEnvironment,nlcEngine.ShadowView)">
+        <member name="M:nlcEngine.SceneRenderer.RenderWithLightAndShadowDeferred(nlcEngine.Camera,nlcEngine.DeferredList,nlcEngine.LightEnvironment,nlcEngine.ShadowView,System.Boolean)">
             <summary>
             Renders the objects with deferred lighting and shadow mapping.<br />
             This process should be runned at the beginning of a frame, and other objects with no deferred lighting should be rendered after this process.
@@ -2534,6 +2551,7 @@
             <param name="renderer">renderer</param>
             <param name="env">light environment</param>
             <param name="shadowView">shadow setting</param>
+            <param name="debugView">debug view</param>
         </member>
         <member name="M:nlcEngine.SceneRenderer.RenderWithLightAndShadowDeferredPBR(nlcEngine.Camera,nlcEngine.DeferredList,nlcEngine.LightEnvironment,nlcEngine.ShadowView)">
             <summary>
@@ -2547,6 +2565,11 @@
         <member name="T:nlcEngine.VectorObject">
             <summary>
             Represents a RenderObject with variable-length vertices.
+            </summary>
+        </member>
+        <member name="P:nlcEngine.VectorObject.BufferCreated">
+            <summary>
+            Gets whether the buffer is created.
             </summary>
         </member>
         <member name="P:nlcEngine.VectorObject.Texture">
@@ -2685,6 +2708,11 @@
             
             </summary>
         </member>
+        <member name="M:nlcEngine.VectorObject.DoCreateBufferMapped">
+            <summary>
+            Creates a buffer with mapping.
+            </summary>
+        </member>
         <member name="T:nlcEngine.Input">
             <summary>
             Provides the API to handle user input.
@@ -2710,6 +2738,27 @@
             </summary>
             <param name="key">key</param>
             <returns>whether the key is released</returns>
+        </member>
+        <member name="M:nlcEngine.Input.IsMouseDown(nlcEngine.MouseButton)">
+            <summary>
+            Checks if the specified mouse button is pressed.
+            </summary>
+            <param name="button">mouse button</param>
+            <returns>whether the mouse button is pressed</returns>
+        </member>
+        <member name="M:nlcEngine.Input.IsMousePressed(nlcEngine.MouseButton)">
+            <summary>
+            Checks if the specified mouse button is started to be pressed in this frame.
+            </summary>
+            <param name="button">mouse button</param>
+            <returns>whether the mouse button is pressed</returns>
+        </member>
+        <member name="M:nlcEngine.Input.IsMouseReleased(nlcEngine.MouseButton)">
+            <summary>
+            Checks if the specified mouse button is released in this frame.
+            </summary>
+            <param name="button">mouse button</param>
+            <returns>whether the mouse button is released</returns>
         </member>
         <member name="M:nlcEngine.Input.GetMousePoint">
             <summary>
@@ -2748,6 +2797,11 @@
         <member name="M:nlcEngine.NlcEngineGame.Start">
             <summary>
             Starts the game.
+            </summary>
+        </member>
+        <member name="M:nlcEngine.NlcEngineGame.Shutdown">
+            <summary>
+            Ends the game and cleans the all resources up.
             </summary>
         </member>
         <member name="M:nlcEngine.NlcEngineGame.EnsureRelease(System.Action)">
@@ -2800,11 +2854,13 @@
             Renders self with the deferred shading.
             </summary>
         </member>
-        <member name="M:nlcEngine.IDefer.DepthRender(OpenTK.Mathematics.Matrix4)">
+        <member name="M:nlcEngine.IDefer.DepthRender(OpenTK.Mathematics.Matrix4,System.Single,System.Single)">
             <summary>
             Renders self on a shadow map.
             </summary>
             <param name="lightSpaceMatrix">light space matrix</param>
+            <param name="nearPlane">near plane</param>
+            <param name="farPlane">far plane</param>
         </member>
         <member name="T:nlcEngine.INamed">
             <summary>

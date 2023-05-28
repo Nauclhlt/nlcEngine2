@@ -7,6 +7,9 @@ public sealed class ShadowView
 {
     float _shadowIntensity;
     Camera _lightPerspective;
+    float _perspectiveScale;
+    float _farPlane;
+    float _nearPlane;
 
     /// <summary>
     /// Gets or sets the intensity of the shadows.
@@ -24,6 +27,31 @@ public sealed class ShadowView
     {
         get => _lightPerspective;
         set => _lightPerspective = value;
+    }
+
+    /// <summary>
+    /// Gets or sets the scale of the light view matrix.
+    /// </summary>
+    public float PerspectiveScale
+    {
+        get => _perspectiveScale;
+        set => _perspectiveScale = value;
+    }
+    /// <summary>
+    /// Gets or sets the far plane of the light view matrix.
+    /// </summary>
+    public float FarPlane
+    {
+        get => _farPlane;
+        set => _farPlane = value;
+    }
+    /// <summary>
+    /// Gets or sets the near plane of the light view matrix.
+    /// </summary>
+    public float NearPlane
+    {
+        get => _nearPlane;
+        set => _nearPlane = value;
     }
 
     /// <summary>

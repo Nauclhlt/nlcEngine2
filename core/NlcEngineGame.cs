@@ -102,12 +102,26 @@ public static class NlcEngineGame
         }
         finally
         {
-            
-
             _window.Dispose();
 
             Cleanup();
         }
+    }
+
+    /// <summary>
+    /// Ends the game and cleans the all resources up.
+    /// </summary>
+    public static void Shutdown()
+    {
+        NlcHelper.InThrow();
+
+        _window.Close();
+
+        _window?.Dispose();
+
+        Cleanup();
+
+        _window = null;
     }
 
     /// <summary>

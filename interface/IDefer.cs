@@ -13,5 +13,7 @@ public interface IDefer
     /// Renders self on a shadow map.
     /// </summary>
     /// <param name="lightSpaceMatrix">light space matrix</param>
-    public void DepthRender(Matrix4 lightSpaceMatrix);
+    /// <param name="nearPlane">near plane</param>
+    /// <param name="farPlane">far plane</param>
+    public void DepthRender(Matrix4 lightSpaceMatrix, float nearPlane, float farPlane);
 }

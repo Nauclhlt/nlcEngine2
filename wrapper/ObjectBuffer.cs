@@ -37,16 +37,16 @@ public sealed class ObjectBuffer : IDisposable, INamed
         int colorSize = sizeof(Color);
         int vec2size = sizeof(Vec2);
         GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBuffer);
-        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec3size * v.Length), v, BufferUsageHint.StaticDraw);
+        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec3size * v.Length), v, BufferUsageHint.DynamicDraw);
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, _colorBuffer);
-        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(colorSize * c.Length), c, BufferUsageHint.StaticDraw);
+        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(colorSize * c.Length), c, BufferUsageHint.DynamicDraw);
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, _normalBuffer);
-        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec3size * n.Length), n, BufferUsageHint.StaticDraw);
+        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec3size * n.Length), n, BufferUsageHint.DynamicDraw);
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, _texCoordBuffer);
-        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec2size * t.Length), t, BufferUsageHint.StaticDraw);
+        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec2size * t.Length), t, BufferUsageHint.DynamicDraw);
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
 
@@ -90,16 +90,16 @@ public sealed class ObjectBuffer : IDisposable, INamed
         int colorSize = sizeof(Color);
         int vec2size = sizeof(Vec2);
         GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBuffer);
-        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec3size * vlen), v, BufferUsageHint.StaticDraw);
+        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec3size * vlen), v, BufferUsageHint.DynamicDraw);
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, _colorBuffer);
-        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(colorSize * clen), c, BufferUsageHint.StaticDraw);
+        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(colorSize * clen), c, BufferUsageHint.DynamicDraw);
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, _normalBuffer);
-        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec3size * nlen), n, BufferUsageHint.StaticDraw);
+        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec3size * nlen), n, BufferUsageHint.DynamicDraw);
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, _texCoordBuffer);
-        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec2size * tlen), t, BufferUsageHint.StaticDraw);
+        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec2size * tlen), t, BufferUsageHint.DynamicDraw);
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
 
@@ -139,19 +139,21 @@ public sealed class ObjectBuffer : IDisposable, INamed
         int vec2size = sizeof(Vec2);
         GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBuffer);
         GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec3size * v.Length), v, BufferUsageHint.StaticDraw);
+        //GL.BufferSubData(BufferTarget.ArrayBuffer, 0, new IntPtr(vec3size * v.Length), v);
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, _colorBuffer);
         GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(colorSize * c.Length), c, BufferUsageHint.StaticDraw);
+        //GL.BufferSubData(BufferTarget.ArrayBuffer, 0, new IntPtr(colorSize * c.Length), c);
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, _normalBuffer);
         GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec3size * n.Length), n, BufferUsageHint.StaticDraw);
+        //GL.BufferSubData(BufferTarget.ArrayBuffer, 0, new IntPtr(vec3size * n.Length), n);
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, _texCoordBuffer);
         GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec2size * t.Length), t, BufferUsageHint.StaticDraw);
+        //GL.BufferSubData(BufferTarget.ArrayBuffer, 0, new IntPtr(vec2size * t.Length), t);
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
-
-        _vertexArray = GL.GenVertexArray();
 
         GL.BindVertexArray(_vertexArray);
 
@@ -184,20 +186,92 @@ public sealed class ObjectBuffer : IDisposable, INamed
         int colorSize = sizeof(Color);
         int vec2size = sizeof(Vec2);
         GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBuffer);
-        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec3size * vlen), v, BufferUsageHint.StaticDraw);
+        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec3size * v.Length), v, BufferUsageHint.StaticDraw);
+        //GL.BufferSubData(BufferTarget.ArrayBuffer, 0, new IntPtr(vec3size * v.Length), v);
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, _colorBuffer);
-        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(colorSize * clen), c, BufferUsageHint.StaticDraw);
+        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(colorSize * c.Length), c, BufferUsageHint.StaticDraw);
+        //GL.BufferSubData(BufferTarget.ArrayBuffer, 0, new IntPtr(colorSize * c.Length), c);
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, _normalBuffer);
-        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec3size * nlen), n, BufferUsageHint.StaticDraw);
+        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec3size * n.Length), n, BufferUsageHint.StaticDraw);
+        //GL.BufferSubData(BufferTarget.ArrayBuffer, 0, new IntPtr(vec3size * n.Length), n);
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, _texCoordBuffer);
-        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec2size * tlen), t, BufferUsageHint.StaticDraw);
+        GL.BufferData(BufferTarget.ArrayBuffer, new IntPtr(vec2size * t.Length), t, BufferUsageHint.StaticDraw);
+        //GL.BufferSubData(BufferTarget.ArrayBuffer, 0, new IntPtr(vec2size * t.Length), t);
 
         GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
 
-        _vertexArray = GL.GenVertexArray();
+        GL.BindVertexArray(_vertexArray);
+
+        GL.EnableVertexAttribArray(0);
+        GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBuffer);
+        GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 0, 0);
+
+        GL.EnableVertexAttribArray(1);
+        GL.BindBuffer(BufferTarget.ArrayBuffer, _colorBuffer);
+        GL.VertexAttribPointer(1, 4, VertexAttribPointerType.UnsignedByte, true, 0, 0);
+
+        GL.EnableVertexAttribArray(2);
+        GL.BindBuffer(BufferTarget.ArrayBuffer, _normalBuffer);
+        GL.VertexAttribPointer(2, 3, VertexAttribPointerType.Float, false, 0, 0);
+
+        GL.EnableVertexAttribArray(3);
+        GL.BindBuffer(BufferTarget.ArrayBuffer, _texCoordBuffer);
+        GL.VertexAttribPointer(3, 2, VertexAttribPointerType.Float, false, 0, 0);
+
+        GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+
+        GL.BindVertexArray(0);
+    }
+
+    internal unsafe void RebufferMapping(Vec3[] v, int vlen, Color[] c, int clen, Vec3[] n, int nlen, Vec2[] t, int tlen)
+    {
+        GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBuffer);
+        IntPtr ptr = GL.MapBuffer(BufferTarget.ArrayBuffer, BufferAccess.WriteOnly);
+
+        int vsize = sizeof(Vec3) * vlen;
+        int csize = sizeof(Color) * clen;
+        int nsize = sizeof(Vec3) * nlen;
+        int tsize = sizeof(Vec2) * tlen;
+
+        IntPtr vptr = Marshal.UnsafeAddrOfPinnedArrayElement(v, 0);
+        System.Buffer.MemoryCopy((void*)vptr, (void*)ptr, vsize, vsize);
+
+        GL.UnmapBuffer(BufferTarget.ArrayBuffer);
+
+
+
+        GL.BindBuffer(BufferTarget.ArrayBuffer, _colorBuffer);
+        ptr = GL.MapBuffer(BufferTarget.ArrayBuffer, BufferAccess.WriteOnly);
+
+        IntPtr cptr = Marshal.UnsafeAddrOfPinnedArrayElement(c, 0);
+        System.Buffer.MemoryCopy((void*)cptr, (void*)ptr, csize, csize);
+
+        GL.UnmapBuffer(BufferTarget.ArrayBuffer);
+
+
+
+        GL.BindBuffer(BufferTarget.ArrayBuffer, _normalBuffer);
+        ptr = GL.MapBuffer(BufferTarget.ArrayBuffer, BufferAccess.WriteOnly);
+
+        IntPtr nptr = Marshal.UnsafeAddrOfPinnedArrayElement(n, 0);
+        System.Buffer.MemoryCopy((void*)nptr, (void*)ptr, nsize, nsize);
+
+        GL.UnmapBuffer(BufferTarget.ArrayBuffer);
+
+
+        GL.BindBuffer(BufferTarget.ArrayBuffer, _texCoordBuffer);
+        ptr = GL.MapBuffer(BufferTarget.ArrayBuffer, BufferAccess.WriteOnly);
+
+        IntPtr tptr = Marshal.UnsafeAddrOfPinnedArrayElement(t, 0);
+        System.Buffer.MemoryCopy((void*)tptr, (void*)ptr, tsize, tsize);
+
+        GL.UnmapBuffer(BufferTarget.ArrayBuffer);
+
+        GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+
 
         GL.BindVertexArray(_vertexArray);
 

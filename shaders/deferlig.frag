@@ -51,7 +51,7 @@ void main()
         vec3 lightDir = normalize(lightDirection);
         vec3 d = max(dot(Normal, lightDir), 0.0) * Diffuse * directionalColor;
 
-        lightingResult += d * (1.0 - shadow);
+        lightingResult += d;
     }
 
     for (int i = 0; i < lightCount; i++)

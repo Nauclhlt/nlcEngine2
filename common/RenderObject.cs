@@ -183,7 +183,9 @@ public abstract class RenderObject : IDisposable, IDefer
     /// THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
     /// </summary>
     /// <param name="lightSpaceMatrix"></param>
-    public void DepthRender(Matrix4 lightSpaceMatrix)
+    /// <param name="nearPlane"></param>
+    /// <param name="farPlane"></param>
+    public void DepthRender(Matrix4 lightSpaceMatrix, float nearPlane, float farPlane)
     {
         Shader shader = CoreShaders.StdDepthShader;
         shader.Activate();
@@ -191,6 +193,8 @@ public abstract class RenderObject : IDisposable, IDefer
         Matrix4 model = _transform.GetModelMatrix();
         GL.UniformMatrix4(0, false, ref lightSpaceMatrix);
         GL.UniformMatrix4(1, true, ref model);
+        shader.SetFloat("nearPlane", nearPlane);
+        shader.SetFloat("farPlane", farPlane);
 
         CreateCallRender();
     }

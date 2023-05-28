@@ -10,5 +10,6 @@ layout (location = 1) uniform mat4 modelMatrix;
 
 void main()
 {
-    gl_Position = lightSpaceMatrix * modelMatrix * vec4(position, 1);
+    vec4 finalPos = lightSpaceMatrix * modelMatrix * vec4(position, 1);
+    gl_Position = finalPos;
 }

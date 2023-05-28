@@ -33,11 +33,25 @@ uniform vec3 lightPos;
 uniform vec3 lightDirection;
 uniform vec3 directionalColor;
 uniform float directionalIntensity;
+uniform float shadowIntensity;
+
+float getDepth(vec4 fragPosLightSpace, vec3 normal, vec3 fragPos)
+{
+    // perform perspective divide
+    vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+    // transform to [0,1] range
+    projCoords = projCoords * 0.5 + 0.5;
+    // get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
+    float closestDepth = texture(shadowMap, projCoords.xy).r;
+    
+    return closestDepth;
+}
 
 float calcShadow(vec4 fragPosLightSpace, vec3 normal, vec3 fragPos)
 {
     // perform perspective divide
     vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+    
     // transform to [0,1] range
     projCoords = projCoords * 0.5 + 0.5;
     // get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
@@ -46,7 +60,7 @@ float calcShadow(vec4 fragPosLightSpace, vec3 normal, vec3 fragPos)
     float currentDepth = projCoords.z;
     // calculate bias (based on depth map resolution and slope)
     vec3 lightDir = normalize(lightPos - fragPos);
-    float bias = max(0.05 * (1.0 - dot(normal, lightDir)), 0.005);
+    float bias = max(0.05 * (1.0 - dot(normal, lightDir)), 0.05);
     // check whether current frag pos is in shadow
     // float shadow = currentDepth - bias > closestDepth  ? 1.0 : 0.0;
     // PCF
@@ -83,7 +97,8 @@ void main()
         return;
     }
 
-    float shadow = calcShadow(FragPosLightSpace, Normal, FragPos);
+    float shadow = calcShadow(FragPosLightSpace, Normal, FragPos) * shadowIntensity;
+    float ds = getDepth(FragPosLightSpace, Normal, FragPos);
     vec3 lightingResult = ((Diffuse * ambientColor) * ambientIntensity) * (1.0 - shadow);
     vec3 viewDir = normalize(viewPos - FragPos);
 
@@ -125,4 +140,13 @@ void main()
     lightingResult = pow(lightingResult, vec3(1.0/2.2));
 
     fragColor = vec4(lightingResult, 1.0);
+    // if (shadow != 0.0)
+    // {
+    //     fragColor = vec4(1.0, 0, 0, 1.0);
+    // }
+    // else
+    // {
+    //     fragColor = vec4(vec3(ds), 1.0);
+    // }
+    //fragColor = vec4(vec3(ds), 1.0);
 }

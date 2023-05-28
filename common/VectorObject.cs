@@ -13,6 +13,11 @@ public sealed class VectorObject : RenderObject
     int _vertexCount;
 
     /// <summary>
+    /// Gets whether the buffer is created.
+    /// </summary>
+    public bool BufferCreated => _buffer is not null;
+
+    /// <summary>
     /// Sets the texture.
     /// </summary>
     public new ITexture Texture
@@ -366,5 +371,21 @@ public sealed class VectorObject : RenderObject
 
         _vertexCount = _vertices.Count;
         _buffer.Rebuffer(v, _vertices.Count, c, _colors.Count, n, _normals.Count, t, _texCoords.Count);
+    }
+
+    /// <summary>
+    /// Creates a buffer with mapping.
+    /// </summary>
+    public void DoCreateBufferMapped()
+    {
+        if (_buffer is null)
+            return;
+        Vec3[] v = NlcHelper.ExtractArray(_vertices);
+        Color[] c = NlcHelper.ExtractArray(_colors);
+        Vec3[] n = NlcHelper.ExtractArray(_normals);
+        Vec2[] t = NlcHelper.ExtractArray(_texCoords);
+
+        _vertexCount = _vertices.Count;
+        _buffer.RebufferMapping(v, _vertices.Count, c, _colors.Count, n, _normals.Count, t, _texCoords.Count);
     }
 }

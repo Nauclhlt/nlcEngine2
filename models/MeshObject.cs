@@ -127,7 +127,7 @@ public abstract class MeshObject : IDisposable, IDefer
     /// Renders self. <br />
     /// THIS METHOD IS USED IN THE GAME ENGINE INTERNAL PROCESS. DO NOT CALL THIS FROM NORMAL CODE.
     /// </summary>
-    public void DepthRender(Matrix4 lightSpaceMatrix)
+    public void DepthRender(Matrix4 lightSpaceMatrix, float nearPlane, float farPlane)
     {
         if (_animator is not null)
         {
@@ -138,6 +138,8 @@ public abstract class MeshObject : IDisposable, IDefer
         {
             Shader shader = CoreShaders.ModelDepthShader;
             shader.Activate();
+
+            
 
             Matrix4 model = _transform.GetModelMatrix();
             GL.UniformMatrix4(0, false, ref lightSpaceMatrix);

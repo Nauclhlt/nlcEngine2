@@ -8,7 +8,7 @@ public static class SceneRenderer
     
     static GBuffer _gBuffer;
     static LightStorageBuffer _lightBuffer;
-    static Lazy<DepthMapBuffer> _depthBuffer = new Lazy<DepthMapBuffer>(() => new DepthMapBuffer(1024, 1024));
+    static Lazy<DepthMapBuffer> _depthBuffer = new Lazy<DepthMapBuffer>(() => new DepthMapBuffer(2048, 2048));
 
     private static GBuffer GetOrCreateGBuffer()
     {
@@ -132,7 +132,8 @@ public static class SceneRenderer
     /// <param name="renderer">renderer</param>
     /// <param name="env">light environment</param>
     /// <param name="shadowView">shadow setting</param>
-    public static void RenderWithLightAndShadowDeferred( Camera camera, DeferredList renderer, LightEnvironment env, ShadowView shadowView )
+    /// <param name="debugView">debug view</param>
+    public static void RenderWithLightAndShadowDeferred( Camera camera, DeferredList renderer, LightEnvironment env, ShadowView shadowView, bool debugView = false )
     {
         // depth map code
 
@@ -145,7 +146,7 @@ public static class SceneRenderer
 
         Camera depthLightCam = shadowView.LightPerspective;
         Matrix4 lightProjection, lightView, lightSpaceMatrix;
-        lightProjection = Matrix4.CreateOrthographic(depthBuffer.Width, depthBuffer.Height, 0.02f, 7000f);
+        lightProjection = Matrix4.CreateOrthographicOffCenter(-depthBuffer.Width * shadowView.PerspectiveScale, depthBuffer.Width * shadowView.PerspectiveScale, -depthBuffer.Height * shadowView.PerspectiveScale, depthBuffer.Height * shadowView.PerspectiveScale, shadowView.NearPlane, shadowView.FarPlane);
         lightView = Matrix4.LookAt(NlcHelper.Conv(depthLightCam.Position), NlcHelper.Conv(depthLightCam.Target), NlcHelper.Conv(depthLightCam.Up));
         lightSpaceMatrix = lightView * lightProjection;
         //lightSpaceMatrix.Transpose();
@@ -160,7 +161,7 @@ public static class SceneRenderer
         var objList = renderer.GetListOfObjects();
         for (int i = 0; i < objList.Count; i++)
         {
-            objList[i].DepthRender(lightSpaceMatrix);
+            objList[i].DepthRender(lightSpaceMatrix, shadowView.NearPlane, shadowView.FarPlane);
         }
 
         GL.Viewport(0, 0, NlcEngineGame.Profile.BufferWidth, NlcEngineGame.Profile.BufferHeight);
@@ -225,7 +226,8 @@ public static class SceneRenderer
         shader.SetVec3("directionalColor", new Vec3(env.DirectionalColor.Rf, env.DirectionalColor.Gf, env.DirectionalColor.Bf));
         shader.SetVec3("lightDirection", env.Direction);
         shader.SetInt("lightCount", Math.Min(env.Lights.Count, 128));
-        
+        shader.SetFloat("shadowIntensity", shadowView.ShadowIntensity);
+
         shader.SetVec3("viewPos", camera.Position);
         shader.SetVec3("lightPos", depthLightCam.Position);
         GL.UniformMatrix4(GL.GetUniformLocation(shader.Name, "lightSpaceMatrix"), false, ref lightSpaceMatrix);
@@ -255,14 +257,17 @@ public static class SceneRenderer
         GL.BindBuffer(BufferTarget.ShaderStorageBuffer, 0);
 
 
-        // shader = CoreShaders.DepthDebugShader;
-        // shader.Activate();
+        if (!debugView)
+            return;
+        
+        shader = CoreShaders.DepthDebugShader;
+        shader.Activate();
 
-        // GL.BindTexture(TextureTarget.Texture2D, depthBuffer.MapTexture);
+        GL.BindTexture(TextureTarget.Texture2D, depthBuffer.MapTexture);
 
-        // RenderDepthDebug();
+        RenderDepthDebug();
 
-        // GL.BindTexture(TextureTarget.Texture2D, 0);
+        GL.BindTexture(TextureTarget.Texture2D, 0);
     }
 
     /// <summary>
@@ -300,7 +305,7 @@ public static class SceneRenderer
         var objList = renderer.GetListOfObjects();
         for (int i = 0; i < objList.Count; i++)
         {
-            objList[i].DepthRender(lightSpaceMatrix);
+            objList[i].DepthRender(lightSpaceMatrix, shadowView.NearPlane, shadowView.FarPlane);
         }
 
         GL.Viewport(0, 0, NlcEngineGame.Profile.BufferWidth, NlcEngineGame.Profile.BufferHeight);
