@@ -48,6 +48,3 @@ Set the current scene:
 NlcEngineGame.SceneService.Navigate( new MyScene() );  // Navigate to MyScene
 //NlcEngineGame.Start();
 ```
-
-# License
-[MIT License](https://choosealicense.com/licenses/mit/)
